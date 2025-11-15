@@ -1,0 +1,65 @@
+{
+  "bookId": "pride-and-prejudice",
+  "bookTitle": "오만과 편견",
+  "author": "제인 오스틴",
+  "coverImage": "/images/covers/pride-and-prejudice.png",
+  "description": "영국 시골을 배경으로 다섯 딸을 둔 베넷 가문의 결혼 이야기를 다룹니다. 주인공인 둘째 딸 엘리자베스 베넷과 부유한 귀족 다아시의 관계를 중심으로 펼쳐지며, 둘 사이에 싹트는 사랑과 오해, 그리고 사회적 갈등을 다루고 있습니다.",
+  "stories": [
+    {
+      "storyId": "story-1",
+      "title": "첫인상 최악의 남자",
+      "viewpointsDataUrl": "/data/story-viewpoints/story-1.json"
+    },
+    {
+      "storyId": "story-2",
+      "title": "완벽남의 대참사 고백",
+      "viewpointsDataUrl": "/data/story-viewpoints/story-2.json"
+    },
+    {
+      "storyId": "story-3",
+      "title": "동생 사건으로 뒤집힌 관계",
+      "viewpointsDataUrl": "/data/story-viewpoints/story-3.json"
+    },
+    {
+      "storyId": "story-4",
+      "title": "비 오는 날, 다시 만난 두 사람",
+      "viewpointsDataUrl": "/data/story-viewpoints/story-4.json"
+    },
+    {
+      "storyId": "story-5",
+      "title": "오만과 편견, 그 이름의 끝",
+      "viewpointsDataUrl": "/data/story-viewpoints/story-5.json"
+    }
+  ],
+  "characters": [
+    {
+      "characterId": "elizabeth",
+      "name": "엘리자베스 베넷",
+      "avatar": "/images/avatars/elizabeth.png",
+      "progress": 90,
+      "detailDataUrl": "/data/character-detail/elizabeth.json"
+    },
+    {
+      "characterId": "darcy",
+      "name": "피츠윌리엄 다아시",
+      "avatar": "/images/avatars/darcy.png",
+      "progress": 0,
+      "detailDataUrl": "/data/character-detail/darcy.json"
+    },
+    {
+      "characterId": "jane",
+      "name": "제인 베넷",
+      "avatar": "/images/avatars/jane.png",
+      "progress": 0,
+      "detailDataUrl": "/data/character-detail/jane.json"
+    },
+    {
+      "characterId": "bingley",
+      "name": "찰스 빙리",
+      "avatar": "/images/avatars/bingley.png",
+      "progress": 0,
+      "detailDataUrl": "/data/character-detail/bingley.json"
+    }
+  ]
+}
+

@@ -1,0 +1,90 @@
+{
+  "storyId": "story-1",
+  "storyTitle": "첫인상 최악의 남자",
+  "characterId": "elizabeth",
+  "characterName": "엘리자베스 베넷",
+  "characterAvatar": "/images/avatars/elizabeth.png",
+  "startSceneId": "scene-1-1",
+  "scenes": {
+    "scene-1-1": {
+      "type": "dialogue",
+      "title": "그 남자, 진짜 어이없었어.",
+      "dialogue": "그날은 무도회 날이었어.\n다들 그 남자가 엄청난 신사라고 하더라?\n재산도 많고, 얼굴도 준수하대.\n그래서 나도 한번 봤지.\n(잠시 멈춘 뒤, 비꼬듯 웃으며)\n근데 세상에 — 내 옆을 스쳐가면서,\n\"괜찮지만 특별히 눈에 띄진 않네요.\" 이러는 거 있지?",
+      "choices": [
+        { "text": "너는 듣고만 있었어?", "nextSceneId": "scene-1-2" },
+        { "text": "헐... 뭐야? 나쁘다..", "nextSceneId": "scene-1-1-2" }
+      ]
+    },
+    "scene-1-1-2": {
+      "type": "dialogue",
+      "title": "내 말이!!",
+      "dialogue": "나한테 한 말도 아니고\n그쪽이 친구랑 얘기하는 걸 들었어.\n내가 못 들을 줄 알았던 거지.\n...그런데 이상하게 그 순간, 내 얼굴이 뜨거워졌어.\n분명 화가 났는데, 묘하게 신경 쓰이더라.",
+      "choices": [
+        { "text": "그랬구나", "nextSceneId": "scene-1-2" }
+      ]
+    },
+    "scene-1-2": {
+      "type": "dialogue",
+      "title": "그때 내가 한 말 들어봐.",
+      "dialogue": "그래서 나도 한마디 했지.\n\"그쪽이야말로 인상 깊지 않네요.\"\n조금은 통쾌했어.\n그 표정, 살짝 당황하더라니까?",
+      "choices": [
+        { "text": "잘했네! 완전 사이다야.", "nextSceneId": "scene-1-3" },
+        { "text": "그게 뭐야 유치하다!", "nextSceneId": "scene-1-2-1" }
+      ]
+    },
+    "scene-1-2-1": {
+      "type": "dialogue",
+      "title": "유치하긴!!",
+      "dialogue": "사실 그게 조금은 질투도 있었어.\n모두가 그 사람한테만 시선을 주고,\n나만 '별로'라는 평을 들으니까,\n\"그래? 그럼 나도 네 기준에서 벗어나줄게.\"\n그런 심보였지 뭐.",
+      "choices": [
+        { "text": "잘했다! 잘했어!", "nextSceneId": "scene-1-3" }
+      ]
+    },
+    "scene-1-3": {
+      "type": "dialogue",
+      "title": "그 뒤로 이상하게..",
+      "dialogue": "근데 말이야,\n그날 이후 자꾸 눈에 밟히는 거 있지?\n싫다고 생각했는데, 시선이 자꾸 부딪히는 느낌이랄까.",
+      "choices": [
+        { "text": "혹시 관심 있었던 거야?", "nextSceneId": "scene-1-4-1" },
+        { "text": "그냥 자존심 상한 거지?", "nextSceneId": "scene-1-4-2" }
+      ]
+    },
+    "scene-1-4-1": {
+      "type": "dialogue",
+      "title": "솔직히... 조금은",
+      "dialogue": "에이, 그럴 리가... 라고 말하고 싶지만,\n조금은? 아주 조금?\n나도 모르게 그 사람을 찾고 있었던 것 같아.\n싫은데 궁금한, 그 이상한 감정 있잖아.",
+      "choices": [
+        { "text": "혹시 이미 서로 끌렸던 걸까?", "nextSceneId": "scene-1-5" }
+      ]
+    },
+    "scene-1-4-2": {
+      "type": "dialogue",
+      "title": "자존심...",
+      "dialogue": "자존심이지, 분명히 자존심이야.\n누가 날 깎아내리면, 그냥 넘어가는 성격은 아니거든.\n근데 이상하게... 그 자존심이 오래 남았어.\n그 사람도 내 눈치 보더라니까.",
+      "choices": [
+        { "text": "그래도 궁금했지, 그 사람?", "nextSceneId": "scene-1-5" }
+      ]
+    },
+    "scene-1-5": {
+      "type": "dialogue",
+      "title": "모르겠어. 그게 시작이었나 봐.",
+      "dialogue": "나는 절대 그 사람한테 웃어주지 않았어.\n근데... 나도 모르게 자꾸 눈길이 갔어.\n이게 참, 미묘하게 웃기더라.\n그때는 그냥 '기분 나쁜 첫인상'이라 생각했는데,\n\n지금 돌이켜보면... 그게 시작이었던 것 같아.\n오만한 남자와 고집 센 여자의 싸움.\n서로를 길들이던 첫 장면이었지.\n\n그리고 그 장면이 이렇게까지 길어질 줄,\n누가 알았겠어?",
+      "choices": [
+        { "text": "그 다음엔 어떻게 됐는데?", "nextSceneId": "scene-1-6" }
+      ]
+    },
+    "scene-1-6": {
+      "type": "end-screen",
+      "clearMessage": "'첫인상 최악의 남자' 클리어",
+      "relationshipUpdate": "엘리자베스와의 관계가 한 단계 깊어졌어요",
+      "status": {
+        "characterName": "엘리자베스 베넷",
+        "avatar": "/images/avatars/elizabeth.png",
+        "message": "얘기 들어줘서 고마워요.\n사실 그 사람... 조금 신경 쓰였거든요",
+        "progress": 20
+      },
+      "nextPagePath": "/books/pride-and-prejudice"
+    }
+  }
+}
+
