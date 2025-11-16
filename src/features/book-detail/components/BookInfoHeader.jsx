@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const HeaderSection = styled.section`
   display: flex;
   gap: 16px;
-  padding: 20px 0px 8px 0px;
+  padding: 0px 0px 8px 0px;
   align-items: flex-start;
   position: relative;
   z-index: 2;
