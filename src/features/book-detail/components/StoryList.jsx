@@ -13,7 +13,7 @@ const SectionTitle = styled.h2`
 const List = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   position: relative;
 `;
 
@@ -42,7 +42,7 @@ const Item = styled.button`
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  width: 100%;
+  width: 98%;
   padding: 14px 10px; /* Dev 모드: px10 py14 */
   background: #1b1b1b;
   border: 1px solid #1b1b1b;
@@ -59,11 +59,7 @@ const StoryTitle = styled.span`
   font-size: 13px;
   color: #ffffff;
   text-align: left;
-`;
-
-const Chevron = styled.span`
-  color: #9ca3af;
-  font-size: 16px;
+  font-weight: 400;
 `;
 
 export default function StoryList({ stories, onStoryClick, book, activeStoryId }) {
@@ -86,7 +82,6 @@ export default function StoryList({ stories, onStoryClick, book, activeStoryId }
               style={isActive ? { color: '#f6d4ff', borderColor: '#f6d4ff' } : undefined}
             >
               <StoryTitle style={isActive ? { color: '#f6d4ff' } : undefined}>{story.title}</StoryTitle>
-              <Chevron>›</Chevron>
             </Item>
           );
         })}

@@ -8,11 +8,13 @@ const SectionTitle = styled.h2`
   margin: 0 0 12px 0;
   font-size: 18px;
   color: #ffffff;
+  padding-left: 28px;
 `;
 
 const Scroller = styled.div`
   display: flex;
   gap: 8px;
+  padding-left: 28px;
   overflow-x: auto;
   padding-bottom: 2px;
   -ms-overflow-style: none;
@@ -29,7 +31,7 @@ const Card = styled.button`
   justify-content: flex-start;
   gap: 0;
   padding: 0 10px 12px 10px;
-  min-width: 110px;
+  min-width: 105px;
   background: ${props => props.$hasAffinity
     ? 'linear-gradient(221deg, #212121 0%, #4D3B51 49%, #212121 75%)'
     : '#212121'};
@@ -68,7 +70,7 @@ const AvatarImg = styled.img`
 const Name = styled.span`
   font-size: 12px;
   color: #ffffff;
-  font-weight: 600;
+  font-weight: 500;
   margin-top: 10px; /* AvatarCircle와의 간격 10px */
 `;
 

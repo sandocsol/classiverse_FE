@@ -42,6 +42,10 @@ const Content = styled.div`
   gap: 35px;
 `;
 
+const FullBleed = styled.div`
+  margin: 0 -28px;
+`;
+
 export default function BookDetailPage() {
   const { bookId } = useParams();
   const { data: bookData, loading, error } = useBookDetail(bookId);
@@ -73,7 +77,9 @@ export default function BookDetailPage() {
           onStoryClick={setViewpointModalUrl}
           activeStoryId={bookData?.activeStoryId}
         />
-        <CharacterList book={bookData} onCharacterClick={setCharacterModalUrl} />
+        <FullBleed>
+          <CharacterList book={bookData} onCharacterClick={setCharacterModalUrl} />
+        </FullBleed>
       </Content>
 
       {characterModalUrl ? (
