@@ -61,7 +61,7 @@ const AvatarImg = styled.img`
   left: 50%;
   top: 110%;
   transform: translate(-50%, -55%);
-  width: 125%;
+  width: 120%;
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0px -2px 4px rgba(255,255,255,0.9));
