@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const HeaderSection = styled.section`
   display: flex;
   gap: 16px;
-  padding: 20px 20px 8px 20px;
+  padding: 20px 0px 8px 0px;
   align-items: flex-start;
   position: relative;
   z-index: 2;
@@ -48,8 +48,8 @@ const Author = styled.p`
 `;
 
 const Description = styled.p`
-  margin: 10px 0 0 0;
-  padding: 0 20px;
+  margin: 0;
+  padding: 0;
   font-size: 13px;    /* Dev 모드: 13 / 24 Light */
   line-height: 24px;
   color: #ffffff;

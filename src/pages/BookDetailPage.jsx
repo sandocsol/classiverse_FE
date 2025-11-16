@@ -35,18 +35,11 @@ const HeroArt = styled.img`
 `;
 
 const Content = styled.div`
-  width: 318px;
-  margin: 0 auto 0 auto;
+  width: 100%;
+  padding: 0 28px;
   display: flex;
   flex-direction: column;
   gap: 35px;
-`;
-
-const Divider = styled.hr`
-  border: none;
-  height: 8px;
-  background: transparent;
-  margin: 0;
 `;
 
 export default function BookDetailPage() {
