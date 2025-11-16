@@ -15,6 +15,7 @@ const Scroller = styled.div`
   display: flex;
   gap: 8px;
   padding-left: 28px;
+  padding-right: 28px;
   overflow-x: auto;
   padding-bottom: 2px;
   -ms-overflow-style: none;

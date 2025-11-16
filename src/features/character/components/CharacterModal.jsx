@@ -13,7 +13,10 @@ const Overlay = styled.div`
 
 const ModalCard = styled.div`
   position: relative;
-  background: #212121;
+  background: ${(props) =>
+    props.$hasAffinity
+      ? 'linear-gradient(221deg, #212121 0%, #4D3B51 49%, #212121 75%)'
+      : '#212121'};
   border-radius: 20px;
   padding: 32px 28px 30px;
   width: min(320px, 86vw);
@@ -34,15 +37,15 @@ const CloseButton = styled.button`
   justify-content: center;
   border: none;
   background: transparent;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 20px;
+  color: #414141;
+  font-size: 45px;
   cursor: pointer;
 `;
 
 const AffinityLabel = styled.p`
   margin: 0;
   font-size: 14px;
-  color: #909090;
+  color: ${(props) => (props.$hasAffinity ? '#F6D4FF' : '#909090')};
   opacity: 0.9;
 `;
 
@@ -116,7 +119,7 @@ export default function CharacterModal({ dataUrl, onClose }) {
 
   return (
     <Overlay role="dialog" aria-modal="true" onClick={handleOverlayClick}>
-      <ModalCard onClick={stopPropagation}>
+      <ModalCard onClick={stopPropagation} $hasAffinity={progress > 0}>
         <CloseButton type="button" aria-label="닫기" onClick={onClose}>
           ×
         </CloseButton>
@@ -126,7 +129,7 @@ export default function CharacterModal({ dataUrl, onClose }) {
 
         {!loading && !error && data && (
           <>
-            <AffinityLabel>친밀도 {progress}%</AffinityLabel>
+            <AffinityLabel $hasAffinity={progress > 0}>친밀도 {progress}%</AffinityLabel>
             <Name>{data.name}</Name>
 
             <AvatarWrapper>
