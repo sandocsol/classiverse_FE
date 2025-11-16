@@ -27,7 +27,7 @@ const Card = styled.button`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 13px;
+  gap: 0;
   padding: 0 10px 12px 10px;
   min-width: 110px;
   background: ${props => props.$hasAffinity
@@ -57,24 +57,26 @@ const AvatarCircle = styled.div`
 const AvatarImg = styled.img`
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 110%;
   transform: translate(-50%, -55%);
-  width: 110%;
+  width: 125%;
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0px -4px 8px rgba(255,255,255,0.9));
+  filter: drop-shadow(0px -2px 4px rgba(255,255,255,0.9));
 `;
 
 const Name = styled.span`
   font-size: 12px;
   color: #ffffff;
   font-weight: 600;
+  margin-top: 10px; /* AvatarCircle와의 간격 10px */
 `;
 
 const SubText = styled.span`
   font-size: 10px;
   color: #f6d4ff;
   opacity: ${props => (props.dim ? 0.5 : 1)};
+  margin-top: 2px; /* Name과의 간격 2px */
 `;
 
 export default function CharacterList({ characters, onCharacterClick, book }) {

@@ -5,6 +5,8 @@ const HeaderSection = styled.section`
   gap: 16px;
   padding: 20px 20px 8px 20px;
   align-items: flex-start;
+  position: relative;
+  z-index: 2;
 `;
 
 
@@ -47,7 +49,7 @@ const Author = styled.p`
 
 const Description = styled.p`
   margin: 10px 0 0 0;
-  padding: 0 20px 0 0;
+  padding: 0 20px;
   font-size: 13px;    /* Dev 모드: 13 / 24 Light */
   line-height: 24px;
   color: #ffffff;

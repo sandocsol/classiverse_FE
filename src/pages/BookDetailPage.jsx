@@ -18,30 +18,20 @@ const PageContainer = styled.div`
 
 const HeroWrap = styled.div`
   position: relative;
-  width: 323px;
+  width: 100%;
   height: 202.727px;
-  margin: 103.27px auto 0 auto;
+  margin-top: 86px;
 `;
 
 const HeroArt = styled.img`
   position: absolute;
   left: 50%;
   top: 44.73px;
-  width: 141px;
-  height: 141px;
+  width: 100%;
+  height: 100%;
   transform: translateX(-50%);
   object-fit: contain;
   pointer-events: none;
-`;
-
-const HeroGradient = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 66.73px;
-  transform: translateX(-50%);
-  width: 323px;
-  height: 136px;
-  background: linear-gradient(180deg, rgba(7,7,7,0) 0%, #070707 50%);
 `;
 
 const Content = styled.div`
@@ -82,7 +72,6 @@ export default function BookDetailPage() {
     <PageContainer>
       <HeroWrap>
         <HeroArt src={bookData?.heroImage || bookData?.coverImage} alt="" />
-        <HeroGradient />
       </HeroWrap>
       <Content>
         <BookInfoHeader book={bookData} />
