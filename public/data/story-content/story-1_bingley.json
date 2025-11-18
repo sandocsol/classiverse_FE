@@ -1,0 +1,96 @@
+{
+    "storyId": "story-1",
+    "storyTitle": "첫인상 최악의 남자",
+    "characterId": "bingley",
+    "characterName": "찰스 빙리",
+    "characterAvatar": "/images/avatars/bingley.png",
+    "startSceneId": "scene-4-1",
+    "scenes": {
+      "scene-4-1": {
+        "type": "dialogue",
+        "title": "그날 무도회! 와... 진짜 좋았어요.",
+        "dialogue": "무도회는 늘 좋지만\n오늘은 유난히 기분이 좋았어요.\n사람들도 많았고 음악도 좋았고...\n\n무엇보다 마음에 드는 분을 만났거든요.",
+        "choices": [
+          { "text": "누굴 만났는데?", "nextSceneId": "scene-4-1-2" }
+        ]
+      },
+      "scene-4-1-2": {
+        "type": "dialogue",
+        "title": "제인 베넷이라는 분이었어요.",
+        "dialogue": "처음 봤을 때부터\n너무 아름다우셔서 한 눈에 반했어요.\n\n대화를 몇 마디 나눴는데\n말투도 부드럽고, 배려심도 느껴지고...\n저도 모르게 기분이 편안해졌어요.",
+        "choices": [
+          { "text": "한 눈에 반하다니!", "nextSceneId": "scene-4-2-1" },
+          { "text": "그 얘기 좀 더 해봐", "nextSceneId": "scene-4-2" }
+        ]
+      },
+      "scene-4-2": {
+        "type": "dialogue",
+        "title": "그래서..",
+        "dialogue": "그분께 춤을 청했는데\n그 순간만큼은 주변이 잔잔해진 것 같았어요.\n\n너무 행복하고 떨렸습니다.\n\n그리고 그 뒤에..\n제 친구 다아시가 조금 특이한 모습을 보였어요.",
+        "choices": [
+          { "text": "무슨 일이 있었는데?", "nextSceneId": "scene-4-9" }
+        ]
+      },
+      "scene-4-2-1": {
+        "type": "dialogue",
+        "title": "그녀는 안 반할 수 없는 사람입니다.",
+        "dialogue": "말투도 조심스럽고\n상대방을 편하게 해주는 분이더군요.\n\n이야기를 나누다 보니\n저도 모르게 미소가 났습니다.\n\n그리고 그 와중에\n다아시가 조금 이상했어요.",
+        "choices": [
+          { "text": "무슨 일이 있었는데?", "nextSceneId": "scene-4-9" }
+        ]
+      },
+      "scene-4-9": {
+        "type": "dialogue",
+        "title": "그게..",
+        "dialogue": "제가 다아시에게\n“저분과 춤춰보는 건 어때?” 하고 권했는데\n\n그가 이렇게 말했어요.\n“괜찮지만... 특별히 눈에 띄진 않네.”\n\n그 말이 엘리자베스 베넷 씨에게\n들렸던 것 같아요.",
+        "choices": [
+          { "text": "엘리자베스가 상처받았겠는 걸", "nextSceneId": "scene-4-4-2" }
+        ]
+      },
+      "scene-4-4-2": {
+        "type": "dialogue",
+        "title": "그 순간,",
+        "dialogue": "엘리자베스가 잠깐 멈추더군요.\n\n화난 표정은 아니었지만\n‘듣고 싶지 않은 말’을 들은 사람 같은 느낌이었어요.\n\n저나 다아시가\n조금 더 조심했어야 했던 순간이었습니다.",
+        "choices": [
+          { "text": "그 뒤에 별일은 없었어?", "nextSceneId": "scene-4-10" },
+          { "text": "신경 쓰였겠다.", "nextSceneId": "scene-4-4-1" }
+        ]
+      },
+      "scene-4-4-1": {
+        "type": "dialogue",
+        "title": "신경 쓰였다기보단, 조금 걱정됐습니다.",
+        "dialogue": "무도회는 즐거운 자리인데\n괜히 오해가 생기지 않을까...\n그런 걱정이었죠.\n\n저는 두 분 모두 괜찮은 분들이라\n괜히 어색해질까 봐 마음이 쓰였습니다.",
+        "choices": [
+          { "text": "첫만남에 이런 일이 생기다니!", "nextSceneId": "scene-4-10" }
+        ]
+      },
+      "scene-4-10": {
+        "type": "dialogue",
+        "title": "서로 얘기를 나눌 기회는 없었어요.",
+        "dialogue": "무도회가 북적여서\n그 후로 얘기할 상황은 없었습니다.\n\n하지만 모두 각자 생각은 있었겠죠.\n특히 다아시는... 다소 조용해졌더군요.",
+        "choices": [
+          { "text": "그랬겠다. 어떡해!", "nextSceneId": "scene-4-11" }
+        ]
+      },
+      "scene-4-11": {
+        "type": "dialogue",
+        "title": "그렇지만 좋은 하루였어요.",
+        "dialogue": "제인과의 대화도 좋았고\n사람들도 친절했고\n전반적으로 따뜻한 분위기였죠.\n\n작은 일이 있긴 했지만\n그래도 마음에 남는 날입니다.\n\n제인이 자꾸 생각나네요..",
+        "choices": [
+          { "text": "즐거웠어, 빙리!", "nextSceneId": "scene-4-12" }
+        ]
+      },
+      "scene-4-12": {
+        "type": "end-screen",
+        "clearMessage": "'첫인상 최악의 남자' 클리어",
+        "relationshipUpdate": "찰스 빙리와의 관계가\n한 단계 깊어졌어요",
+        "status": {
+          "characterName": "찰스 빙리",
+          "avatar": "/images/avatars/bingley.png",
+          "message": "좋은 하루였어요. 이런 마음을\n나눌 수 있어서 더 기쁘네요.",
+          "progress": 20
+        },
+        "nextPagePath": "/books/pride-and-prejudice"
+      }
+    }
+  }
