@@ -1,0 +1,96 @@
+{
+    "storyId": "story-4",
+    "storyTitle": "비 오는 날, 다시 만난 두 사람",
+    "characterId": "bingley",
+    "characterName": "찰스 빙리",
+    "characterAvatar": "/images/avatars/bingley.png",
+    "startSceneId": "scene-4-1",
+    "scenes": {
+      "scene-4-1": {
+        "type": "dialogue",
+        "title": "오늘 다아시와\n잠깐 이야기를 나눴는데...",
+        "dialogue": "뭔가 평소랑 다르더군요.\n\n며칠 동안 헨츠포드 쪽으로 자주 다녀왔다고 해서\n\"무슨 일 있냐\"고 물었더니\n대답을 제대로 안 하더라고요.",
+        "choices": [
+          { "text": "뭐가 어떻게 달랐는데?", "nextSceneId": "scene-4-1-2" }
+        ]
+      },
+      "scene-4-1-2": {
+        "type": "dialogue",
+        "title": "다아시는 감정을 잘 드러내지 않지만",
+        "dialogue": "표정이 평소보다 훨씬 더 심각했어요.\n생각이 많아 보이고...\n약간 불안해 보이기도 했고요.",
+        "choices": [
+          { "text": "무슨 일이 있었던 걸까?", "nextSceneId": "scene-4-2" }
+        ]
+      },
+      "scene-4-2": {
+        "type": "dialogue",
+        "title": "제 생각에는..",
+        "dialogue": "헨츠포드에는 엘리자베스가 머물고 있잖아요.\n그래서 \"혹시 그녀와 무슨 일 있었나?\"싶었어요.\n\n하지만 물어보면 아니라고 할 것 같아서\n괜히 묻지 않고 넘어갔어요.\n다아시는 그런 얘기 잘 안 하니까요.",
+        "choices": [
+          { "text": "다아시는 그런 이야길 잘 안 하는구나.", "nextSceneId": "scene-4-2-1" }
+        ]
+      },
+      "scene-4-2-1": {
+        "type": "dialogue",
+        "title": "그러다 방금,",
+        "dialogue": "엘리자베스에게 들었어요.\n비 오는 날 목사관에서 다아시가 고백을 했었다고요.\n\n엘리자베스의 몸도 좋지 않았다던데\n갑자기 찾아와서... 고백을 했다네요.\n제 친구지만 정말 대단해요.",
+        "choices": [
+          { "text": "다아시가 그랬다니 상상이 안 돼!", "nextSceneId": "scene-4-9" }
+        ]
+      },
+      "scene-4-9": {
+        "type": "dialogue",
+        "title": "저도 믿기지 않네요.",
+        "dialogue": "다아시가 사랑 고백이라니..\n그런데... 엘리자베스는 그 고백을 거절했다고 해요.\n\n그동안 쌓인 오해들, 위컴한테 들은 이야기,\n그리고 제인과 저의 일까지 모두 말하면서요.\n\n그 말을 듣는데 가슴이 조금\n서늘해지는 느낌이 들었습니다.",
+        "choices": [
+          { "text": "왜 서늘해져?", "nextSceneId": "scene-4-4-2" },
+          { "text": "엘리자베스가 쌓인 게 많은가봐.", "nextSceneId": "scene-4-4-1" }
+        ]
+      },
+      "scene-4-4-2": {
+        "type": "dialogue",
+        "title": "글쎄요..",
+        "dialogue": "제가 다아시의 말에 흔들린 것 같아\n후회되는 마음도 있고,\n\n제인도 저와 같은 마음이었다는 사실에\n선을 그은 제 자신이 미워지네요.",
+        "choices": [
+          { "text": "너무 자책하지 마..!", "nextSceneId": "scene-4-4-1" }
+        ]
+      },
+      "scene-4-4-1": {
+        "type": "dialogue",
+        "title": "다아시는 그 말을 듣고\n아무 말도 못 하고 돌아갔다고 해요.",
+        "dialogue": "엘리자베스 말론, 표정이 아주 창백했다고...\n그 모습을 상상하니 마음이 안 좋더라고요.",
+        "choices": [
+          { "text": "너라면 뭐라고 했을 것 같아?", "nextSceneId": "scene-4-10" },
+          { "text": "마음이 좋지 않네..", "nextSceneId": "scene-4-11" }
+        ]
+      },
+      "scene-4-10": {
+        "type": "dialogue",
+        "title": "저라면...",
+        "dialogue": "오해라도 바로 설명하려고 했을 것 같습니다.\n다아시는 그런 걸 잘 못하니까요.\n\n하지만..\n다아시는 다아시만의 방법이\n있을 거라 생각해요.",
+        "choices": [
+          { "text": "그게 뭔데?", "nextSceneId": "scene-4-11" }
+        ]
+      },
+      "scene-4-11": {
+        "type": "dialogue",
+        "title": "오늘 아침,",
+        "dialogue": "다아시 씨가 새벽에 엘리자베스를 찾아와\n편지를 주고 갔다고 해요.\n\n아마 밤새 고민하며 쓴 편지일 겁니다.\n오해도 관계도 다 잘 풀렸으면 좋겠네요.",
+        "choices": [
+          { "text": "그러게! 분명 그럴 거야.", "nextSceneId": "scene-4-12" }
+        ]
+      },
+      "scene-4-12": {
+        "type": "end-screen",
+        "clearMessage": "'비 오는 날, 다시 만난 두 사람' 클리어",
+        "relationshipUpdate": "찰스 빙리와의 관계가\n한 단계 깊어졌어요",
+        "status": {
+          "characterName": "찰스 빙리",
+          "avatar": "/images/avatars/bingley.png",
+          "message": "제인과 에전처럼 돌아가고 싶어요.\n제게 그럴 자격이 있을까요?",
+          "progress": 20
+        },
+        "nextPagePath": "/books/pride-and-prejudice"
+      }
+    }
+  }
