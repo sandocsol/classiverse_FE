@@ -31,8 +31,8 @@ const Card = styled.button`
   align-items: center;
   justify-content: flex-start;
   gap: 0;
-  padding: 0 10px 12px 10px;
-  min-width: 130px;
+  padding: 0 4px 12px 4px;
+  min-width: 105px;
   background: ${props => props.$hasAffinity
     ? 'linear-gradient(221deg, #212121 0%, #4D3B51 49%, #212121 75%)'
     : '#212121'};
@@ -73,6 +73,7 @@ const Name = styled.span`
   color: #ffffff;
   font-weight: 500;
   margin-top: 10px; /* AvatarCircle와의 간격 10px */
+  white-space: nowrap;
 `;
 
 const SubText = styled.span`
