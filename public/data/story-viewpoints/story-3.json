@@ -1,0 +1,39 @@
+{
+    "storyId": "story-3",
+    "storyTitle": "친절한 낯선 남자의 비밀",
+    "prompt": "누구의 시점으로 이야기를 볼까요?",
+    "viewpoints": [
+      {
+        "characterId": "elizabeth",
+        "name": "엘리자베스 베넷",
+        "tag": "원작",
+        "preview": "다아시 씨가 왜 그런 표정이었는지\n모르겠지만, 혼란스러워.",
+        "avatar": "/images/avatars/elizabeth.png",
+        "contentDataUrl": "/data/story-content/story-3_elizabeth.json"
+      },
+      {
+        "characterId": "darcy",
+        "name": "피츠윌리엄 다아시",
+        "tag": null,
+        "preview": "설명하고 싶어도...\n말할 수 없는 일들이 있죠.",
+        "avatar": "/images/avatars/darcy.png",
+        "contentDataUrl": "/data/story-content/story-3_darcy.json"
+      },
+      {
+        "characterId": "jane",
+        "name": "제인 베넷",
+        "tag": null,
+        "preview": "모두가 조금씩 다른 마음을\n안고 있는 것 같았어요.",
+        "avatar": "/images/avatars/jane.png",
+        "contentDataUrl": "/data/story-content/story-3_jane.json"
+      },
+      {
+        "characterId": "bingley",
+        "name": "찰스 빙리",
+        "tag": null,
+        "preview": "다들 즐거워 보였는데...\n다아시와 위컴 사이가 조금 걱정됐어요.",
+        "avatar": "/images/avatars/bingley.png",
+        "contentDataUrl": "/data/story-content/story-3_bingley.json"
+      }
+    ]
+  }
