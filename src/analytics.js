@@ -1,8 +1,9 @@
-import ReactGA from 'react-ga4';
+import ReactGA from 'react-ga';
 
-export const initGA = () => {
-  ReactGA.initialize('G-PM2BG6DG9D');
-};
+ReactGA.initialize('YOUR_TRACKING_ID', {
+  debug: true, // Enable debug mode
+  // Other options can be added here, e.g., testMode: true
+});
 
 export const sendPageView = (path) => {
   ReactGA.send({ hitType: "pageview", page: path });
