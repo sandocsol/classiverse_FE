@@ -41,7 +41,12 @@ const router = createBrowserRouter([
         element: <BookDetailPage />
       },
 
-      // 4. 스토리 뷰어 페이지 경로는 그대로 둡니다.
+      // 4. 스토리 뷰어 페이지 경로 (씬 ID 포함)
+      {
+        path: '/story/:storyId/:characterId/:sceneId',
+        element: <StoryViewerPage />
+      },
+      // 4-1. 씬 ID가 없을 때는 시작 씬으로 리다이렉트 (StoryViewerPage에서 처리)
       {
         path: '/story/:storyId/:characterId',
         element: <StoryViewerPage />
