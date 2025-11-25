@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { trackCharacterCardClick } from '../../../analytics.js';
 
 const Section = styled.section`
   padding-bottom: 20px;
@@ -97,7 +98,12 @@ export default function CharacterList({ characters, onCharacterClick, book }) {
             <Card
               key={c.characterId}
               $hasAffinity={percent > 0}
-              onClick={() => onCharacterClick?.(c.detailDataUrl)}
+              onClick={() => {
+                // GA 이벤트 추적
+                trackCharacterCardClick(c.characterId);
+                // 기존 클릭 핸들러 실행
+                onCharacterClick?.(c.detailDataUrl);
+              }}
               data-character-id={c.characterId}
             >
               <AvatarCircle>
