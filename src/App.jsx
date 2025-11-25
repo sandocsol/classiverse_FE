@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import GlobalStyle from './styles/GlobalStyle';
+import { initGA, sendPageView } from './analytics';
 // import { userApi } from './api/userApi'; // TODO: 실제 사용자 API 연동 시 주석 해제
 
 function App() {
   // 사용자 정보 상태 관리
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  // ⭐ GA 초기화 + 첫 페이지뷰 전송
+  useEffect(() => {
+    initGA();  // GA4 초기화
+    sendPageView(window.location.pathname); // 첫 화면 페이지뷰 측정
+  }, []);
 
   // 앱 진입 시 사용자 정보 로드
   useEffect(() => {
