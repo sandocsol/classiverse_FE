@@ -19,3 +19,11 @@ export const sendPageView = (path) => {
     page: path,
   });
 };
+
+export const trackCharacterCardClick = (characterName) => {
+  ReactGA.event({
+    category: "Character",
+    action: "Click Character Card",
+    label: characterName,
+  });
+};
