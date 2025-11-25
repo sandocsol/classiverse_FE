@@ -1,27 +1,29 @@
 import ReactGA from 'react-ga4';
 
+// GA4 초기화 + 디버그모드 활성화(DebugView용)
 export const initGA = () => {
-  ReactGA.initialize('G-PM2BG6DG9D');
+  ReactGA.initialize(
+    [
+      {
+        trackingId: "G-PM2BG6DG9",
+        debug_mode: true, // DebugView용 디버그 모드
+      }
+    ]
+  );
 };
 
+// 페이지뷰 측정 함수
 export const sendPageView = (path) => {
-  ReactGA.send({ hitType: "pageview", page: path });
+  ReactGA.send({
+    hitType: "pageview",
+    page: path,
+  });
 };
 
-/**
- * 등장인물 카드 클릭 이벤트 추적
- * @param {string} characterId - 등장인물 ID (필수)
- */
-export const trackCharacterCardClick = (characterId) => {
-  if (!characterId) {
-    console.warn('trackCharacterCardClick: characterId is required');
-    return;
-  }
-
+export const trackCharacterCardClick = (characterName) => {
   ReactGA.event({
-    category: 'engagement',
-    action: 'character_card_click',
-    label: characterId,
-    value: 1,
+    category: "Character",
+    action: "Click Character Card",
+    label: characterName,
   });
 };
