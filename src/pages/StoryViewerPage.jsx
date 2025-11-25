@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import useStoryContent from '../features/story-viewer/hooks/useStoryContent.js';
 import ScenePresenter from '../features/story-viewer/components/ScenePresenter.jsx';
@@ -39,23 +39,21 @@ const ErrorText = styled.p`
 `;
 
 export default function StoryViewerPage() {
-  const { storyId, characterId } = useParams();
+  const { storyId, characterId, sceneId } = useParams();
+  const navigate = useNavigate();
   
   // 모든 hooks는 early return 전에 호출되어야 합니다
   const dataUrl = storyId && characterId 
     ? `/data/story-content/${storyId}_${characterId}.json`
     : null;
   const { data: storyContent, loading, error } = useStoryContent(dataUrl);
-  const [currentSceneId, setCurrentSceneId] = useState(null);
 
-  // storyContent가 로드되면 시작 씬 ID로 초기화
-  // 외부 데이터(storyContent)가 로드될 때 내부 state를 초기화하는 것은 정당한 useEffect 사용입니다
+  // sceneId가 없으면 시작 씬으로 리다이렉트
   useEffect(() => {
-    if (storyContent?.startSceneId && !currentSceneId) {
-      setCurrentSceneId(storyContent.startSceneId);
+    if (storyContent?.startSceneId && !sceneId) {
+      navigate(`/story/${storyId}/${characterId}/${storyContent.startSceneId}`, { replace: true });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [storyContent]);
+  }, [storyContent, sceneId, storyId, characterId, navigate]);
 
   if (!storyId || !characterId) {
     return (
@@ -66,7 +64,7 @@ export default function StoryViewerPage() {
   }
 
   const handleChoiceSelect = (nextSceneId) => {
-    setCurrentSceneId(nextSceneId);
+    navigate(`/story/${storyId}/${characterId}/${nextSceneId}`);
   };
 
   if (loading) {
@@ -85,7 +83,8 @@ export default function StoryViewerPage() {
     );
   }
 
-  if (!currentSceneId) {
+  // sceneId가 없으면 리다이렉트 대기 중
+  if (!sceneId) {
     return (
       <PageContainer>
         <LoadingText>씬을 준비하는 중…</LoadingText>
@@ -93,7 +92,7 @@ export default function StoryViewerPage() {
     );
   }
 
-  const currentSceneData = storyContent.scenes[currentSceneId];
+  const currentSceneData = storyContent.scenes[sceneId];
 
   if (!currentSceneData) {
     return (
