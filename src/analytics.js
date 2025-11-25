@@ -5,7 +5,7 @@ export const initGA = () => {
   ReactGA.initialize(
     [
       {
-        trackingId: "G-PM2BG6DG9",
+        trackingId: "G-PM2BG6DG9D",
         debug_mode: true, // DebugView용 디버그 모드
       }
     ]
