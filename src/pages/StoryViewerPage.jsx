@@ -105,7 +105,11 @@ export default function StoryViewerPage() {
   if (currentSceneData.type === 'end-screen') {
     return (
       <PageContainer>
-        <StoryEndScreen endData={currentSceneData} />
+        <StoryEndScreen 
+          endData={currentSceneData} 
+          characterId={characterId} 
+          storyId={storyId}
+        />
       </PageContainer>
     );
   }

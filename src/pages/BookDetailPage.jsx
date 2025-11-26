@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -8,6 +8,7 @@ import CharacterList from '../features/book-detail/components/CharacterList.jsx'
 import CharacterModal from '../features/character/components/CharacterModal.jsx';
 import ViewpointModal from '../features/story-selector/components/ViewpointModal.jsx';
 import useBookDetail from '../features/book-detail/hooks/useBookDetail.js';
+import { getOrCreateUserId, getAffinityData } from '../utils/affinityStorage.js';
 
 const PageContainer = styled.div`
   display: flex;
@@ -52,6 +53,19 @@ export default function BookDetailPage() {
 
   const [characterModalUrl, setCharacterModalUrl] = useState(null);
   const [viewpointModalUrl, setViewpointModalUrl] = useState(null);
+
+  // 사용자 ID 생성 및 초기 친밀도 데이터 초기화
+  useEffect(() => {
+    // 사용자 ID 생성 (최초 접속 시)
+    getOrCreateUserId();
+
+    // 등장인물 목록이 있으면 초기 친밀도 데이터 생성
+    if (bookData?.characters && Array.isArray(bookData.characters)) {
+      const characterIds = bookData.characters.map(char => char.characterId);
+      // 초기 데이터 생성 (이미 있으면 업데이트만, 없으면 생성)
+      getAffinityData(characterIds);
+    }
+  }, [bookData]);
 
   if (loading) {
     return <PageContainer style={{ padding: 20 }}>로딩 중…</PageContainer>;

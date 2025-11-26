@@ -39,28 +39,24 @@
       "characterId": "elizabeth",
       "name": "엘리자베스 베넷",
       "avatar": "/images/avatars/elizabeth.png",
-      "progress": 90,
       "detailDataUrl": "/data/character-detail/elizabeth.json"
     },
     {
       "characterId": "darcy",
       "name": "피츠윌리엄 다아시",
       "avatar": "/images/avatars/darcy.png",
-      "progress": 20,
       "detailDataUrl": "/data/character-detail/darcy.json"
     },
     {
       "characterId": "jane",
       "name": "제인 베넷",
       "avatar": "/images/avatars/jane.png",
-      "progress": 0,
       "detailDataUrl": "/data/character-detail/jane.json"
     },
     {
       "characterId": "bingley",
       "name": "찰스 빙리",
       "avatar": "/images/avatars/bingley.png",
-      "progress": 0,
       "detailDataUrl": "/data/character-detail/bingley.json"
     }
   ]
