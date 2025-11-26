@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { getOrCreateUserId, increaseAffinity, getCharacterAffinity } from '../../../utils/affinityStorage.js';
 
 const Container = styled.div`
   width: 100%;
@@ -166,7 +167,8 @@ const ProgressFill = styled.div`
 const NextButton = styled.button`
   position: absolute;
   bottom: 56px;
-  right: 22px;
+  left: 50%;
+  transform: translateX(-50%);
   background: #212121;
   border: none;
   border-radius: 10px;
@@ -200,8 +202,47 @@ const NextButtonText = styled.p`
   white-space: pre;
 `;
 
-export default function StoryEndScreen({ endData }) {
+export default function StoryEndScreen({ endData, characterId, storyId }) {
   const navigate = useNavigate();
+  
+  // 초기 친밀도 값 설정 (함수형 초기화)
+  const getInitialProgress = () => {
+    if (characterId) {
+      return getCharacterAffinity(characterId);
+    }
+    return 0;
+  };
+  const [progress, setProgress] = useState(getInitialProgress);
+
+  // 사용자 ID 생성 (최초 접속 시)
+  useEffect(() => {
+    getOrCreateUserId();
+  }, []);
+
+  // characterId가 변경될 때 친밀도 업데이트
+  // localStorage에서 데이터를 동기화하는 것은 useEffect의 일반적인 사용 사례입니다
+  useEffect(() => {
+    if (characterId) {
+      const currentProgress = getCharacterAffinity(characterId);
+      setProgress(currentProgress);
+    }
+  }, [characterId]);
+
+  // 친밀도 데이터 업데이트 (스토리 종료 시 - 증가량 방식)
+  // useRef를 사용하여 한 번만 실행되도록 보장
+  const hasUpdatedRef = useRef(false);
+  useEffect(() => {
+    if (endData?.status && characterId && storyId && !hasUpdatedRef.current) {
+      const increment = endData.status.progress ?? 0;
+      // localStorage에 친밀도 데이터 저장 (현재 값에 증가량을 더함)
+      // storyId를 전달하여 중복 완료 방지
+      const newProgress = increaseAffinity(characterId, increment, storyId);
+      // 업데이트된 친밀도 값으로 state 업데이트
+      // localStorage에서 데이터를 동기화하는 것은 useEffect의 일반적인 사용 사례입니다
+      setProgress(newProgress);
+      hasUpdatedRef.current = true;
+    }
+  }, [endData, characterId, storyId]);
 
   const handleNextClick = () => {
     if (endData?.nextPagePath) {
@@ -209,7 +250,6 @@ export default function StoryEndScreen({ endData }) {
     }
   };
 
-  const progress = endData?.status?.progress ?? 0;
   const message = endData?.status?.message ?? '';
   const messageLines = message ? message.split('\n') : [];
 
