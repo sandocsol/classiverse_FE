@@ -14,7 +14,7 @@ const Container = styled.div`
 
 const TopMessageArea = styled.div`
   position: absolute;
-  top: 106px;
+  top: clamp(80px, 13.05vh, 150px);
   left: 29px;
   display: flex;
   flex-direction: column;
@@ -46,10 +46,10 @@ const RelationshipUpdate = styled.div`
 const StatusCardWrapper = styled.div`
   position: absolute;
   left: 50%;
-  top: 274px;
-  transform: translateX(-50%);
-  width: 236px;
-  height: 264px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(200px, 62.933vw, 350px);
+  height: clamp(220px, 32.512vh, 400px);
   padding: 15px;
   box-sizing: border-box;
 `;
@@ -62,8 +62,8 @@ const StatusCard = styled.div`
   background: #151515;
   border-radius: 20px;
   padding: 40px 15px;
-  width: 236px;
-  height: 264px;
+  width: 100%;
+  height: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -141,7 +141,9 @@ const Message = styled.div`
 `;
 
 const ProgressBarContainer = styled.div`
-  width: 206px;
+  width: 87.288%;
+  max-width: 306px;
+  min-width: 175px;
   height: 7px;
   margin-top: 0;
   margin-bottom: 14px;
@@ -173,7 +175,7 @@ const NextButton = styled.button`
   border: none;
   border-radius: 10px;
   padding: 6px 139px;
-  width: 330px;
+  width: clamp(280px, 88vw, 500px);
   height: 48px;
   display: flex;
   align-items: center;
