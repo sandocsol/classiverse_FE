@@ -2,6 +2,7 @@
 const AFFINITY_STORAGE_KEY = 'user_affinity_data';
 const USER_ID_KEY = 'unique_user_id';
 const COMPLETED_STORIES_KEY = 'completed_stories';
+const LAST_READ_STORY_KEY = 'last_read_story';
 
 /**
  * 고유한 사용자 ID를 생성하거나 기존 ID를 반환합니다.
@@ -135,6 +136,28 @@ function getCompletedStories() {
 }
 
 /**
+ * 완료한 스토리 ID 목록을 가져옵니다 (characterId 제외).
+ * @returns {Set<string>} 완료한 스토리 ID 집합 (storyId만)
+ */
+export function getCompletedStoryIds() {
+  try {
+    const completed = getCompletedStories();
+    const storyIds = new Set();
+    completed.forEach(storyKey => {
+      // "storyId_characterId" 형식에서 storyId만 추출
+      const storyId = storyKey.split('_')[0];
+      if (storyId) {
+        storyIds.add(storyId);
+      }
+    });
+    return storyIds;
+  } catch (error) {
+    console.error('완료한 스토리 ID 목록을 불러오는 중 오류 발생:', error);
+    return new Set();
+  }
+}
+
+/**
  * 스토리 완료 여부를 저장합니다.
  * @param {string} storyId - 스토리 ID
  * @param {string} characterId - 등장인물 ID
@@ -145,8 +168,29 @@ function markStoryAsCompleted(storyId, characterId) {
     const storyKey = `${storyId}_${characterId}`;
     completed.add(storyKey);
     localStorage.setItem(COMPLETED_STORIES_KEY, JSON.stringify(Array.from(completed)));
+    
+    // 마지막으로 읽은 스토리 ID 저장
+    localStorage.setItem(LAST_READ_STORY_KEY, storyId);
+    
+    // 같은 탭에서 변경을 감지하기 위한 커스텀 이벤트 발생
+    window.dispatchEvent(new CustomEvent('lastReadStoryUpdated', { 
+      detail: { storyId } 
+    }));
   } catch (error) {
     console.error('스토리 완료 여부를 저장하는 중 오류 발생:', error);
+  }
+}
+
+/**
+ * 마지막으로 읽은 스토리 ID를 가져옵니다.
+ * @returns {string|null} 마지막으로 읽은 스토리 ID, 없으면 null
+ */
+export function getLastReadStoryId() {
+  try {
+    return localStorage.getItem(LAST_READ_STORY_KEY);
+  } catch (error) {
+    console.error('마지막으로 읽은 스토리 ID를 불러오는 중 오류 발생:', error);
+    return null;
   }
 }
 
@@ -173,10 +217,26 @@ export function isStoryCompleted(storyId, characterId) {
  */
 export function increaseAffinity(characterId, increment, storyId = null, characterIds = []) {
   try {
+    const isAlreadyCompleted = storyId && isStoryCompleted(storyId, characterId);
+    
     // 스토리 ID가 제공된 경우, 이미 완료한 스토리인지 확인
-    if (storyId && isStoryCompleted(storyId, characterId)) {
-      // 이미 완료한 스토리면 증가시키지 않음
+    if (isAlreadyCompleted) {
+      // 이미 완료한 스토리면 친밀도는 증가시키지 않지만, 마지막으로 읽은 스토리는 업데이트
       const affinityData = getAffinityData(characterIds);
+      
+      // 마지막으로 읽은 스토리 ID 업데이트 (이미 완료한 스토리를 다시 읽은 경우)
+      if (storyId) {
+        try {
+          localStorage.setItem(LAST_READ_STORY_KEY, storyId);
+          // 같은 탭에서 변경을 감지하기 위한 커스텀 이벤트 발생
+          window.dispatchEvent(new CustomEvent('lastReadStoryUpdated', { 
+            detail: { storyId } 
+          }));
+        } catch (error) {
+          console.error('마지막으로 읽은 스토리 ID를 저장하는 중 오류 발생:', error);
+        }
+      }
+      
       return affinityData[characterId]?.progress || 0;
     }
 
