@@ -7,6 +7,7 @@ import StoryList from '../features/book-detail/components/StoryList.jsx';
 import CharacterList from '../features/book-detail/components/CharacterList.jsx';
 import CharacterModal from '../features/character/components/CharacterModal.jsx';
 import ViewpointModal from '../features/story-selector/components/ViewpointModal.jsx';
+import StoryLockModal from '../features/book-detail/components/StoryLockModal.jsx';
 import useBookDetail from '../features/book-detail/hooks/useBookDetail.js';
 import { getOrCreateUserId, getAffinityData } from '../utils/affinityStorage.js';
 
@@ -53,6 +54,8 @@ export default function BookDetailPage() {
 
   const [characterModalUrl, setCharacterModalUrl] = useState(null);
   const [viewpointModalUrl, setViewpointModalUrl] = useState(null);
+  const [showLockModal, setShowLockModal] = useState(false);
+  const [lockedStoryId, setLockedStoryId] = useState(null);
 
   // 사용자 ID 생성 및 초기 친밀도 데이터 초기화
   useEffect(() => {
@@ -90,6 +93,10 @@ export default function BookDetailPage() {
           book={bookData}
           onStoryClick={setViewpointModalUrl}
           activeStoryId={bookData?.activeStoryId}
+          onLockedStoryClick={(storyId) => {
+            setLockedStoryId(storyId);
+            setShowLockModal(true);
+          }}
         />
         <FullBleed>
           <CharacterList book={bookData} onCharacterClick={setCharacterModalUrl} />
@@ -107,6 +114,16 @@ export default function BookDetailPage() {
         <ViewpointModal
           dataUrl={viewpointModalUrl}
           onClose={() => setViewpointModalUrl(null)}
+        />
+      ) : null}
+
+      {showLockModal ? (
+        <StoryLockModal
+          onClose={() => {
+            setShowLockModal(false);
+            setLockedStoryId(null);
+          }}
+          storyId={lockedStoryId}
         />
       ) : null}
     </PageContainer>
