@@ -63,7 +63,7 @@ const ViewpointButton = styled.button`
   background: #2a2a2a;
   border: none;
   border-radius: 16.5px;
-  padding:5.5px;
+  padding:0 0 5.5px 0;
   display: flex;
   gap: 4.4px;
   align-items: center;

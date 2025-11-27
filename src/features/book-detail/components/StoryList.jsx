@@ -78,15 +78,15 @@ const LockIcon = styled.img`
 
 const LockedItem = styled(Item)`
   opacity: 0.5;
-  cursor: not-allowed;
+  cursor: pointer;
   justify-content: flex-start;
   
   &:active {
-    transform: none;
+    transform: translateY(1px);
   }
 `;
 
-export default function StoryList({ stories, onStoryClick, book, activeStoryId }) {
+export default function StoryList({ stories, onStoryClick, book, activeStoryId, onLockedStoryClick }) {
   const [highlightTop, setHighlightTop] = useState(1);
   const [storageVersion, setStorageVersion] = useState(0);
   const itemRefs = useRef({});
@@ -184,6 +184,8 @@ export default function StoryList({ stories, onStoryClick, book, activeStoryId }
           const isActive = activeStoryId && activeStoryId === story.storyId;
           const isLocked = story.locked === true;
           const isNextStory = index === nextStoryIndex;
+          const isStory4Or5 = story.storyId === 'story-4' || story.storyId === 'story-5';
+          // 잠긴 스토리는 모두 LockedItem 사용 (색깔 전과 동일하게 유지)
           const ItemComponent = isLocked ? LockedItem : Item;
           
           return (
@@ -194,8 +196,15 @@ export default function StoryList({ stories, onStoryClick, book, activeStoryId }
                   itemRefs.current[`story-${index}`] = el;
                 }
               }}
-              onClick={() => !isLocked && onStoryClick?.(story.viewpointsDataUrl)}
-              disabled={isLocked}
+              onClick={() => {
+                if (isLocked && isStory4Or5) {
+                  // 네 번째, 다섯 번째 스토리 클릭 시 모달 표시
+                  onLockedStoryClick?.(story.storyId);
+                } else if (!isLocked) {
+                  onStoryClick?.(story.viewpointsDataUrl);
+                }
+              }}
+              disabled={isLocked && !isStory4Or5}
               data-story-id={story.storyId}
               style={isActive ? { color: '#f6d4ff', borderColor: '#f6d4ff' } : undefined}
             >
