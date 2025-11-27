@@ -22,7 +22,7 @@ const HeroWrap = styled.div`
   position: relative;
   width: 100%;
   height: 202.727px;
-  margin-top: 86px;
+  margin-top: calc(86 / 812 * 100vh);
 `;
 
 const HeroArt = styled.img`
