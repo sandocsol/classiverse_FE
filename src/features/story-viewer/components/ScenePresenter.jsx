@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -93,6 +93,13 @@ const Video = styled.video`
   max-width: none;
 `;
 
+const FallbackImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: none;
+`;
+
 const ChoicesContainer = styled.div`
   position: absolute;
   bottom: 56px;
@@ -156,6 +163,56 @@ export default function ScenePresenter({
   const videoPath = characterAvatar
     ? characterAvatar.replace('.png', '-video.mp4')
     : null;
+  
+  const videoRef = useRef(null);
+  const [videoFailed, setVideoFailed] = useState(false);
+  const prevVideoPathRef = useRef(videoPath);
+
+  // videoPath가 변경될 때 videoFailed 상태 리셋
+  useEffect(() => {
+    if (prevVideoPathRef.current !== videoPath) {
+      setVideoFailed(false);
+      prevVideoPathRef.current = videoPath;
+    }
+  }, [videoPath]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !videoPath) return;
+
+    // 비디오가 로드되면 자동재생 시도
+    const attemptPlay = async () => {
+      try {
+        // muted 속성이 있어야 자동재생이 가능
+        video.muted = true;
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+          await playPromise;
+        }
+      } catch (error) {
+        // 자동재생 실패 시 fallback 이미지로 전환
+        console.warn('Video autoplay failed, falling back to image:', error);
+        setVideoFailed(true);
+      }
+    };
+
+    // 비디오 로드 완료 시 재생 시도
+    const handleCanPlay = () => {
+      attemptPlay();
+    };
+
+    // 이미 로드된 경우 바로 시도
+    if (video.readyState >= 2) {
+      attemptPlay();
+    } else {
+      video.addEventListener('canplay', handleCanPlay);
+    }
+
+    return () => {
+      video.removeEventListener('canplay', handleCanPlay);
+    };
+  }, [videoPath]);
 
   return (
     <Container>
@@ -174,10 +231,22 @@ export default function ScenePresenter({
       </ContentArea>
 
       {videoPath && (
-        <CharacterVideo>
-          <Video autoPlay loop playsInline controlsList="nodownload">
-            <source src={videoPath} type="video/mp4" />
-          </Video>
+        <CharacterVideo key={videoPath}>
+          {videoFailed ? (
+            <FallbackImage src={characterAvatar} alt={characterName} />
+          ) : (
+            <Video
+              ref={videoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              controlsList="nodownload"
+            >
+              <source src={videoPath} type="video/mp4" />
+            </Video>
+          )}
         </CharacterVideo>
       )}
 
