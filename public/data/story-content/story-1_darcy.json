@@ -79,7 +79,7 @@
       "status": {
         "characterName": "피츠윌리엄 다아시",
         "avatar": "/images/avatars/darcy.png",
-        "message": "이런 이야기... 그 누구에게도 하지 않았습니다.",
+        "message": "이런 이야기...\n그 누구에게도 하지 않았습니다.",
         "progress": 20
       },
       "nextPagePath": "/books/pride-and-prejudice"

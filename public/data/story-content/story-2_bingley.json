@@ -87,7 +87,7 @@
         "status": {
           "characterName": "찰스 빙리",
           "avatar": "/images/avatars/bingley.png",
-          "message": "마음이 참 복잡하네요.\n이렇게 말하니 조금은 정리가 되는 것 같네요.",
+          "message": "마음이 참 복잡하네요.\n말하고 나니 조금은 정리가 되는 것 같네요.",
           "progress": 20
         },
         "nextPagePath": "/books/pride-and-prejudice"

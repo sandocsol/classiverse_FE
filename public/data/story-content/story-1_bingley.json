@@ -87,7 +87,7 @@
         "status": {
           "characterName": "찰스 빙리",
           "avatar": "/images/avatars/bingley.png",
-          "message": "좋은 하루였어요. 이런 마음을\n나눌 수 있어서 더 기쁘네요.",
+          "message": "좋은 하루였어요.\n이런 마음을 나눌 수 있어서 더 기쁘네요.",
           "progress": 20
         },
         "nextPagePath": "/books/pride-and-prejudice"
