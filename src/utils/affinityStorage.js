@@ -136,28 +136,6 @@ function getCompletedStories() {
 }
 
 /**
- * 완료한 스토리 ID 목록을 가져옵니다 (characterId 제외).
- * @returns {Set<string>} 완료한 스토리 ID 집합 (storyId만)
- */
-export function getCompletedStoryIds() {
-  try {
-    const completed = getCompletedStories();
-    const storyIds = new Set();
-    completed.forEach(storyKey => {
-      // "storyId_characterId" 형식에서 storyId만 추출
-      const storyId = storyKey.split('_')[0];
-      if (storyId) {
-        storyIds.add(storyId);
-      }
-    });
-    return storyIds;
-  } catch (error) {
-    console.error('완료한 스토리 ID 목록을 불러오는 중 오류 발생:', error);
-    return new Set();
-  }
-}
-
-/**
  * 스토리 완료 여부를 저장합니다.
  * @param {string} storyId - 스토리 ID
  * @param {string} characterId - 등장인물 ID
@@ -273,13 +251,3 @@ export function getCharacterAffinity(characterId, characterIds = []) {
     return 0;
   }
 }
-
-/**
- * 모든 등장인물의 친밀도 데이터를 가져옵니다.
- * @param {Array<string>} characterIds - 등장인물 ID 배열 (데이터 초기화 시 필요)
- * @returns {Object} 모든 등장인물의 친밀도 데이터
- */
-export function getAllAffinityData(characterIds = []) {
-  return getAffinityData(characterIds);
-}
-
