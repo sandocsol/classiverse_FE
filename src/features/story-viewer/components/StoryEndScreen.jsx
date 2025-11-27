@@ -68,7 +68,7 @@ const StatusCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 0;
 `;
 
 const ProgressInfo = styled.div`
