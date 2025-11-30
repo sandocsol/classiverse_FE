@@ -1,16 +1,116 @@
-# React + Vite
+# Classiverse (클래시버스)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**당신의 시점으로 다시 여는 고전의 세계**
 
-Currently, two official plugins are available:
+클래시버스는 고전 문학을 새로운 방식으로 경험할 수 있는 인터랙티브 웹 플랫폼입니다. 같은 스토리를 다양한 캐릭터의 관점에서 읽고, 선택지를 통해 이야기를 전개하며, 캐릭터와의 친밀도를 쌓아나가세요.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<br/>
 
-## React Compiler
+## 🎭 주요 기능
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 멀티 뷰포인트 스토리텔링
+- 하나의 이야기를 여러 캐릭터의 시점에서 경험
+- 예: "오만과 편견"을 Elizabeth, Darcy, Jane, Bingley의 관점으로 각각 읽기
 
-## Expanding the ESLint configuration
+### 인터랙티브 스토리
+- 분기형 선택지로 이야기 전개
+- 사용자의 선택에 따라 달라지는 스토리 경로
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 친밀도 시스템
+- 각 캐릭터와의 관계도 추적
+- 스토리 완료 시 캐릭터 친밀도 증가
+- 로컬스토리지 기반 진행 상태 저장
+
+### 진행 상태 관리
+- 마지막으로 읽은 스토리 자동 추적
+- 다음 읽을 스토리 추천
+- 완료/미완료 스토리 구분
+
+<br/>
+
+## 🛠 기술 스택
+
+| 분류 | 기술 |
+|------|------|
+| **프레임워크** | React 19.2.0 |
+| **라우팅** | React Router DOM 7.9.6 |
+| **스타일링** | Styled Components 6.1.19 |
+| **빌드 도구** | Vite 7.2.2 |
+| **HTTP 클라이언트** | Axios 1.13.2 |
+| **분석** | Google Analytics 4 |
+| **개발 도구** | ESLint 9.39.1 |
+
+<br/>
+
+## 📁 프로젝트 구조
+
+```
+src/
+├── pages/                    # 페이지 컴포넌트
+│   ├── BookDetailPage.jsx    # 책 상세 페이지
+│   └── StoryViewerPage.jsx   # 스토리 뷰어 페이지
+│
+├── features/                 # 기능별 모듈화
+│   ├── book-detail/          # 책 상세 정보 기능
+│   ├── story-viewer/         # 스토리 플레이어 기능
+│   ├── character/            # 캐릭터 정보 기능
+│   └── story-selector/       # 시점 선택 기능
+│
+├── styles/                   # 전역 스타일
+│   ├── GlobalStyle.js
+│   └── AppShell.jsx
+│
+├── utils/                    # 유틸리티 함수
+│   └── affinityStorage.js    # 친밀도 데이터 관리
+│
+├── analytics.js              # GA4 통합
+├── App.jsx                   # 루트 컴포넌트
+└── main.jsx                  # 라우터 설정
+
+public/data/                  # 정적 데이터
+├── book-detail/              # 책 정보 JSON
+├── story-content/            # 스토리 내용 JSON
+├── story-viewpoints/         # 스토리 시점 데이터
+└── character-detail/         # 캐릭터 정보
+```
+
+<br/>
+
+## 📖 주요 페이지
+
+### 1. 책 상세 페이지 (`/books/:bookId`)
+
+책의 정보와 스토리 목록, 캐릭터를 한눈에 볼 수 있는 페이지입니다.
+
+**구성 요소:**
+- **책 정보**: 제목, 저자, 장르, 설명, 커버 이미지
+- **스토리 목록**: 읽을 수 있는 모든 스토리 표시 (일부는 잠금)
+- **캐릭터 목록**: 책의 주요 캐릭터 소개
+
+**주요 기능:**
+- 마지막 읽은 스토리 하이라이트
+- 캐릭터 클릭 시 상세 정보 모달 표시
+- 스토리 잠금 상태 표시 및 안내
+
+### 2. 스토리 뷰어 페이지 (`/story/:storyId/:characterId/:sceneId`)
+
+인터랙티브하게 이야기를 읽는 페이지입니다.
+
+**화면 구성:**
+- **상단**: 스토리 제목, 현재 캐릭터명
+- **좌측**: 씬 제목과 캐릭터의 대사/생각
+- **중앙**: 캐릭터 비디오 또는 이미지
+- **하단**: 이야기를 진행할 선택지 버튼
+
+**주요 기능:**
+- 선택지 클릭으로 다음 씬 진행
+- 스토리 완료 시 친밀도 증가
+- 자동 재생 지원 (음소거 상태)
+
+<br/>
+
+## 🎬 현재 지원 도서
+
+- **오만과 편견** (Pride and Prejudice by Jane Austen)
+  - 5개의 스토리
+  - 4개의 캐릭터 시점: Elizabeth, Darcy, Jane, Bingley
