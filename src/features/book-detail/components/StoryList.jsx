@@ -201,7 +201,7 @@ export default function StoryList({ stories, onStoryClick, book, activeStoryId, 
                   // 네 번째, 다섯 번째 스토리 클릭 시 모달 표시
                   onLockedStoryClick?.(story.storyId);
                 } else if (!isLocked) {
-                  onStoryClick?.(story.viewpointsDataUrl);
+                  onStoryClick?.(story.storyId);
                 }
               }}
               disabled={isLocked && !isStory4Or5}

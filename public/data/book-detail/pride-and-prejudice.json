@@ -8,29 +8,24 @@
   "stories": [
     {
       "storyId": "story-1",
-      "title": "첫인상 최악의 남자",
-      "viewpointsDataUrl": "/data/story-viewpoints/story-1.json"
+      "title": "첫인상 최악의 남자"
     },
     {
       "storyId": "story-2",
-      "title": "완벽남의 잘못된 충고",
-      "viewpointsDataUrl": "/data/story-viewpoints/story-2.json"
+      "title": "완벽남의 잘못된 충고"
     },
     {
       "storyId": "story-3",
-      "title": "친절한 낯선 남자의 비밀",
-      "viewpointsDataUrl": "/data/story-viewpoints/story-3.json"
+      "title": "친절한 낯선 남자의 비밀"
     },
     {
       "storyId": "story-4",
       "title": "비 오는 날, 다시 만난 두 사람",
-      "viewpointsDataUrl": "/data/story-viewpoints/story-4.json",
       "locked": true
     },
     {
       "storyId": "story-5",
       "title": "오만과 편견, 그 이름의 끝",
-      "viewpointsDataUrl": "/data/story-viewpoints/story-5.json",
       "locked": true
     }
   ],
@@ -38,26 +33,22 @@
     {
       "characterId": "elizabeth",
       "name": "엘리자베스 베넷",
-      "avatar": "/images/avatars/elizabeth.png",
-      "detailDataUrl": "/data/character-detail/elizabeth.json"
+      "avatar": "/images/avatars/elizabeth.png"
     },
     {
       "characterId": "darcy",
       "name": "피츠윌리엄 다아시",
-      "avatar": "/images/avatars/darcy.png",
-      "detailDataUrl": "/data/character-detail/darcy.json"
+      "avatar": "/images/avatars/darcy.png"
     },
     {
       "characterId": "jane",
       "name": "제인 베넷",
-      "avatar": "/images/avatars/jane.png",
-      "detailDataUrl": "/data/character-detail/jane.json"
+      "avatar": "/images/avatars/jane.png"
     },
     {
       "characterId": "bingley",
       "name": "찰스 빙리",
-      "avatar": "/images/avatars/bingley.png",
-      "detailDataUrl": "/data/character-detail/bingley.json"
+      "avatar": "/images/avatars/bingley.png"
     }
   ]
 }

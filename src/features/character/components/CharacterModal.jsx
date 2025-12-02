@@ -104,7 +104,8 @@ const StatusText = styled.p`
   color: rgba(255, 255, 255, 0.7);
 `;
 
-export default function CharacterModal({ dataUrl, onClose }) {
+export default function CharacterModal({ characterId, onClose }) {
+  const dataUrl = characterId ? `/data/character-detail/${characterId}.json` : null;
   const { data, loading, error } = useCharacter(dataUrl);
   
   // localStorage에서 친밀도 데이터 가져오기 (초기값 설정)

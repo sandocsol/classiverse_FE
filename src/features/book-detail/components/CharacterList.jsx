@@ -144,7 +144,7 @@ export default function CharacterList({ characters, onCharacterClick, book }) {
                 // GA 이벤트 추적
                 trackCharacterCardClick(c.characterId);
                 // 기존 클릭 핸들러 실행
-                onCharacterClick?.(c.detailDataUrl);
+                onCharacterClick?.(c.characterId);
               }}
               data-character-id={c.characterId}
             >

@@ -179,8 +179,9 @@ const ErrorText = styled.p`
   text-align: center;
 `;
 
-export default function ViewpointModal({ dataUrl, onClose }) {
+export default function ViewpointModal({ storyId, onClose }) {
   const navigate = useNavigate();
+  const dataUrl = storyId ? `/data/story-viewpoints/${storyId}.json` : null;
   const { data, loading, error } = useViewpoints(dataUrl);
 
   const handleOverlayClick = () => {

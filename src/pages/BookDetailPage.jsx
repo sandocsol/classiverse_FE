@@ -52,8 +52,8 @@ export default function BookDetailPage() {
   const { bookId } = useParams();
   const { data: bookData, loading, error } = useBookDetail(bookId);
 
-  const [characterModalUrl, setCharacterModalUrl] = useState(null);
-  const [viewpointModalUrl, setViewpointModalUrl] = useState(null);
+  const [characterId, setCharacterId] = useState(null);
+  const [viewpointStoryId, setViewpointStoryId] = useState(null);
   const [showLockModal, setShowLockModal] = useState(false);
   const [lockedStoryId, setLockedStoryId] = useState(null);
 
@@ -91,7 +91,7 @@ export default function BookDetailPage() {
         <BookInfoHeader book={bookData} />
         <StoryList
           book={bookData}
-          onStoryClick={setViewpointModalUrl}
+          onStoryClick={setViewpointStoryId}
           activeStoryId={bookData?.activeStoryId}
           onLockedStoryClick={(storyId) => {
             setLockedStoryId(storyId);
@@ -99,21 +99,21 @@ export default function BookDetailPage() {
           }}
         />
         <FullBleed>
-          <CharacterList book={bookData} onCharacterClick={setCharacterModalUrl} />
+          <CharacterList book={bookData} onCharacterClick={setCharacterId} />
         </FullBleed>
       </Content>
 
-      {characterModalUrl ? (
+      {characterId ? (
         <CharacterModal
-          dataUrl={characterModalUrl}
-          onClose={() => setCharacterModalUrl(null)}
+          characterId={characterId}
+          onClose={() => setCharacterId(null)}
         />
       ) : null}
 
-      {viewpointModalUrl ? (
+      {viewpointStoryId ? (
         <ViewpointModal
-          dataUrl={viewpointModalUrl}
-          onClose={() => setViewpointModalUrl(null)}
+          storyId={viewpointStoryId}
+          onClose={() => setViewpointStoryId(null)}
         />
       ) : null}
 
