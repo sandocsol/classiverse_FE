@@ -69,12 +69,27 @@ export default function StoryViewerPage() {
   }
 
   const handleChoiceSelect = (nextId) => {
-    if (!nextId) {
-      // nextId가 null이면 스토리 완료 화면으로 이동
+    // nextId가 null이거나 undefined면 스토리 완료 화면으로 이동
+    if (!nextId || nextId === null) {
+      navigate(`/story/${storyId}/${characterId}/complete`);
       return;
     }
+    // nextId가 있으면 다른 씬으로 이동
     navigate(`/story/${storyId}/${characterId}/${nextId}`);
-  };
+  }
+
+  // contentId가 'complete'이면 스토리 완료 화면 표시
+  if (contentId === 'complete') {
+    return (
+      <PageContainer>
+        <StoryEndScreen 
+          storyId={storyId}
+          characterId={characterId}
+          initialCloseness={0}
+        />
+      </PageContainer>
+    );
+  }
 
   if (loading) {
     return (
@@ -99,22 +114,6 @@ export default function StoryViewerPage() {
         <LoadingText>씬을 준비하는 중…</LoadingText>
       </PageContainer>
     );
-  }
-
-  // 마지막 씬에서 nextId가 null이면 스토리 완료 화면으로 이동
-  if (contentData.reactions && contentData.reactions.length > 0) {
-    const hasNullNextId = contentData.reactions.some(reaction => reaction.nextId === null);
-    if (hasNullNextId) {
-      return (
-        <PageContainer>
-          <StoryEndScreen 
-            storyId={storyId}
-            characterId={characterId}
-            initialCloseness={0}
-          />
-        </PageContainer>
-      );
-    }
   }
 
   return (
