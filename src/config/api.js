@@ -5,8 +5,14 @@
 
 import axios from 'axios';
 
+// 목 데이터 사용 여부 (환경 변수로 제어)
+const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true';
+
 // 개발 환경에서는 로컬 API 서버, 프로덕션에서는 실제 API 서버
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+// 목 데이터 모드일 때는 baseURL을 빈 문자열로 설정 (상대 경로 사용)
+const API_BASE_URL = USE_MOCK_DATA 
+  ? '' 
+  : (import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080');
 
 // 또는 상대 경로를 사용하는 경우 (프록시 설정 시)
 // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
