@@ -16,6 +16,13 @@ export default function useStoryContent(storyId, characterId, contentId) {
         setLoading(false);
         return;
       }
+      // contentId가 'complete'이면 스토리 완료 화면이므로 데이터를 로드하지 않음
+      if (contentId === 'complete') {
+        setLoading(false);
+        setData(null);
+        setError(null);
+        return;
+      }
       setLoading(true);
       setError(null);
       try {
