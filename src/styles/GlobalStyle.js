@@ -20,6 +20,15 @@ const GlobalStyle = createGlobalStyle`
     font-display: swap;
   }
 
+  /* Hakgyoansim SamulhamOTF 폰트 로드 */
+  @font-face {
+    font-family: 'Hakgyoansim SamulhamOTF';
+    src: url('/font/HakgyoansimSamulhamOTFR.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
   /* 전역 초기화 스타일 */
   *, *::before, *::after {
     box-sizing: border-box;
