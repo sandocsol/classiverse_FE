@@ -111,7 +111,7 @@ export default function CharacterList({ characters, onCharacterClick, book }) {
               data-character-id={characterId}
             >
               <AvatarCircle>
-                <AvatarImg src={c.avatar} alt={`${c.name} 아바타`} />
+                <AvatarImg src={c.charImage} alt={`${c.name} 아바타`} />
               </AvatarCircle>
               <Name>{c.name}</Name>
               <SubText dim={percent === 0}>친밀도 {percent}%</SubText>

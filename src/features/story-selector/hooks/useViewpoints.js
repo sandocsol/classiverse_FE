@@ -7,7 +7,7 @@ const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true';
 /**
  * API 응답을 프론트엔드에서 사용하는 구조로 변환
  * API 명세: { storyTitle, introductions: [{ charId, characterName, introText, isLeader, charImage, firstContentId }] }
- * 프론트엔드 구조: { storyId, storyTitle, prompt, viewpoints: [{ characterId, name, preview, tag, avatar, startContentId }] }
+ * 프론트엔드 구조: { storyId, storyTitle, prompt, viewpoints: [{ characterId, name, preview, tag, charImage, startContentId }] }
  */
 function transformApiResponse(apiData, storyId) {
   return {
@@ -19,7 +19,7 @@ function transformApiResponse(apiData, storyId) {
       name: intro.characterName,
       preview: intro.introText,
       tag: intro.isLeader === 'Y' ? '원작' : null,
-      avatar: intro.charImage,
+      charImage: intro.charImage,
       startContentId: intro.firstContentId,
     })) || [],
   };

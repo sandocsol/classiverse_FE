@@ -135,7 +135,7 @@ export default function CharacterModal({ bookId, characterId, onClose }) {
 
             <AvatarWrapper>
               <AvatarCircle>
-                <AvatarImg src={data.avatar} alt={`${data.name} 아바타`} />
+                <AvatarImg src={data.charImage} alt={`${data.name} 아바타`} />
               </AvatarCircle>
             </AvatarWrapper>
 

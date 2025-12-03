@@ -232,7 +232,7 @@ export default function ViewpointModal({ storyId, onClose }) {
                   >
                     <AvatarCircle>
                       <AvatarImg
-                        src={viewpoint.avatar}
+                        src={viewpoint.charImage}
                         alt={`${viewpoint.name} 아바타`}
                       />
                     </AvatarCircle>
