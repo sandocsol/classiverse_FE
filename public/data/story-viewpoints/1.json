@@ -1,0 +1,37 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "introductions": [
+    {
+      "charId": 1,
+      "characterName": "엘리자베스 베넷",
+      "introText": "무도회에 갔다가\n듣지 말아야 할 말을 들었어.",
+      "isLeader": "Y",
+      "charImage": "/images/avatars/elizabeth.png",
+      "firstContentId": 18
+    },
+    {
+      "charId": 2,
+      "characterName": "피츠윌리엄 다아시",
+      "introText": "솔직히 그녀가 눈에 띄었다\n하지만...",
+      "isLeader": "N",
+      "charImage": "/images/avatars/darcy.png",
+      "firstContentId": 10
+    },
+    {
+      "charId": 3,
+      "characterName": "제인 베넷",
+      "introText": "좋은 분을 만났고...\n엘리자베스에게도 일이 조금 있었어.",
+      "isLeader": "N",
+      "charImage": "/images/avatars/jane.png",
+      "firstContentId": 26
+    },
+    {
+      "charId": 4,
+      "characterName": "찰스 빙리",
+      "introText": "무도회가 참 즐거웠어요.\n다아시 때문에 일이 있긴 했지만요.",
+      "isLeader": "N",
+      "charImage": "/images/avatars/bingley.png",
+      "firstContentId": 1
+    }
+  ]
+}

@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { getOrCreateUserId, increaseAffinity, getCharacterAffinity } from '../../../utils/affinityStorage.js';
+import { getOrCreateUserId } from '../../../utils/affinityStorage.js';
+import useStoryComplete from '../hooks/useStoryComplete.js';
 
 const Container = styled.div`
   width: 100%;
@@ -202,65 +203,63 @@ const NextButtonText = styled.p`
   white-space: pre;
 `;
 
-export default function StoryEndScreen({ endData, characterId, storyId }) {
+export default function StoryEndScreen({ storyId, characterId, initialCloseness }) {
   const navigate = useNavigate();
-  
-  // 초기 친밀도 값 설정 (함수형 초기화)
-  const getInitialProgress = () => {
-    if (characterId) {
-      return getCharacterAffinity(characterId);
-    }
-    return 0;
-  };
-  const [progress, setProgress] = useState(getInitialProgress);
+  const { data: completeData, loading, error } = useStoryComplete(storyId, characterId);
 
   // 사용자 ID 생성 (최초 접속 시)
   useEffect(() => {
     getOrCreateUserId();
   }, []);
 
-  // characterId가 변경될 때 친밀도 업데이트
-  // localStorage에서 데이터를 동기화하는 것은 useEffect의 일반적인 사용 사례입니다
-  useEffect(() => {
-    if (characterId) {
-      const currentProgress = getCharacterAffinity(characterId);
-      setProgress(currentProgress);
-    }
-  }, [characterId]);
-
-  // 친밀도 데이터 업데이트 (스토리 종료 시 - 증가량 방식)
-  // useRef를 사용하여 한 번만 실행되도록 보장
-  const hasUpdatedRef = useRef(false);
-  useEffect(() => {
-    if (endData?.status && characterId && storyId && !hasUpdatedRef.current) {
-      const increment = endData.status.progress ?? 0;
-      // localStorage에 친밀도 데이터 저장 (현재 값에 증가량을 더함)
-      // storyId를 전달하여 중복 완료 방지
-      const newProgress = increaseAffinity(characterId, increment, storyId);
-      // 업데이트된 친밀도 값으로 state 업데이트
-      // localStorage에서 데이터를 동기화하는 것은 useEffect의 일반적인 사용 사례입니다
-      setProgress(newProgress);
-      hasUpdatedRef.current = true;
-    }
-  }, [endData, characterId, storyId]);
-
+  // bookId를 가져와서 책 상세 페이지로 이동
   const handleNextClick = () => {
-    if (endData?.nextPagePath) {
-      navigate(endData.nextPagePath);
-    }
+    // story-complete API에서 bookId를 가져오거나, 없으면 기본값 사용
+    const bookId = completeData?.bookId || 1;
+    navigate(`/books/${bookId}`);
   };
 
-  const message = endData?.status?.message ?? '';
-  const messageLines = message ? message.split('\n') : [];
+  // 동적으로 메시지 생성 (story-complete API 응답 데이터 사용)
+  const storyTitle = completeData?.storyTitle ?? '';
+  const characterName = completeData?.characterName ?? '';
+  const clearMessage = storyTitle ? `'${storyTitle}' 클리어` : '';
+  const relationshipUpdate = characterName ? `${characterName}와의 관계가 한 단계 깊어졌어요` : '';
+  const finalText = completeData?.finalText ?? '';
+  const messageLines = finalText ? finalText.split('\n') : [];
+  const currentCloseness = completeData?.currentCloseness ?? initialCloseness ?? 0;
+
+  if (loading) {
+    return (
+      <Container>
+        <StatusCardWrapper>
+          <StatusCard>
+            <ProgressText>스토리 완료 처리 중...</ProgressText>
+          </StatusCard>
+        </StatusCardWrapper>
+      </Container>
+    );
+  }
+
+  if (error || !completeData) {
+    return (
+      <Container>
+        <StatusCardWrapper>
+          <StatusCard>
+            <ProgressText>스토리 완료 데이터를 불러오지 못했습니다.</ProgressText>
+          </StatusCard>
+        </StatusCardWrapper>
+      </Container>
+    );
+  }
 
   return (
     <Container>
-      {endData?.clearMessage && (
+      {clearMessage && (
         <TopMessageArea>
-          <ClearMessage>{endData.clearMessage}</ClearMessage>
-          {endData?.relationshipUpdate && (
+          <ClearMessage>{clearMessage}</ClearMessage>
+          {relationshipUpdate && (
             <RelationshipUpdate>
-              {endData.relationshipUpdate.split('\n').map((line, index) => (
+              {relationshipUpdate.split('\n').map((line, index) => (
                 <p key={index}>{line}</p>
               ))}
             </RelationshipUpdate>
@@ -268,49 +267,45 @@ export default function StoryEndScreen({ endData, characterId, storyId }) {
         </TopMessageArea>
       )}
 
-      {endData?.status && (
-        <StatusCardWrapper>
-          <StatusCard>
-            <ProgressBarContainer>
-              <ProgressBar>
-                <ProgressFill $progress={Math.max(0, Math.min(100, progress))} />
-              </ProgressBar>
-            </ProgressBarContainer>
+      <StatusCardWrapper>
+        <StatusCard>
+          <ProgressBarContainer>
+            <ProgressBar>
+              <ProgressFill $progress={Math.max(0, Math.min(100, currentCloseness))} />
+            </ProgressBar>
+          </ProgressBarContainer>
 
-            <ProgressInfo>
-              <ProgressText>친밀도 {progress}%</ProgressText>
-              {endData.status.characterName && (
-                <CharacterName>{endData.status.characterName}</CharacterName>
-              )}
-            </ProgressInfo>
+          <ProgressInfo>
+            <ProgressText>친밀도 {currentCloseness}%</ProgressText>
+            {characterName && (
+              <CharacterName>{characterName}</CharacterName>
+            )}
+          </ProgressInfo>
 
-            <AvatarSection>
-              {endData.status.avatar && (
-                <AvatarWrapper>
-                  <AvatarImg
-                    src={endData.status.avatar}
-                    alt={`${endData.status.characterName} 아바타`}
-                  />
-                </AvatarWrapper>
-              )}
+          <AvatarSection>
+            {completeData.charImage && (
+              <AvatarWrapper>
+                <AvatarImg
+                  src={completeData.charImage}
+                  alt={`${characterName} 아바타`}
+                />
+              </AvatarWrapper>
+            )}
 
-              {messageLines.length > 0 && (
-                <Message>
-                  {messageLines.map((line, index) => (
-                    <p key={index}>{line}</p>
-                  ))}
-                </Message>
-              )}
-            </AvatarSection>
-          </StatusCard>
-        </StatusCardWrapper>
-      )}
+            {messageLines.length > 0 && (
+              <Message>
+                {messageLines.map((line, index) => (
+                  <p key={index}>{line}</p>
+                ))}
+              </Message>
+            )}
+          </AvatarSection>
+        </StatusCard>
+      </StatusCardWrapper>
 
-      {endData?.nextPagePath && (
-        <NextButton onClick={handleNextClick}>
-          <NextButtonText>다음 이야기 보기</NextButtonText>
-        </NextButton>
-      )}
+      <NextButton onClick={handleNextClick}>
+        <NextButtonText>다음 이야기 보기</NextButtonText>
+      </NextButton>
     </Container>
   );
 }

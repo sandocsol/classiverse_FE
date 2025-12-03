@@ -13,7 +13,7 @@ import BookDetailPage from './pages/BookDetailPage.jsx';
 import StoryViewerPage from './pages/StoryViewerPage.jsx';
 
 // 2. 고정할 책의 ID를 상수로 정의합니다. (나중에 바꾸기 쉽도록)
-const DEFAULT_BOOK_ID = "pride-and-prejudice";
+const DEFAULT_BOOK_ID = 1;
 
 // 3. 라우터 객체 정의
 const router = createBrowserRouter([
@@ -41,12 +41,12 @@ const router = createBrowserRouter([
         element: <BookDetailPage />
       },
 
-      // 4. 스토리 뷰어 페이지 경로 (씬 ID 포함)
+      // 4. 스토리 뷰어 페이지 경로 (contentId 포함)
       {
-        path: '/story/:storyId/:characterId/:sceneId',
+        path: '/story/:storyId/:characterId/:contentId',
         element: <StoryViewerPage />
       },
-      // 4-1. 씬 ID가 없을 때는 시작 씬으로 리다이렉트 (StoryViewerPage에서 처리)
+      // 4-1. contentId가 없을 때는 시작 씬(contentId=1)으로 리다이렉트 (StoryViewerPage에서 처리)
       {
         path: '/story/:storyId/:characterId',
         element: <StoryViewerPage />

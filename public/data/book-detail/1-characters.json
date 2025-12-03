@@ -1,0 +1,27 @@
+[
+  {
+    "charId": 1,
+    "name": "엘리자베스 베넷",
+    "closeness": 0,
+    "charImage": "/images/avatars/elizabeth.png"
+  },
+  {
+    "charId": 2,
+    "name": "피츠윌리엄 다아시",
+    "closeness": 0,
+    "charImage": "/images/avatars/darcy.png"
+  },
+  {
+    "charId": 3,
+    "name": "제인 베넷",
+    "closeness": 0,
+    "charImage": "/images/avatars/jane.png"
+  },
+  {
+    "charId": 4,
+    "name": "찰스 빙리",
+    "closeness": 0,
+    "charImage": "/images/avatars/bingley.png"
+  }
+]
+

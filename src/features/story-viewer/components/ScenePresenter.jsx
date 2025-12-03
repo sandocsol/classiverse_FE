@@ -150,19 +150,21 @@ const ChoiceText = styled.p`
 export default function ScenePresenter({
   storyTitle,
   characterName,
-  characterAvatar,
-  sceneData,
+  characterId,
+  contentData,
   onChoiceSelect,
 }) {
-  const formatDialogue = (dialogue) => {
-    if (!dialogue) return [];
-    return dialogue.split('\n').filter((line) => line.trim());
+  const formatContent = (content) => {
+    if (!content) return [];
+    return content.split('\n').filter((line) => line.trim());
   };
 
-  const dialogueLines = formatDialogue(sceneData.dialogue);
-  const videoPath = characterAvatar
-    ? characterAvatar.replace('.png', '-video.mp4')
-    : null;
+  const contentLines = formatContent(contentData.content);
+  // API에서 받은 동영상 URL 사용, 없으면 fallback으로 characterId 기반 경로 사용
+  const videoPath = contentData.videoUrl || 
+    (characterId ? `/images/avatars/${characterId}-video.mp4` : null);
+  const characterAvatar = contentData.characterAvatar || 
+    (characterId ? `/images/avatars/${characterId}.png` : null);
   
   const videoRef = useRef(null);
   const [videoFailed, setVideoFailed] = useState(false);
@@ -222,9 +224,9 @@ export default function ScenePresenter({
       </Header>
 
       <ContentArea>
-        <SceneTitle>{sceneData.title}</SceneTitle>
+        <SceneTitle>{contentData.header}</SceneTitle>
         <Dialogue>
-          {dialogueLines.map((line, index) => (
+          {contentLines.map((line, index) => (
             <p key={index}>{line}</p>
           ))}
         </Dialogue>
@@ -250,14 +252,14 @@ export default function ScenePresenter({
         </CharacterVideo>
       )}
 
-      {sceneData.choices && sceneData.choices.length > 0 && (
+      {contentData.reactions && contentData.reactions.length > 0 && (
         <ChoicesContainer>
-          {sceneData.choices.map((choice, index) => (
+          {contentData.reactions.map((reaction, index) => (
             <ChoiceButton
               key={index}
-              onClick={() => onChoiceSelect(choice.nextSceneId)}
+              onClick={() => onChoiceSelect(reaction.nextId)}
             >
-              <ChoiceText>{choice.text}</ChoiceText>
+              <ChoiceText>{reaction.text}</ChoiceText>
             </ChoiceButton>
           ))}
         </ChoicesContainer>

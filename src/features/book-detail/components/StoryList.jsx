@@ -113,7 +113,7 @@ export default function StoryList({ stories, onStoryClick, book, activeStoryId, 
     let targetIndex = lastReadIndex + 1;
     
     // 다음 스토리가 없거나 잠겨있으면 마지막으로 읽은 스토리에 표시
-    if (targetIndex >= list.length || (list[targetIndex] && list[targetIndex].locked)) {
+    if (targetIndex >= list.length || (list[targetIndex] && list[targetIndex].isLocked)) {
       targetIndex = Math.max(0, lastReadIndex);
     }
 
@@ -182,7 +182,7 @@ export default function StoryList({ stories, onStoryClick, book, activeStoryId, 
         />
         {list.map((story, index) => {
           const isActive = activeStoryId && activeStoryId === story.storyId;
-          const isLocked = story.locked === true;
+          const isLocked = story.isLocked === true;
           const isNextStory = index === nextStoryIndex;
           const isStory4Or5 = story.storyId === 'story-4' || story.storyId === 'story-5';
           // 잠긴 스토리는 모두 LockedItem 사용 (색깔 전과 동일하게 유지)
@@ -201,7 +201,7 @@ export default function StoryList({ stories, onStoryClick, book, activeStoryId, 
                   // 네 번째, 다섯 번째 스토리 클릭 시 모달 표시
                   onLockedStoryClick?.(story.storyId);
                 } else if (!isLocked) {
-                  onStoryClick?.(story.viewpointsDataUrl);
+                  onStoryClick?.(story.storyId);
                 }
               }}
               disabled={isLocked && !isStory4Or5}
