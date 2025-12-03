@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import useCharacter from '../hooks/useCharacter.js';
-import { getCharacterAffinity } from '../../../utils/affinityStorage.js';
 
 const Overlay = styled.div`
   position: fixed;
@@ -104,54 +103,8 @@ const StatusText = styled.p`
   color: rgba(255, 255, 255, 0.7);
 `;
 
-export default function CharacterModal({ characterId, onClose }) {
-  const dataUrl = characterId ? `/data/character-detail/${characterId}.json` : null;
-  const { data, loading, error } = useCharacter(dataUrl);
-  
-  // localStorage에서 친밀도 데이터 가져오기 (초기값 설정)
-  const getInitialProgress = () => {
-    if (data?.characterId) {
-      return getCharacterAffinity(data.characterId);
-    }
-    return 0;
-  };
-  const [storedProgress, setStoredProgress] = useState(getInitialProgress);
-
-  // characterId가 변경될 때 친밀도 데이터 업데이트
-  // localStorage에서 데이터를 동기화하는 것은 useEffect의 일반적인 사용 사례입니다
-  useEffect(() => {
-    if (data?.characterId) {
-      const progress = getCharacterAffinity(data.characterId);
-      setStoredProgress(progress);
-    }
-  }, [data?.characterId]);
-
-  // storage 이벤트 리스너 추가
-  useEffect(() => {
-    // storage 이벤트 리스너 추가 (다른 탭에서 변경된 경우 감지)
-    const handleStorageChange = (e) => {
-      if (e.key === 'user_affinity_data' && data?.characterId) {
-        const progress = getCharacterAffinity(data.characterId);
-        setStoredProgress(progress);
-      }
-    };
-
-    // 같은 탭에서 변경을 감지하기 위한 커스텀 이벤트 리스너
-    const handleAffinityUpdate = (e) => {
-      if (data?.characterId && e.detail?.characterId === data.characterId) {
-        const progress = getCharacterAffinity(data.characterId);
-        setStoredProgress(progress);
-      }
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-    window.addEventListener('affinityUpdated', handleAffinityUpdate);
-
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      window.removeEventListener('affinityUpdated', handleAffinityUpdate);
-    };
-  }, [data?.characterId]);
+export default function CharacterModal({ bookId, characterId, onClose }) {
+  const { data, loading, error } = useCharacter(bookId, characterId);
 
   const handleOverlayClick = () => {
     if (onClose) onClose();
@@ -161,9 +114,9 @@ export default function CharacterModal({ characterId, onClose }) {
     event.stopPropagation();
   };
 
-  // localStorage에서 가져온 친밀도 데이터 사용
-  const progress = Math.max(0, Math.min(100, storedProgress));
-  const descriptionLines = data?.description ? data.description.split('\n') : [];
+  // API에서 받은 closeness 값 사용 (없으면 0)
+  const progress = Math.max(0, Math.min(100, data?.closeness ?? 0));
+  const infoLines = data?.info ? data.info.split('\n') : [];
 
   return (
     <Overlay role="dialog" aria-modal="true" onClick={handleOverlayClick}>
@@ -186,9 +139,9 @@ export default function CharacterModal({ characterId, onClose }) {
               </AvatarCircle>
             </AvatarWrapper>
 
-            <Title>{data.title}</Title>
+            <Title>{data.intro}</Title>
             <Description>
-              {descriptionLines.map((line, index) => (
+              {infoLines.map((line, index) => (
                 <p key={index}>{line}</p>
               ))}
             </Description>

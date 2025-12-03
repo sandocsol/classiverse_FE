@@ -181,8 +181,7 @@ const ErrorText = styled.p`
 
 export default function ViewpointModal({ storyId, onClose }) {
   const navigate = useNavigate();
-  const dataUrl = storyId ? `/data/story-viewpoints/${storyId}.json` : null;
-  const { data, loading, error } = useViewpoints(dataUrl);
+  const { data, loading, error } = useViewpoints(storyId);
 
   const handleOverlayClick = () => {
     if (onClose) onClose();
@@ -194,7 +193,11 @@ export default function ViewpointModal({ storyId, onClose }) {
 
   const handleViewpointClick = (viewpoint) => {
     if (data?.storyId && viewpoint?.characterId) {
-      navigate(`/story/${data.storyId}/${viewpoint.characterId}`);
+      // characterId를 문자열로 변환 (URL 파라미터는 문자열이어야 함)
+      const characterId = String(viewpoint.characterId);
+      // startContentId가 있으면 사용하고, 없으면 기본값 1 사용
+      const startContentId = viewpoint.startContentId ?? 1;
+      navigate(`/story/${data.storyId}/${characterId}/${startContentId}`);
       if (onClose) onClose();
     }
   };

@@ -1,0 +1,33 @@
+[
+  {
+    "storyId": 1,
+    "episodeNum": 1,
+    "title": "첫인상 최악의 남자",
+    "isLocked": false
+  },
+  {
+    "storyId": 2,
+    "episodeNum": 2,
+    "title": "완벽남의 잘못된 충고",
+    "isLocked": false
+  },
+  {
+    "storyId": 3,
+    "episodeNum": 3,
+    "title": "친절한 낯선 남자의 비밀",
+    "isLocked": false
+  },
+  {
+    "storyId": 4,
+    "episodeNum": 4,
+    "title": "비 오는 날, 다시 만난 두 사람",
+    "isLocked": true
+  },
+  {
+    "storyId": 5,
+    "episodeNum": 5,
+    "title": "오만과 편견, 그 이름의 끝",
+    "isLocked": true
+  }
+]
+

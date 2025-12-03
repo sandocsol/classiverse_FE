@@ -1,7 +1,5 @@
-import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { trackCharacterCardClick } from '../../../analytics.js';
-import { getCharacterAffinity } from '../../../utils/affinityStorage.js';
 
 const Section = styled.section`
   padding-bottom: 20px;
@@ -88,43 +86,6 @@ const SubText = styled.span`
 
 export default function CharacterList({ characters, onCharacterClick, book }) {
   const list = characters ?? book?.characters ?? [];
-  const [affinityData, setAffinityData] = useState({});
-
-  // localStorage에서 친밀도 데이터 가져오기
-  const updateAffinityData = () => {
-    if (list.length > 0) {
-      const characterIds = list.map(c => c.characterId);
-      const data = {};
-      characterIds.forEach(characterId => {
-        data[characterId] = getCharacterAffinity(characterId, characterIds);
-      });
-      setAffinityData(data);
-    }
-  };
-
-  useEffect(() => {
-    updateAffinityData();
-
-    // storage 이벤트 리스너 추가 (다른 탭에서 변경된 경우 감지)
-    const handleStorageChange = (e) => {
-      if (e.key === 'user_affinity_data') {
-        updateAffinityData();
-      }
-    };
-
-    // 같은 탭에서 변경을 감지하기 위한 커스텀 이벤트 리스너
-    const handleAffinityUpdate = () => {
-      updateAffinityData();
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-    window.addEventListener('affinityUpdated', handleAffinityUpdate);
-
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      window.removeEventListener('affinityUpdated', handleAffinityUpdate);
-    };
-  }, [list]);
 
   if (!Array.isArray(list) || list.length === 0) return null;
 
@@ -133,20 +94,21 @@ export default function CharacterList({ characters, onCharacterClick, book }) {
       <SectionTitle>등장인물</SectionTitle>
       <Scroller>
         {list.map((c) => {
-          // localStorage에서 친밀도 데이터를 가져오거나, 기본값 사용
-          const storedProgress = affinityData[c.characterId] ?? 0;
-          const percent = Math.max(0, Math.min(100, storedProgress));
+          // charId를 문자열로 변환하여 사용
+          const characterId = String(c.charId);
+          // API에서 받은 closeness 값만 사용 (서버의 최신 값)
+          const percent = Math.max(0, Math.min(100, c.closeness ?? 0));
           return (
             <Card
-              key={c.characterId}
+              key={characterId}
               $hasAffinity={percent > 0}
               onClick={() => {
                 // GA 이벤트 추적
-                trackCharacterCardClick(c.characterId);
+                trackCharacterCardClick(characterId);
                 // 기존 클릭 핸들러 실행
-                onCharacterClick?.(c.characterId);
+                onCharacterClick?.(characterId);
               }}
-              data-character-id={c.characterId}
+              data-character-id={characterId}
             >
               <AvatarCircle>
                 <AvatarImg src={c.avatar} alt={`${c.name} 아바타`} />

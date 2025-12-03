@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { API_ENDPOINTS, apiClient } from '../../../config/api.js';
 
-export default function useCharacter(dataUrl) {
+// 목 데이터 사용 여부 (환경 변수로 제어)
+const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true';
+
+export default function useCharacter(bookId, characterId) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -10,14 +13,24 @@ export default function useCharacter(dataUrl) {
     let cancelled = false;
 
     async function load() {
-      if (!dataUrl) return;
+      if (!bookId || !characterId) return;
+      
       setLoading(true);
       setError(null);
 
       try {
-        const response = await axios.get(dataUrl, {
-          headers: { Accept: 'application/json' },
-        });
+        let endpoint;
+        
+        if (USE_MOCK_DATA) {
+          // 목 데이터 경로: /data/character-detail/{characterId}.json
+          endpoint = `/data/character-detail/${characterId}.json`;
+        } else {
+          // 실제 API 경로: /api/books/{bookId}/characters/{characterId}
+          endpoint = API_ENDPOINTS.CHARACTER_DETAIL(bookId, characterId);
+        }
+        
+        const response = await apiClient.get(endpoint);
+        
         if (!cancelled) {
           setData(response.data);
         }
@@ -37,7 +50,7 @@ export default function useCharacter(dataUrl) {
     return () => {
       cancelled = true;
     };
-  }, [dataUrl]);
+  }, [bookId, characterId]);
 
   return { data, loading, error };
 }

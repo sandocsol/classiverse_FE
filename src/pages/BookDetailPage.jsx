@@ -9,7 +9,7 @@ import CharacterModal from '../features/character/components/CharacterModal.jsx'
 import ViewpointModal from '../features/story-selector/components/ViewpointModal.jsx';
 import StoryLockModal from '../features/book-detail/components/StoryLockModal.jsx';
 import useBookDetail from '../features/book-detail/hooks/useBookDetail.js';
-import { getOrCreateUserId, getAffinityData } from '../utils/affinityStorage.js';
+import { getOrCreateUserId } from '../utils/affinityStorage.js';
 
 const PageContainer = styled.div`
   display: flex;
@@ -57,18 +57,10 @@ export default function BookDetailPage() {
   const [showLockModal, setShowLockModal] = useState(false);
   const [lockedStoryId, setLockedStoryId] = useState(null);
 
-  // 사용자 ID 생성 및 초기 친밀도 데이터 초기화
+  // 사용자 ID 생성 (최초 접속 시)
   useEffect(() => {
-    // 사용자 ID 생성 (최초 접속 시)
     getOrCreateUserId();
-
-    // 등장인물 목록이 있으면 초기 친밀도 데이터 생성
-    if (bookData?.characters && Array.isArray(bookData.characters)) {
-      const characterIds = bookData.characters.map(char => char.characterId);
-      // 초기 데이터 생성 (이미 있으면 업데이트만, 없으면 생성)
-      getAffinityData(characterIds);
-    }
-  }, [bookData]);
+  }, []);
 
   if (loading) {
     return <PageContainer style={{ padding: 20 }}>로딩 중…</PageContainer>;
@@ -105,6 +97,7 @@ export default function BookDetailPage() {
 
       {characterId ? (
         <CharacterModal
+          bookId={bookId}
           characterId={characterId}
           onClose={() => setCharacterId(null)}
         />

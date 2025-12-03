@@ -1,0 +1,37 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "introductions": [
+    {
+      "charId": 1,
+      "characterName": "엘리자베스 베넷",
+      "introText": "그 사람은 예전보다 따뜻하고,\n나는 예전보다 솔직해",
+      "isLeader": "Y",
+      "charImage": "/images/avatars/elizabeth.png",
+      "firstContentId": 161
+    },
+    {
+      "charId": 2,
+      "characterName": "피츠윌리엄 다아시",
+      "introText": "그녀가 나를 바꿨다",
+      "isLeader": "N",
+      "charImage": "/images/avatars/darcy.png",
+      "firstContentId": 151
+    },
+    {
+      "charId": 3,
+      "characterName": "제인 베넷",
+      "introText": "동생을 보며 저도 제 마음을\n조금 더 믿어보고 싶어졌어요.",
+      "isLeader": "N",
+      "charImage": "/images/avatars/jane.png",
+      "firstContentId": 175
+    },
+    {
+      "charId": 4,
+      "characterName": "찰스 빙리",
+      "introText": "다시 돌아간 이유는...\n그녀를 보고 싶었기 때문입니다.",
+      "isLeader": "N",
+      "charImage": "/images/avatars/bingley.png",
+      "firstContentId": 142
+    }
+  ]
+}
