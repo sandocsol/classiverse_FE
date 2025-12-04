@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const PageContainer = styled.div`
   width: 100%;
@@ -130,9 +131,12 @@ const ButtonText = styled.span`
 `;
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  
   const handleKakaoLogin = () => {
     // TODO: 카카오 로그인 기능 구현
     console.log('카카오 로그인 클릭');
+    navigate('/onboarding');
   };
 
   return (
