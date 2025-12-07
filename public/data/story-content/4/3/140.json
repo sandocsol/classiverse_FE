@@ -1,0 +1,14 @@
+{
+  "storyTitle": "비 오는 날, 다시 만난 두 사람",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "고백이요?",
+  "content": "받아들일 수 없다고 말했대요.\n\n그리고... 오해하고 있던 일들까지\n전부 이야기했다고 해요.\n\n엘리자베스는 위컴 씨 이야기,\n그리고 제가 빙리 씨와 멀어진 이유를\n다아시 씨 때문이라고 확신하고 있었거든요.",
+  "reactions": [
+    {
+      "text": "그래서 어떻게 됐대?",
+      "nextId": 141
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

@@ -1,0 +1,14 @@
+{
+  "storyTitle": "완벽남의 잘못된 충고",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "그는 요즘..",
+  "content": "빙리는...\n매우 착하고 성급하지 않은 사람입니다.\n하지만 최근 그의 행동은\n평소와 달리 꽤 감정적이었습니다.\n\n상대방의 마음이 그만큼 분명하지 않아 보였기에\n나는 조금 걱정이 되었어요.",
+  "reactions": [
+    {
+      "text": "그래서 뭐라고 했는데?",
+      "nextId": 46
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

@@ -1,0 +1,14 @@
+{
+  "storyTitle": "비 오는 날, 다시 만난 두 사람",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "나는 말도 안 된다고 했지.",
+  "content": "그 사람이 나한테 잘해준 적이 몇 번이나 있다고...\n그냥 샬럿이 과하게 반응하는 거라 생각했지.\n\n관심이라고 하기엔 말투도 차갑고,\n대화도 제대로 안 하고 가버리는 걸.",
+  "reactions": [
+    {
+      "text": "그러게, 이상하다.",
+      "nextId": 125
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

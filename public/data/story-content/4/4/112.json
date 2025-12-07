@@ -1,0 +1,14 @@
+{
+  "storyTitle": "비 오는 날, 다시 만난 두 사람",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "저라면...",
+  "content": "오해라도 바로 설명하려고 했을 것 같습니다.\n다아시는 그런 걸 잘 못하니까요.\n\n하지만..\n다아시는 다아시만의 방법이\n있을 거라 생각해요.",
+  "reactions": [
+    {
+      "text": "그게 뭔데?",
+      "nextId": 113
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

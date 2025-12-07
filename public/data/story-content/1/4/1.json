@@ -1,0 +1,14 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "그날 무도회! 와... 진짜 좋았어요.",
+  "content": "무도회는 늘 좋지만\n오늘은 유난히 기분이 좋았어요.\n사람들도 많았고 음악도 좋았고...\n\n무엇보다 마음에 드는 분을 만났거든요.",
+  "reactions": [
+    {
+      "text": "누굴 만났는데?",
+      "nextId": 2
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

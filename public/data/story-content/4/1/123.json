@@ -1,0 +1,14 @@
+{
+  "storyTitle": "비 오는 날, 다시 만난 두 사람",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "오늘 말이야...",
+  "content": "오늘은 샬럿 집에서 조용히 지내고 있었어.\n그런데... 다아시 씨가 또 목사관에 들렀어.\n\n요 며칠 계속 이렇게 찾아오니까\n샬럿이 조심스럽게 말하더라.\n\"엘리자베스... 혹시 널 좋아하는 거 아닐까?\"",
+  "reactions": [
+    {
+      "text": "그래서 뭐라고 했어?",
+      "nextId": 124
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

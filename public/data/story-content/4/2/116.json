@@ -1,0 +1,14 @@
+{
+  "storyTitle": "비 오는 날, 다시 만난 두 사람",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "그건..",
+  "content": "제 감정이 너무 크게 느껴졌습니다.\n잘못 말하면... 모든 걸 망칠 것 같아서요.\n숨기기 힘든 감정이었습니다.\n\n하지만 그녀가 날 어떻게 보는지는\n전혀 모르는 상태였죠.",
+  "reactions": [
+    {
+      "text": "너 엘리자베스를 많이 좋아하는구나!",
+      "nextId": 117
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

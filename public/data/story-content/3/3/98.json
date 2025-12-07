@@ -1,0 +1,14 @@
+{
+  "storyTitle": "친절한 낯선 남자의 비밀",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "맞아요!",
+  "content": "그곳에서 처음 보는 장교 한 분을 보았어요.\n친절해 보였고, 말도 공손해서 인상이 좋았죠.\n\n엘리자베스도 잠깐 대화를 나눴는데\n둘 사이에 대화가 잘 통하는 듯 했어요.\n\n저는 그냥 미소 지으며 지켜봤어요.",
+  "reactions": [
+    {
+      "text": "그 사람이 위컴이야?",
+      "nextId": 99
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

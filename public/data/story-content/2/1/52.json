@@ -1,0 +1,18 @@
+{
+  "storyTitle": "완벽남의 잘못된 충고",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "그러니깐,",
+  "content": "빙리 씨가 신중하게 생각하지 않고\n결혼을 하려 해서\n다아시가 설득해 이를 막았대.\n\n누구 이야기인지는\n아무도 말하지 않았지만\n그 순간... 기분이 확 상했어.",
+  "reactions": [
+    {
+      "text": "다른 사람 얘기 아닐까?",
+      "nextId": 54
+    },
+    {
+      "text": "듣자마자 제인이 떠올랐어?",
+      "nextId": 53
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

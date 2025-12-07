@@ -1,0 +1,14 @@
+{
+  "storyTitle": "완벽남의 잘못된 충고",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "처음엔 그냥 남 얘기로 들었어.",
+  "content": "처음엔 그냥\n“아, 또 누군가의 이야기겠지” 했어.\n\n근데 생각해 보니까\n최근에 누가 그런 상황이었나 떠올리다가\n자연스럽게 제인과 빙리가 떠오른 거야.\n\n그때부터 마음이 편치가 않았어.",
+  "reactions": [
+    {
+      "text": "직접 따질 기회는 없었어?",
+      "nextId": 55
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

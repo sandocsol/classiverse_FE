@@ -1,0 +1,14 @@
+{
+  "storyTitle": "완벽남의 잘못된 충고",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "저도 그 생각을 했어요..",
+  "content": "빙리는 늘 바쁘고\n자상한 만큼 주변을 많이 챙기잖아요.\n\n오늘따라 조금 지쳐 보이기도 해서\n아마 그런 이유일 거라고\n좋게 생각하려고 했어요.",
+  "reactions": [
+    {
+      "text": "그래, 분명 그런 걸 거야.",
+      "nextId": 62
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

@@ -1,0 +1,18 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "그 순간,",
+  "content": "엘리자베스가 잠깐 멈추더군요.\n\n화난 표정은 아니었지만\n‘듣고 싶지 않은 말’을 들은 사람 같은 느낌이었어요.\n\n저나 다아시가\n조금 더 조심했어야 했던 순간이었습니다.",
+  "reactions": [
+    {
+      "text": "그 뒤에 별일은 없었어?",
+      "nextId": 8
+    },
+    {
+      "text": "신경 쓰였겠다.",
+      "nextId": 7
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

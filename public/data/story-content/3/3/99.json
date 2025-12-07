@@ -1,0 +1,14 @@
+{
+  "storyTitle": "친절한 낯선 남자의 비밀",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "네, 위컴 씨였어요.",
+  "content": "처음엔 말씀도 참 부드럽고 친절해 보였어요.\n엘리자베스도 편하게 이야기를 나누는 것 같았어요.\n\n엘리자베스는 마음이 맞는 사람과는\n금방 친해지거든요.",
+  "reactions": [
+    {
+      "text": "잘 맞는 사람을 만나다니, 잘 됐다!",
+      "nextId": 100
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

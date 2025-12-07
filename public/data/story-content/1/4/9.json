@@ -1,0 +1,13 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "그렇지만 좋은 하루였어요.",
+  "content": "제인과의 대화도 좋았고\n사람들도 친절했고\n전반적으로 따뜻한 분위기였죠.\n\n작은 일이 있긴 했지만\n그래도 마음에 남는 날입니다.\n\n제인이 자꾸 생각나네요..",
+  "reactions": [
+    {
+      "text": "즐거웠어, 빙리!"
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

@@ -1,0 +1,18 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "제인 베넷이라는 분이었어요.",
+  "content": "처음 봤을 때부터\n너무 아름다우셔서 한 눈에 반했어요.\n\n대화를 몇 마디 나눴는데\n말투도 부드럽고, 배려심도 느껴지고...\n저도 모르게 기분이 편안해졌어요.",
+  "reactions": [
+    {
+      "text": "한 눈에 반하다니!",
+      "nextId": 4
+    },
+    {
+      "text": "그 얘기 좀 더 해봐",
+      "nextId": 3
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

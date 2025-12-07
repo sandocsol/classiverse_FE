@@ -1,0 +1,14 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "그럼요, 인사했죠!",
+  "content": "눈을 마주치며 조용히 인사했는데,\n같은 속도로 웃어줬어요\n\n예전보다 훨씬 따뜻한 눈빛이었어요.",
+  "reactions": [
+    {
+      "text": "내가 다 설렌다.",
+      "nextId": 183
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

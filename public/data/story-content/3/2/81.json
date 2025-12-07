@@ -1,0 +1,14 @@
+{
+  "storyTitle": "친절한 낯선 남자의 비밀",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "말을 걸었다면",
+  "content": "그랬다면... 더 어색해졌을 겁니다.\n오늘의 저는 그럴 용기가 없었습니다.",
+  "reactions": [
+    {
+      "text": "그랬구나..",
+      "nextId": 82
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

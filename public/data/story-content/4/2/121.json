@@ -1,0 +1,14 @@
+{
+  "storyTitle": "비 오는 날, 다시 만난 두 사람",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "그녀의 표정을 보는 순간,\n아차 싶었습니다.",
+  "content": "그녀는 모든 오해를 제게 쏟아냈습니다.\n제인이 빙리와 멀어진 이유,\n위컴에게 했다고 믿는 일들까지...\n\n저를 아주 나쁜 사람으로 보고 있더군요.\n그 말들을 들으니... 심장이 조여왔습니다.",
+  "reactions": [
+    {
+      "text": "왜 반박하지 않았어?",
+      "nextId": 122
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

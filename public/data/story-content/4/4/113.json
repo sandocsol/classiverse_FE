@@ -1,0 +1,13 @@
+{
+  "storyTitle": "비 오는 날, 다시 만난 두 사람",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "오늘 아침,",
+  "content": "다아시 씨가 새벽에 엘리자베스를 찾아와\n편지를 주고 갔다고 해요.\n\n아마 밤새 고민하며 쓴 편지일 겁니다.\n오해도 관계도 다 잘 풀렸으면 좋겠네요.",
+  "reactions": [
+    {
+      "text": "그러게! 분명 그럴 거야."
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

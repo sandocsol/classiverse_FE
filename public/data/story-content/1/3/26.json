@@ -1,0 +1,14 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "오늘 무도회... 꽤 좋은 날이었어.",
+  "content": "오랜만에 외출이라 그런지\n마음이 조금 들떴어.\n사람들도 많고, 음악도 좋고...\n\n한 사람을 새롭게 알게 된 날이기도 해.",
+  "reactions": [
+    {
+      "text": "누굴 만났는데?",
+      "nextId": 27
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

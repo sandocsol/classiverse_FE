@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import useStoryContent from '../features/story-viewer/hooks/useStoryContent.js';
+import useViewpoints from '../features/story-selector/hooks/useViewpoints.js';
 import ScenePresenter from '../features/story-viewer/components/ScenePresenter.jsx';
 import StoryEndScreen from '../features/story-viewer/components/StoryEndScreen.jsx';
 
@@ -39,21 +40,25 @@ const ErrorText = styled.p`
 `;
 
 export default function StoryViewerPage() {
-  const { storyId, characterId, sceneId } = useParams();
+  const { storyId, characterId, contentId } = useParams();
   const navigate = useNavigate();
   
   // 모든 hooks는 early return 전에 호출되어야 합니다
-  const dataUrl = storyId && characterId 
-    ? `/data/story-content/${storyId}_${characterId}.json`
-    : null;
-  const { data: storyContent, loading, error } = useStoryContent(dataUrl);
+  const { data: contentData, loading, error } = useStoryContent(storyId, characterId, contentId);
+  // contentId가 없을 때만 viewpointsData를 로드 (직접 URL 접근 시에만 필요)
+  const { data: viewpointsData } = useViewpoints(!contentId ? storyId : null);
 
-  // sceneId가 없으면 시작 씬으로 리다이렉트
+  // contentId가 없으면 시작 씬으로 리다이렉트
   useEffect(() => {
-    if (storyContent?.startSceneId && !sceneId) {
-      navigate(`/story/${storyId}/${characterId}/${storyContent.startSceneId}`, { replace: true });
+    if (!contentId && storyId && characterId && viewpointsData) {
+      // 해당 캐릭터의 startContentId 찾기
+      const viewpoint = viewpointsData.viewpoints?.find(
+        v => v.characterId === Number(characterId)
+      );
+      const startContentId = viewpoint?.startContentId ?? 1;
+      navigate(`/story/${storyId}/${characterId}/${startContentId}`, { replace: true });
     }
-  }, [storyContent, sceneId, storyId, characterId, navigate]);
+  }, [contentId, storyId, characterId, navigate, viewpointsData]);
 
   if (!storyId || !characterId) {
     return (
@@ -63,9 +68,28 @@ export default function StoryViewerPage() {
     );
   }
 
-  const handleChoiceSelect = (nextSceneId) => {
-    navigate(`/story/${storyId}/${characterId}/${nextSceneId}`);
-  };
+  const handleChoiceSelect = (nextId) => {
+    // nextId가 null이거나 undefined면 스토리 완료 화면으로 이동
+    if (!nextId || nextId === null) {
+      navigate(`/story/${storyId}/${characterId}/complete`);
+      return;
+    }
+    // nextId가 있으면 다른 씬으로 이동
+    navigate(`/story/${storyId}/${characterId}/${nextId}`);
+  }
+
+  // contentId가 'complete'이면 스토리 완료 화면 표시
+  if (contentId === 'complete') {
+    return (
+      <PageContainer>
+        <StoryEndScreen 
+          storyId={storyId}
+          characterId={characterId}
+          initialCloseness={0}
+        />
+      </PageContainer>
+    );
+  }
 
   if (loading) {
     return (
@@ -75,7 +99,7 @@ export default function StoryViewerPage() {
     );
   }
 
-  if (error || !storyContent) {
+  if (error || !contentData) {
     return (
       <PageContainer>
         <ErrorText>스토리를 불러오지 못했습니다.</ErrorText>
@@ -83,8 +107,8 @@ export default function StoryViewerPage() {
     );
   }
 
-  // sceneId가 없으면 리다이렉트 대기 중
-  if (!sceneId) {
+  // contentId가 없으면 리다이렉트 대기 중
+  if (!contentId) {
     return (
       <PageContainer>
         <LoadingText>씬을 준비하는 중…</LoadingText>
@@ -92,35 +116,13 @@ export default function StoryViewerPage() {
     );
   }
 
-  const currentSceneData = storyContent.scenes[sceneId];
-
-  if (!currentSceneData) {
-    return (
-      <PageContainer>
-        <ErrorText>씬 데이터를 찾을 수 없습니다.</ErrorText>
-      </PageContainer>
-    );
-  }
-
-  if (currentSceneData.type === 'end-screen') {
-    return (
-      <PageContainer>
-        <StoryEndScreen 
-          endData={currentSceneData} 
-          characterId={characterId} 
-          storyId={storyId}
-        />
-      </PageContainer>
-    );
-  }
-
   return (
     <PageContainer>
       <ScenePresenter
-        storyTitle={storyContent.storyTitle}
-        characterName={storyContent.characterName}
-        characterAvatar={storyContent.characterAvatar}
-        sceneData={currentSceneData}
+        storyTitle={contentData.storyTitle}
+        characterName={contentData.characterName}
+        characterId={characterId}
+        contentData={contentData}
         onChoiceSelect={handleChoiceSelect}
       />
     </PageContainer>

@@ -1,0 +1,13 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "돌아보면",
+  "content": "내 오만도, 그녀의 편견도\n결국 서로를 이해하지 못한 데서 비롯된 것 같습니다.\n\n하지만 오늘, 그 오해의 길이 끝나고\n비로소 같은 방향을 바라보게 되었죠.",
+  "reactions": [
+    {
+      "text": "소중한 얘기 들려줘서 고마워!"
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

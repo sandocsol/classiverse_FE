@@ -1,0 +1,14 @@
+{
+  "storyTitle": "친절한 낯선 남자의 비밀",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "오랜만이네요.",
+  "content": "오늘... 예상치 못한 사람을 만났습니다.\n\n메리턴 근처 길을 지나던 중,\n빙리가 장교들을 보고 반가워하길래\n저도 그냥 함께 인사하려고 했는데,\n\n바로 그곳에 위컴이 있더군요.",
+  "reactions": [
+    {
+      "text": "위컴이 누군데?",
+      "nextId": 78
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

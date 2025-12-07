@@ -1,0 +1,14 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "네, 어느 정도는요.",
+  "content": "다아시가 감정을 보여주는 일은 거의 없으니까...\n이 정도면 정말 큰일이라고 느꼈어요.\n\n말을 하지는 않지만, 누군가를 잃어버릴까 봐\n두려운 사람처럼 보였어요.",
+  "reactions": [
+    {
+      "text": "무슨 일이 있었던 걸까?",
+      "nextId": 144
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

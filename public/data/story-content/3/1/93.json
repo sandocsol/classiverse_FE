@@ -1,0 +1,14 @@
+{
+  "storyTitle": "친절한 낯선 남자의 비밀",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "아무래도 그렇지",
+  "content": "언니 일도 그렇고, 오늘 일까지...\n좋게 볼 이유가 하나도 없잖아.\n솔직히 화가 좀 났지.",
+  "reactions": [
+    {
+      "text": "다아시는 너한테 자꾸 밉보이게 되네",
+      "nextId": 95
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

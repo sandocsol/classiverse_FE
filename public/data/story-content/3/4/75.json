@@ -1,0 +1,13 @@
+{
+  "storyTitle": "친절한 낯선 남자의 비밀",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "네, 조금요.",
+  "content": "다아시는 평소에도 말이 많은 사람은 아니지만\n오늘은 더 조용했거든요.\n\n다아시가 조금 신경 쓰이네요.\n내일은 기분이 나아졌으면 좋겠습니다.",
+  "reactions": [
+    {
+      "text": "나도 다아시의 기분이 좋아지길 바랄게."
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

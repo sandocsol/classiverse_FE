@@ -1,0 +1,14 @@
+{
+  "storyTitle": "친절한 낯선 남자의 비밀",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "분위기 좋았어요!",
+  "content": "모두가 활기차게 웃고 있었어요.\n베넷 자매들도 정말 신나 보였고요.\n\n새로운 사람들을 보는 건 늘 즐겁잖아요?\n특히 장교들은 예의도 바르고 말이죠.",
+  "reactions": [
+    {
+      "text": "즐거웠겠다!",
+      "nextId": 70
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

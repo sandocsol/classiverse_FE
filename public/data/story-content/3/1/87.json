@@ -1,0 +1,14 @@
+{
+  "storyTitle": "친절한 낯선 남자의 비밀",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "그건..",
+  "content": "장교들이 줄지어 지나가는 게\n좀 멋져 보였거든.\n\n내 동생 리디아랑 키티지.\n둘은 장교만 보면 눈이 반짝여.",
+  "reactions": [
+    {
+      "text": "신나는 날이었겠다!",
+      "nextId": 88
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

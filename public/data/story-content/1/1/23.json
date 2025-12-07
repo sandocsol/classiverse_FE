@@ -1,0 +1,14 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "그 후로 좀 이상했어.",
+  "content": "그냥 무도회 즐기려고 했는데\n어느 순간부터 그 사람이 자꾸 시선을 주는 느낌이었어.\n보면 또 피하고.\n딱히 상관도 없으면서 왜 그럴까 싶었어.",
+  "reactions": [
+    {
+      "text": "괜히 신경 쓰였겠다.",
+      "nextId": 24
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

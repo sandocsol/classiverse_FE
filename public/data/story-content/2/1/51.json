@@ -1,0 +1,14 @@
+{
+  "storyTitle": "완벽남의 잘못된 충고",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "오늘, 진짜 충격적인 얘기를 들었어.",
+  "content": "낮에 마을 사람하고\n이런저런 얘기를 나누다가\n\n다아시 씨가 빙리 씨의 결혼을\n다시 생각해 보라고 했다는 이야기를 들었어.\n\n이거 누가 봐도 내 언니인 제인의 이야기잖아.",
+  "reactions": [
+    {
+      "text": "다아시가 빙리의 결혼을 막았다는 거야?",
+      "nextId": 52
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

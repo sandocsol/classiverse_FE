@@ -1,0 +1,14 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "그래도 오늘 하루는 좋았어.",
+  "content": "여러 일이 있었지만\n전체적으로 따뜻한 분위기였고\n좋은 사람도 만나고...\n\n가족들과 함께 돌아오면서\n서로 오늘 있었던 얘기를 나누니까\n그것만으로도 마음이 편해졌어.",
+  "reactions": [
+    {
+      "text": "다행이다. 좋은 하루였네.",
+      "nextId": 34
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

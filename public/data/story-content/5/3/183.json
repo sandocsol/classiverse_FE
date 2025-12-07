@@ -1,0 +1,14 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "그리고 오늘,",
+  "content": "엘리자베스가 드디어 다아시 씨 마음을 받아들였어요.\n그걸 듣는데 내 마음도 따뜻해지더라고요.\n\n왜인지 아세요?\n동생이 행복해지면..\n나도 조금 용기를 낼 수 있을 것 같아서요.",
+  "reactions": [
+    {
+      "text": "좋은 생각이다. 용기를 내, 제인.",
+      "nextId": 184
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

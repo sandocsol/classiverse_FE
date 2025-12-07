@@ -1,0 +1,14 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "너무 힘든 시간이었어..",
+  "content": "그 뒤 일들은 정신없이 흘러갔어.\n아빠는 둘은 찾으러 나가고,\n나는 그저 기다리는 수 밖에 없었지.\n그리고 나중에서야 알게 됐어.\n이 모든 일을 해결한 사람이\n다아시 씨였다는 걸.",
+  "reactions": [
+    {
+      "text": "다아시가 해결했다고?",
+      "nextId": 170
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

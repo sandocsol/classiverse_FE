@@ -1,0 +1,14 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "그리고 곧 알게 됐어요.",
+  "content": "제인 양의 막내 동생인 리디아 양이\n위컴과 함께 사라졌다는 걸요.\n\n그 집안과 친하게 지내다 보니\n저도 마음이 철렁 내려 앉았아요.\n좋은 방향으로 해결되기 어려운 일이라...\n솔직히 두려웠어요.",
+  "reactions": [
+    {
+      "text": "그랬겠다. 그래서 어떻게 됐어?",
+      "nextId": 146
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

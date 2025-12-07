@@ -1,0 +1,14 @@
+{
+  "storyTitle": "친절한 낯선 남자의 비밀",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "근데, 갑자기!",
+  "content": "말발굽 소리가 들리더니\n빙리 씨랑 다아시 씨가 말을 타고 나타난 거야.\n\n근데 다아시 씨가 위컴을 보자마자\n얼굴이...순간 굳었어.\n위컴도 마찬가지로 표정이 딱 식었고.",
+  "reactions": [
+    {
+      "text": "둘이 이미 아는 사이인가?",
+      "nextId": 91
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

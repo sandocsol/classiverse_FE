@@ -1,0 +1,18 @@
+{
+  "storyTitle": "친절한 낯선 남자의 비밀",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "저녁식사 자리에서도..",
+  "content": "엘리자베스와 위컴이\n조용히 이야기를 나누더라고요.\n\n분위기는 괜찮아 보였어요.\n\n하지만 다아시는...오늘따라 말이 적었어요.\n생각이 많아 보인다고 해야 할까요?",
+  "reactions": [
+    {
+      "text": "그래서 걱정됐던 거야?",
+      "nextId": 75
+    },
+    {
+      "text": "둘은 무슨 이야기를 나눴던 거야?",
+      "nextId": 76
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

@@ -93,13 +93,6 @@ const Video = styled.video`
   max-width: none;
 `;
 
-const FallbackImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  max-width: none;
-`;
-
 const ChoicesContainer = styled.div`
   position: absolute;
   bottom: 56px;
@@ -150,35 +143,48 @@ const ChoiceText = styled.p`
 export default function ScenePresenter({
   storyTitle,
   characterName,
-  characterAvatar,
-  sceneData,
+  characterId, // eslint-disable-line no-unused-vars -- API 연동 후 사용 예정이거나 다른 컴포넌트에서 전달
+  contentData,
   onChoiceSelect,
 }) {
-  const formatDialogue = (dialogue) => {
-    if (!dialogue) return [];
-    return dialogue.split('\n').filter((line) => line.trim());
+  const formatContent = (content) => {
+    if (!content) return [];
+    return content.split('\n').filter((line) => line.trim());
   };
 
-  const dialogueLines = formatDialogue(sceneData.dialogue);
-  const videoPath = characterAvatar
-    ? characterAvatar.replace('.png', '-video.mp4')
-    : null;
+  const contentLines = formatContent(contentData.content);
+  
+  // API에서 받은 동영상 URL
+  const videoPath = contentData.videoUrl || null;
   
   const videoRef = useRef(null);
   const [videoFailed, setVideoFailed] = useState(false);
-  const prevVideoPathRef = useRef(videoPath);
+  const currentVideoPathRef = useRef(videoPath);
 
-  // videoPath가 변경될 때 videoFailed 상태 리셋
-  useEffect(() => {
-    if (prevVideoPathRef.current !== videoPath) {
+  // videoPath가 변경되면 새로운 비디오를 로드하므로 실패 상태를 초기화
+  if (currentVideoPathRef.current !== videoPath) {
+    currentVideoPathRef.current = videoPath;
+    // videoPath가 변경되면 실패 상태 리셋 (렌더링 중 상태 업데이트는 React가 배치 처리)
+    if (videoFailed) {
       setVideoFailed(false);
-      prevVideoPathRef.current = videoPath;
     }
-  }, [videoPath]);
+  }
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !videoPath) return;
+
+    // 비디오 로드 에러 핸들러
+    const handleError = (e) => {
+      console.error('Video loading error:', {
+        error: e,
+        videoPath,
+        networkState: video.networkState,
+        errorCode: video.error?.code,
+        errorMessage: video.error?.message,
+      });
+      setVideoFailed(true);
+    };
 
     // 비디오가 로드되면 자동재생 시도
     const attemptPlay = async () => {
@@ -191,8 +197,8 @@ export default function ScenePresenter({
           await playPromise;
         }
       } catch (error) {
-        // 자동재생 실패 시 fallback 이미지로 전환
-        console.warn('Video autoplay failed, falling back to image:', error);
+        // 자동재생 실패 시 빈 화면으로 전환
+        console.warn('Video autoplay failed:', error);
         setVideoFailed(true);
       }
     };
@@ -202,6 +208,9 @@ export default function ScenePresenter({
       attemptPlay();
     };
 
+    // 에러 이벤트 리스너 추가
+    video.addEventListener('error', handleError);
+
     // 이미 로드된 경우 바로 시도
     if (video.readyState >= 2) {
       attemptPlay();
@@ -210,6 +219,7 @@ export default function ScenePresenter({
     }
 
     return () => {
+      video.removeEventListener('error', handleError);
       video.removeEventListener('canplay', handleCanPlay);
     };
   }, [videoPath]);
@@ -222,9 +232,9 @@ export default function ScenePresenter({
       </Header>
 
       <ContentArea>
-        <SceneTitle>{sceneData.title}</SceneTitle>
+        <SceneTitle>{contentData.header}</SceneTitle>
         <Dialogue>
-          {dialogueLines.map((line, index) => (
+          {contentLines.map((line, index) => (
             <p key={index}>{line}</p>
           ))}
         </Dialogue>
@@ -233,7 +243,8 @@ export default function ScenePresenter({
       {videoPath && (
         <CharacterVideo key={videoPath}>
           {videoFailed ? (
-            <FallbackImage src={characterAvatar} alt={characterName} />
+            // 동영상 로드 실패 시 빈 화면
+            null
           ) : (
             <Video
               ref={videoRef}
@@ -243,6 +254,10 @@ export default function ScenePresenter({
               playsInline
               preload="auto"
               controlsList="nodownload"
+              onError={(e) => {
+                console.error('Video element error:', e);
+                setVideoFailed(true);
+              }}
             >
               <source src={videoPath} type="video/mp4" />
             </Video>
@@ -250,14 +265,14 @@ export default function ScenePresenter({
         </CharacterVideo>
       )}
 
-      {sceneData.choices && sceneData.choices.length > 0 && (
+      {contentData.reactions && contentData.reactions.length > 0 && (
         <ChoicesContainer>
-          {sceneData.choices.map((choice, index) => (
+          {contentData.reactions.map((reaction, index) => (
             <ChoiceButton
               key={index}
-              onClick={() => onChoiceSelect(choice.nextSceneId)}
+              onClick={() => onChoiceSelect(reaction.nextId)}
             >
-              <ChoiceText>{choice.text}</ChoiceText>
+              <ChoiceText>{reaction.text}</ChoiceText>
             </ChoiceButton>
           ))}
         </ChoicesContainer>

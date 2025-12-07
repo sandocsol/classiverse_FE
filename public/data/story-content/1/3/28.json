@@ -1,0 +1,18 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "응... 조금은.",
+  "content": "부끄럽지만\n조금 마음이 갔던 건 맞아.\n\n그분이 나에게만 두번이나 춤을 청했는데\n그 순간만큼은 주변이 조용해진 것 같았어.\n\n나와 달리 무도회에서\n엘리자베스는.. 조금 피곤해보였어",
+  "reactions": [
+    {
+      "text": "왜 피곤해보였을까?",
+      "nextId": 30
+    },
+    {
+      "text": "빙리 얘기 좀 더 해줘",
+      "nextId": 29
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

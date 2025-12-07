@@ -1,0 +1,18 @@
+{
+  "storyTitle": "완벽남의 잘못된 충고",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "그렇죠, 결혼을 반대했다기보다는,",
+  "content": "'조금 더 시간을 가지고 보라'고 했습니다.\n\n감정이 만들어낸 열정이\n빙리의 판단을 흐리고 있는 것 같아서...\n\n잠시 한발 물러나\n상대방의 마음을 지켜보라고 말한 것입니다.",
+  "reactions": [
+    {
+      "text": "그 말, 오늘 누가 들은 것 같아.",
+      "nextId": 48
+    },
+    {
+      "text": "네 생각은 변함없어 보이네.",
+      "nextId": 49
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

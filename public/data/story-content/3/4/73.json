@@ -1,0 +1,14 @@
+{
+  "storyTitle": "친절한 낯선 남자의 비밀",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "음.. 사실",
+  "content": "잘 모르겠어요.\n둘이 예전부터 친한 건 아니었던 것 같긴 해요.\n정확한 이유는 모르지만요!\n\n잠깐이지만\n묘하게 어색한 공기가 흐르긴 했어요.\n둘이 잘 지냈으면 좋겠는데 말이죠.",
+  "reactions": [
+    {
+      "text": "둘 사이에 대체 무슨 일이 있었던 걸까.",
+      "nextId": 74
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

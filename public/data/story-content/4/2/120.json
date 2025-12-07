@@ -1,0 +1,14 @@
+{
+  "storyTitle": "비 오는 날, 다시 만난 두 사람",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "네. 제가 봐도... 매우 충동적이었죠.",
+  "content": "하지만 제 말투가 더 최악이었습니다.\n\n제가 그녀를 아낀다는 마음보다\n그녀 집안을 판단하는 말이 먼저 나왔고...\n상처가 될 만한 말을 몇 번이나 했습니다.\n\n저는 고백한 게 아니라, 그녀를 무시한 셈이었죠.",
+  "reactions": [
+    {
+      "text": "왜 그렇게 말한 거야!",
+      "nextId": 121
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

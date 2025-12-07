@@ -1,0 +1,14 @@
+{
+  "storyTitle": "완벽남의 잘못된 충고",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "그래서 제인을 만났을 때...\n조금 조심했어요.",
+  "content": "오늘 제인을 마주쳤는데\n평소처럼 자연스럽게 웃고 얘길 나누고 싶었어요.\n\n근데 내가 괜히 머뭇거리더라고요.\n다아시의 말이 자꾸 신경 쓰였어요.\n\n그래서 말투도 조심스러워지고\n표정도 이상하게 굳는 것 같았어요.",
+  "reactions": [
+    {
+      "text": "제인은 뭐라고 했어?",
+      "nextId": 40
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

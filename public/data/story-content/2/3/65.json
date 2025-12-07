@@ -1,0 +1,14 @@
+{
+  "storyTitle": "완벽남의 잘못된 충고",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "그건 제가 알 수 없어요.",
+  "content": "빙리는 주변 의견을 존중하는 사람이니까\n누군가의 조언 때문에 고민했을 수도 있겠죠.\n\n하지만\n누구 때문인지, 어떤 이야기 때문인지는\n제가 알 수 없었어요.\n그래서 더 조심스럽게 굴게 되더라구요.",
+  "reactions": [
+    {
+      "text": "네가 많이 신경 쓰였겠네.",
+      "nextId": 66
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

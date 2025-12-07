@@ -1,0 +1,14 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "며칠 뒤,",
+  "content": "모든 일이 갑자기 해결됐다는 소식이 왔어요.\n\n위컴 씨의 빚이 정리되고,\n리디아와 결혼까지 진행된다는 이야기였죠.\n그걸 들었을 때... 저는 누가 도와줬는지\n도무지 짐작이 가지 않았어요.",
+  "reactions": [
+    {
+      "text": "누군진 모르겠지만 잘됐다!",
+      "nextId": 181
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

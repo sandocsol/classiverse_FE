@@ -1,0 +1,18 @@
+{
+  "storyTitle": "친절한 낯선 남자의 비밀",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "위컴 씨가 말하길...",
+  "content": "다아시 씨가\n자기 \"미래를 막았다\"는 거야.\n\n다아시 아버지가 위컴을 아끼셔서\n유언에 목사직 추천을 약속했는데\n다아시가 이를 무시하고 인정하지 않았다고 했어.\n정말 믿기 어려운 얘기였어.",
+  "reactions": [
+    {
+      "text": "그래서 다아시가 더 싫어진 거야?",
+      "nextId": 93
+    },
+    {
+      "text": "혹시 위컴의 말이 의심스럽진 않았어?",
+      "nextId": 94
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

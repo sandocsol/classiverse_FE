@@ -1,0 +1,13 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "생각해보면,",
+  "content": "처음에 잘못 본 건 그 사람이 아니라 나였어.\n내 오만과, 내 편견이 그 사람을\n전혀 다른 모습으로 만들었으니까.\n\n이제야 조금 알 것 같아.\n사람을 안다는 건 처음 느낌만으로 판단하는 게 아니라는 걸.",
+  "reactions": [
+    {
+      "text": "그 말 멋진 것 같아."
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

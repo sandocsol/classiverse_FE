@@ -1,0 +1,14 @@
+{
+  "storyTitle": "완벽남의 잘못된 충고",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "제가 한 말은 옳다고 생각합니다.",
+  "content": "누가 들었든\n어떤 말이 돌고 있든\n\n빙리가 상처받는 일을\n그냥 두고 볼 수는 없었으니까요.\n\n하지만 제가 잘못 판단한 게 있다면..\n사과해야겠죠.",
+  "reactions": [
+    {
+      "text": "엘리자베스가 화난 것 같아 보여.",
+      "nextId": 50
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

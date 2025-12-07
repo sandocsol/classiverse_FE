@@ -1,0 +1,14 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "맞습니다..",
+  "content": "엘리자베스의 막내 동생이\n위컴과 함께 달아났다는 소식 말입니다.\n\n그가 어떤 사람인지 저는 잘 알고 있기 때문에,\n막을 수 있는 건 저뿐이라고 생각했어요.",
+  "reactions": [
+    {
+      "text": "그래서 엘리자베스를 도와줬어?",
+      "nextId": 155
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

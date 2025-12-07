@@ -1,0 +1,13 @@
+{
+  "storyTitle": "친절한 낯선 남자의 비밀",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "오늘은 제겐 긴 하루였습니다.",
+  "content": "말하고 싶은 건 많았으나,\n아무것도 말하지 못한 날이었습니다.\n\n아마... 그녀는 저를 더 오해하게 되었을 겁니다.\n하지만 지금은, 그걸 받아들일 수 밖에 없네요.",
+  "reactions": [
+    {
+      "text": "그 오해, 꼭 풀릴 거야"
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

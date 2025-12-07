@@ -1,0 +1,13 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "이렇게 말하니 조금은 정리됐어!",
+  "content": "무도회 자체는 나쁘지 않았지만\n그 사람 말 한마디가\n계속 머리에 남았는데\n\n아무튼... 너한테 말하니까 조금 편해졌어.\n내일 되면 잊혀질지도 모르지.\n제인 언니에게도 이 불쾌했던 사건을 말해줄 거야.",
+  "reactions": [
+    {
+      "text": "다행이다! 다음에 또 얘기하자."
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

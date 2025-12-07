@@ -1,0 +1,18 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "그리고 오늘,",
+  "content": "산책길에서 다시 고백을 들었어.\n예전처럼 오만한 말투도 아니었고,\n날 판단하는 눈도 아니었어.\n\"원하지 않으면 다시는 말하지 않겠다.\"고 하더라.\n그래서 말했지.\n\n이번엔, 내 마음을.",
+  "reactions": [
+    {
+      "text": "뭐라고 말했어?",
+      "nextId": 173
+    },
+    {
+      "text": "내가 다 설레!",
+      "nextId": 174
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

@@ -1,0 +1,14 @@
+{
+  "storyTitle": "완벽남의 잘못된 충고",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "집에 돌아오는 길에",
+  "content": "엘리자베스가 제 표정을 보더니\n바로 알아차렸어요.\n\n제가 조심스럽게 고민을 말하니까\n동생은 제 편이 되어\n\"언니 탓이 아니야.\" 라고 해줬어요.\n\n그 말에 마음이 조금 놓였어요.",
+  "reactions": [
+    {
+      "text": "동생한테 잘 말했네.",
+      "nextId": 67
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

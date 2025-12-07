@@ -1,0 +1,14 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "그래서..",
+  "content": "그분께 춤을 청했는데\n그 순간만큼은 주변이 잔잔해진 것 같았어요.\n\n너무 행복하고 떨렸습니다.\n\n그리고 그 뒤에..\n제 친구 다아시가 조금 특이한 모습을 보였어요.",
+  "reactions": [
+    {
+      "text": "무슨 일이 있었는데?",
+      "nextId": 5
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

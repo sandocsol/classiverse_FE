@@ -1,0 +1,14 @@
+{
+  "storyTitle": "완벽남의 잘못된 충고",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "처음엔 깊게 생각하지 않았어요.",
+  "content": "처음엔\n\"그래, 나를 걱정하는 말이겠지\"정도로 넘겼어요.\n\n그런데 대화를 마치고 돌아가는 길에\n이상하게 그 말들이\n머릿속에서 게속 맴도는 거예요.",
+  "reactions": [
+    {
+      "text": "그래서?",
+      "nextId": 39
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

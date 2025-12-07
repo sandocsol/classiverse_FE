@@ -1,0 +1,14 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "오늘..",
+  "content": "정말 오랜만에 마음이 복잡한 하루를 보냈어요.\n아침부터 다아시가 잠도 못 잔 얼굴로\n저를 찾아왔거든요.\n\n한동안 어디 다녀오더니\n표정이... 말로 설명하기 어려울 만큼 무거웠어요.",
+  "reactions": [
+    {
+      "text": "혹시 엘리자베스 때문일까?",
+      "nextId": 143
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

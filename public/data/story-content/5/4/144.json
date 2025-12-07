@@ -1,0 +1,14 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "그래서 조심스레 물었는데",
+  "content": "그저 \"어떤 일들을 해결하고 있다\"고만 하더라고요.\n그게 무슨 말인지 제대로 설명하진 않았어요.\n하지만... 그의 옷깃에 남은 먼지를 보니까\n오랫동안 밖을 돌아다닌 티가 났어요.",
+  "reactions": [
+    {
+      "text": "너도 걱정됐겠다...",
+      "nextId": 145
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

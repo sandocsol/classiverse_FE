@@ -1,0 +1,14 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "서로 얘기를 나눌 기회는 없었어요.",
+  "content": "무도회가 북적여서\n그 후로 얘기할 상황은 없었습니다.\n\n하지만 모두 각자 생각은 있었겠죠.\n특히 다아시는... 다소 조용해졌더군요.",
+  "reactions": [
+    {
+      "text": "그랬겠다. 어떡해!",
+      "nextId": 9
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

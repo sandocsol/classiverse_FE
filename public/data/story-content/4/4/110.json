@@ -1,0 +1,14 @@
+{
+  "storyTitle": "비 오는 날, 다시 만난 두 사람",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "글쎄요..",
+  "content": "제가 다아시의 말에 흔들린 것 같아\n후회되는 마음도 있고,\n\n제인도 저와 같은 마음이었다는 사실에\n선을 그은 제 자신이 미워지네요.",
+  "reactions": [
+    {
+      "text": "너무 자책하지 마..!",
+      "nextId": 111
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

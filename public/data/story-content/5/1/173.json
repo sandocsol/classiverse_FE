@@ -1,0 +1,14 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "예전의 나는 당신을 몰랐고,\n나 자신도 잘 몰랐다고.",
+  "content": "지금의 마음은...\n예전과 다르다고 말헀어.\n\n살짝 웃음이 나더라.\n이렇게까지 돌고 돌아 왔구나, 싶어서.",
+  "reactions": [
+    {
+      "text": "정말 너무 잘 됐다! 내가 더 설레.",
+      "nextId": 174
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

@@ -1,0 +1,18 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "그리고 얼마 후,",
+  "content": "정말로 두 사람이 돌아왔어요.\n다아시 씨도 반가웠지만,\n\n솔직히 말하면... 빙리 씨가 들어오는 순간\n숨이 조금 멎는 것 같았어요.",
+  "reactions": [
+    {
+      "text": "그래서 인사했어?",
+      "nextId": 182
+    },
+    {
+      "text": "그 후로 무슨 일 없었어?",
+      "nextId": 183
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

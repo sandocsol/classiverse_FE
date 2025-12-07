@@ -1,0 +1,14 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "빙리가 어떤 여인을 얘기하더군요.",
+  "content": "\"저기 저 분 어때?\" 하면서\n어떤 여인을 가리켰습니다..\n\n엘리자베스 베넷이라고 하더군요.\n나는 처음 보는 사람이었어요.\n딱히 특별한 감정은 없었습니다.",
+  "reactions": [
+    {
+      "text": "그래서 뭐라고 했는데?",
+      "nextId": 12
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

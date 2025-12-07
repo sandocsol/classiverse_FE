@@ -1,0 +1,14 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "숙모를 통해 알게 되었어.",
+  "content": "다아시가 그 둘을 찾은 후,\n집으로 돌려보내려고 애썼지만\n막내가 결혼을 하겠다고 바득바득 우겼대.\n\n그래서 결혼할 마음이 없는 위컴을 설득시키기 위해\n1천 파운드가 넘는 빚을 대신 정리하고,\n장교 자리를 얻도록 손을 써줬다네..",
+  "reactions": [
+    {
+      "text": "둘의 결혼을 다아시가 도운 거라니!",
+      "nextId": 171
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

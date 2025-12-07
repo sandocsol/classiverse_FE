@@ -1,0 +1,14 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "그녀는 안 반할 수 없는 사람입니다.",
+  "content": "말투도 조심스럽고\n상대방을 편하게 해주는 분이더군요.\n\n이야기를 나누다 보니\n저도 모르게 미소가 났습니다.\n\n그리고 그 와중에\n다아시가 조금 이상했어요.",
+  "reactions": [
+    {
+      "text": "무슨 일이 있었는데?",
+      "nextId": 5
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

@@ -1,0 +1,14 @@
+{
+  "storyTitle": "완벽남의 잘못된 충고",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "나도 그렇게 느꼈습니다.",
+  "content": "저녁 모임에서 엘리자베스 베넷 씨가\n내게 에둘러 물었어요.\n\"왜 우리 언니의 행복을 깨신 건가요?\"\n그 질문이 예사롭지 않게 느껴졌습니다.\n분명 무언가를 들은 눈치였죠.",
+  "reactions": [
+    {
+      "text": "너가 뭔가 잘못한 걸까?",
+      "nextId": 49
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

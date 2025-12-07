@@ -1,0 +1,14 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "신경.. 음.",
+  "content": "그 말을 하고 나서 그냥 넘기려고 했는데\n이상하게 그 여인이\n몇 번이나 시야에 들어오더군요.\n\n내가 일부러 본 건 아닙니다.\n사람들 사이에서 자연스럽게 눈에 띄었다고 해야 하나...",
+  "reactions": [
+    {
+      "text": "우연 아닐까?",
+      "nextId": 14
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

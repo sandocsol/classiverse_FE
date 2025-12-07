@@ -1,0 +1,14 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "네. 그 사람은... 잊기 힘든 사람이에요.",
+  "content": "부드럽고, 따뜻하고..\n한 번 마음에 남는 순간 지워지지 않더라고요.\n\n다시 그 집 근처에 간다는 게 떨렸어요.\n설렘이기도 하고 두려움이기도 했어요.",
+  "reactions": [
+    {
+      "text": "분명 제인도 널 보고 좋아할 거야.",
+      "nextId": 148
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

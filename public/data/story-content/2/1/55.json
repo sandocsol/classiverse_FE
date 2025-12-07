@@ -1,0 +1,14 @@
+{
+  "storyTitle": "완벽남의 잘못된 충고",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "결정적인 건, 저녁에 직접 확인한 거야.",
+  "content": "저녁에 작은 모임이 있었는데\n다아시도 와 있었어.\n\n그래서 그냥 넘기지 말고\n한 번은 물어봐야겠다 싶더라.\n\n“왜 우리 언니의 행복을 깨신 건가요?”\n라고 물어봤어.",
+  "reactions": [
+    {
+      "text": "다아시는 뭐라고 했어?",
+      "nextId": 56
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

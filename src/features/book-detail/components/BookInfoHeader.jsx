@@ -60,20 +60,20 @@ const Description = styled.p`
 export default function BookInfoHeader({ book }) {
   if (!book) return null;
 
-  const { bookTitle, author, description, genre } = book;
+  const { title, author, introduction, categoryName } = book;
 
   return (
     <div>
       <HeaderSection>
         <Meta>
           <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            <Title>{bookTitle}</Title>
-            <Chip>{genre || '서사'}</Chip>
+            <Title>{title}</Title>
+            <Chip>{categoryName || '서사'}</Chip>
           </div>
           <Author>{author}</Author>
         </Meta>
       </HeaderSection>
-      {description ? <Description>{description}</Description> : null}
+      {introduction ? <Description>{introduction}</Description> : null}
     </div>
   );
 }

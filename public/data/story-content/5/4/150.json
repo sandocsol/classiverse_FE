@@ -1,0 +1,13 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "제게도 언젠가 기회가 온다면\n더 솔직해지고 싶어요.",
+  "content": "예전처럼 도망치지 않고요.\n\n이제야 조금 알겠어요.\n사람을 진심으로 좋아한다는 건\n천천히, 용기 내서 다가가는 일이라는 걸요.",
+  "reactions": [
+    {
+      "text": "너 멋진 교훈을 얻었구나!"
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

@@ -1,0 +1,14 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 1,
+  "characterName": "엘리자베스 베넷",
+  "header": "말도 마...",
+  "content": "엄마는 울부짖으며 위컴을 욕했고,\n아빠는 얼굴이 하얗게 질렸어.\n집안 전체가 무너지는 느낌이었지.\n\n나는 다아시 씨의 편지로 위컴 씨의 진짜 모습을 알고 있었잖아.\n그래서 더 무서웠어.",
+  "reactions": [
+    {
+      "text": "너무 무서웠을 것 같아..",
+      "nextId": 169
+    }
+  ],
+  "videoUrl": "/images/avatars/elizabeth-video.mp4"
+}

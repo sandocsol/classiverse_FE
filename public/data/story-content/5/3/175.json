@@ -1,0 +1,14 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "오늘 아침에..",
+  "content": "엘리자베스가 편지를 들고\n오래오래 생각에 잠겨 있더라고요.\n\n모두 자세히 말해주진 않았지만,\n읽으면서 어떤 생각이 들었는지는\n조금 들을 수 있었어요.",
+  "reactions": [
+    {
+      "text": "어떤 생각이 들었대?",
+      "nextId": 176
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

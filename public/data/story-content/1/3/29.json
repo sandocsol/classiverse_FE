@@ -1,0 +1,14 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "빙리씨 이야기?",
+  "content": "빙리 씨와의 첫 대화가 아직도 조금 떠올라.\n괜히 혼자 미소 짓는 순간도 있고...\n\n빙리씨는 똑똑하고 친절하고.. 정말 멋졌어.\n여동생들도 상냥해보였고,\n다아시라는 친구와 돈독해보이더라!",
+  "reactions": [
+    {
+      "text": "완벽한 신사를 만났네!",
+      "nextId": 30
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

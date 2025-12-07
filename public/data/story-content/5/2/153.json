@@ -1,0 +1,14 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "오해를 풀고 싶었어요.",
+  "content": "하지만 그 편지가 그녀의 마음을\n흔들었을 것이라고는 예상하지 못했습니다.\n\n그리고 오늘 아침,\n그녀의 가족에게 벌어진 일을 들었죠.",
+  "reactions": [
+    {
+      "text": "막내와 위컴의 일 말하는 거지?",
+      "nextId": 154
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

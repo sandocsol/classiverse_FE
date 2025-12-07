@@ -1,0 +1,14 @@
+{
+  "storyTitle": "오만과 편견, 그 이름의 끝",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "그래야만 했습니다.",
+  "content": "막내 동생은 결혼하고 싶어\n바득바득 우겼거든요.\n\n그게 그녀의 가족을 보호할 유일한 방법이었습니다.",
+  "reactions": [
+    {
+      "text": "멋있어, 다아시!",
+      "nextId": 157
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

@@ -1,0 +1,14 @@
+{
+  "storyTitle": "비 오는 날, 다시 만난 두 사람",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "다아시는 감정을 잘 드러내지 않지만",
+  "content": "표정이 평소보다 훨씬 더 심각했어요.\n생각이 많아 보이고...\n약간 불안해 보이기도 했고요.",
+  "reactions": [
+    {
+      "text": "무슨 일이 있었던 걸까?",
+      "nextId": 107
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

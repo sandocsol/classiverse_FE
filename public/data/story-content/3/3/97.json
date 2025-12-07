@@ -1,0 +1,14 @@
+{
+  "storyTitle": "친절한 낯선 남자의 비밀",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "아아 저는..",
+  "content": "그런 데에 큰 관심은 없지만\n밖이 떠들썩하니 궁금하긴 했어요.\n가끔은 외출도 기분 전환이 되니까요.",
+  "reactions": [
+    {
+      "text": "재밌는 하루였겠다!",
+      "nextId": 98
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

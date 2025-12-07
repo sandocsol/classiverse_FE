@@ -1,0 +1,14 @@
+{
+  "storyTitle": "완벽남의 잘못된 충고",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "솔직히, 조금요.",
+  "content": "저는 사람을 믿는 편이라\n상대가 조심스러워도 괜찮다고 생각했거든요.\n\n근데 다아시가\n'너무 성급할 수 있다'고 말하니까\n순간...내가 너무 앞서 있었나 싶더라고요.",
+  "reactions": [
+    {
+      "text": "그런 생각이 들 수 있지.",
+      "nextId": 39
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}

@@ -1,0 +1,37 @@
+{
+  "storyTitle": "친절한 낯선 남자의 비밀",
+  "introductions": [
+    {
+      "charId": 1,
+      "characterName": "엘리자베스 베넷",
+      "introText": "다아시 씨가 왜 그런 표정이었는지\n모르겠지만, 혼란스러워.",
+      "isLeader": "Y",
+      "charImage": "/images/avatars/elizabeth.png",
+      "firstContentId": 86
+    },
+    {
+      "charId": 2,
+      "characterName": "피츠윌리엄 다아시",
+      "introText": "설명하고 싶어도...\n말할 수 없는 일들이 있죠.",
+      "isLeader": "N",
+      "charImage": "/images/avatars/darcy.png",
+      "firstContentId": 77
+    },
+    {
+      "charId": 3,
+      "characterName": "제인 베넷",
+      "introText": "모두가 조금씩 다른 마음을\n안고 있는 것 같았어요.",
+      "isLeader": "N",
+      "charImage": "/images/avatars/jane.png",
+      "firstContentId": 96
+    },
+    {
+      "charId": 4,
+      "characterName": "찰스 빙리",
+      "introText": "다들 즐거워 보였는데...\n다아시와 위컴 사이가 조금 걱정돼요.",
+      "isLeader": "N",
+      "charImage": "/images/avatars/bingley.png",
+      "firstContentId": 68
+    }
+  ]
+}

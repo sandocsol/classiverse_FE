@@ -1,0 +1,14 @@
+{
+  "storyTitle": "비 오는 날, 다시 만난 두 사람",
+  "charId": 2,
+  "characterName": "피츠윌리엄 다아시",
+  "header": "당연하죠.",
+  "content": "그 생각뿐이었습니다.\n그 외의 이유는... 부정할 수 없지만요.\n\n오늘따라 설명할 수 없는\n불안감이 계속 밀려오더군요.",
+  "reactions": [
+    {
+      "text": "별 일 없어야 할텐데..!",
+      "nextId": 119
+    }
+  ],
+  "videoUrl": "/images/avatars/darcy-video.mp4"
+}

@@ -1,0 +1,14 @@
+{
+  "storyTitle": "첫인상 최악의 남자",
+  "charId": 3,
+  "characterName": "제인 베넷",
+  "header": "그니까!",
+  "content": "엘리자베스는 평소처럼 밝긴 했는데\n어딘가 생각이 많은 얼굴이었어.\n\n나중에 집으로 돌아가는 길에\n무도회에서 있었던 일을\n조금 이야기해 주더라.",
+  "reactions": [
+    {
+      "text": "무슨 일 있었대?",
+      "nextId": 31
+    }
+  ],
+  "videoUrl": "/images/avatars/jane-video.mp4"
+}

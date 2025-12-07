@@ -1,0 +1,14 @@
+{
+  "storyTitle": "비 오는 날, 다시 만난 두 사람",
+  "charId": 4,
+  "characterName": "찰스 빙리",
+  "header": "그러다 방금,",
+  "content": "엘리자베스에게 들었어요.\n비 오는 날 목사관에서 다아시가 고백을 했었다고요.\n\n엘리자베스의 몸도 좋지 않았다던데\n갑자기 찾아와서... 고백을 했다네요.\n제 친구지만 정말 대단해요.",
+  "reactions": [
+    {
+      "text": "다아시가 그랬다니 상상이 안 돼!",
+      "nextId": 109
+    }
+  ],
+  "videoUrl": "/images/avatars/bingley-video.mp4"
+}
