@@ -29,34 +29,44 @@ export const apiClient = axios.create({
   },
 });
 
-// TODO: 로그인 기능 추가 시 인터셉터 설정
 // 요청 인터셉터: 모든 요청에 토큰 자동 추가
-// apiClient.interceptors.request.use(
-//   (config) => {
-//     const token = localStorage.getItem('authToken');
-//     if (token) {
-//       config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-//   },
-//   (error) => Promise.reject(error)
-// );
+apiClient.interceptors.request.use(
+  (config) => {
+    // 1. localStorage에서 토큰 확인 (로그인 후 저장된 토큰)
+    // 백엔드 요구사항: localStorage 키는 'accessToken' 사용
+    let token = localStorage.getItem('accessToken');
+    
+    // 2. localStorage에 토큰이 없고, 개발용 토큰이 환경 변수에 설정되어 있으면 사용
+    if (!token && import.meta.env.VITE_DEV_AUTH_TOKEN) {
+      token = import.meta.env.VITE_DEV_AUTH_TOKEN;
+    }
+    
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
-// TODO: 응답 인터셉터: 401 에러 시 자동 로그아웃 처리
-// apiClient.interceptors.response.use(
-//   (response) => response,
-//   (error) => {
-//     if (error.response?.status === 401) {
-//       // 토큰 만료 또는 인증 실패 시 처리
-//       localStorage.removeItem('authToken');
-//       // 로그인 페이지로 리다이렉트
-//       window.location.href = '/login';
-//     }
-//     return Promise.reject(error);
-//   }
-// );
+// 응답 인터셉터: 401 에러 시 자동 로그아웃 처리
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // 토큰 만료 또는 인증 실패 시 처리
+      localStorage.removeItem('accessToken');
+      // 로그인 페이지로 리다이렉트
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
 
 export const API_ENDPOINTS = {
+  // 인증
+  DEV_LOGIN: '/api/auth/dev/login',
+  
   // 책 기본 정보
   BOOK_DETAIL: (bookId) => `/api/books/${bookId}`,
   

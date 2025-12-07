@@ -77,7 +77,10 @@ export default function BookDetailPage() {
   return (
     <PageContainer>
       <HeroWrap>
-        <HeroArt src={bookData?.heroImage || bookData?.coverImage} alt="" />
+        <HeroArt 
+          src={bookData?.bookImage} 
+          alt="" 
+        />
       </HeroWrap>
       <Content>
         <BookInfoHeader book={bookData} />
