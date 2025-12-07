@@ -71,9 +71,7 @@ const router = createBrowserRouter([
 
 // 5. RouterProvider로 앱 렌더링
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <AppShell>
-      <RouterProvider router={router} />
-    </AppShell>
-  </React.StrictMode>
+  <AppShell>
+    <RouterProvider router={router} />
+  </AppShell>
 );
