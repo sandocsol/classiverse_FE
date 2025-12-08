@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const PageContainer = styled.div`
@@ -241,12 +242,15 @@ const ConfirmButton = styled.button`
 `;
 
 export default function OnboardingPage() {
+  const navigate = useNavigate();
   const [name, setName] = useState('');
 
   const handleConfirm = () => {
     if (name.trim()) {
-      // TODO: 이름 저장 로직 추가
+      // TODO: 이름 저장 로직 추가 (API 호출)
       console.log('이름:', name);
+      // 탐색 페이지로 이동
+      navigate('/search');
     }
   };
 
