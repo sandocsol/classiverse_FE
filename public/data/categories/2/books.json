@@ -1,0 +1,73 @@
+[
+  {
+    "bookId": 9,
+    "title": "죄와 벌",
+    "author": "표도르 도스토엔스키",
+    "introduction": "대학생 라스콜니코프의 범죄와 심리적 고뇌를 그린 작품",
+    "categoryName": "19세기 러시아",
+    "planetImage": "/images/planet-images/죄와벌.png",
+    "bookImage": "/images/covers/crime-and-punishment.png",
+    "unlocked": true
+  },
+  {
+    "bookId": 10,
+    "title": "안나 카레니나",
+    "author": "레프 톨스토이",
+    "introduction": "불륜의 사랑과 사회적 제약을 다룬 대작",
+    "categoryName": "19세기 러시아",
+    "planetImage": "/images/planet-images/안나카레니나.png",
+    "bookImage": "/images/covers/anna-karenina.png",
+    "unlocked": true
+  },
+  {
+    "bookId": 11,
+    "title": "카라마조프가의 형제들",
+    "author": "표도르 도스토엔스키",
+    "introduction": "세 형제의 신앙, 이성, 감성을 통해 본 인간의 본질",
+    "categoryName": "19세기 러시아",
+    "planetImage": "/images/planet-images/카라마조프가의형제들.png",
+    "bookImage": "/images/covers/brothers-karamazov.png",
+    "unlocked": true
+  },
+  {
+    "bookId": 12,
+    "title": "전쟁과 평화",
+    "author": "레프 톨스토이",
+    "introduction": "나폴레옹 전쟁을 배경으로 한 러시아 문학의 최고 작품",
+    "categoryName": "19세기 러시아",
+    "planetImage": "/images/planet-images/전쟁과평화.png",
+    "bookImage": "/images/covers/war-and-peace.png",
+    "unlocked": false
+  },
+  {
+    "bookId": 13,
+    "title": "아버지와 아들",
+    "author": "이반 투르게네프",
+    "introduction": "세대 간 갈등과 니힐리즘을 다룬 작품",
+    "categoryName": "19세기 러시아",
+    "planetImage": "/images/planet-images/아버지와아들.png",
+    "bookImage": "/images/covers/fathers-and-sons.png",
+    "unlocked": false
+  },
+  {
+    "bookId": 14,
+    "title": "죽은 영혼",
+    "author": "니콜라이 고골",
+    "introduction": "러시아의 사회 제도를 풍자한 작품",
+    "categoryName": "19세기 러시아",
+    "planetImage": "/images/planet-images/죽은영혼.png",
+    "bookImage": "/images/covers/dead-souls.png",
+    "unlocked": false
+  },
+  {
+    "bookId": 8,
+    "title": "이반 일리치의 죽음",
+    "author": "레프 톨스토이",
+    "introduction": "죽음 앞에서 삶의 의미를 되돌아보는 작품",
+    "categoryName": "19세기 러시아",
+    "planetImage": "/images/planet-images/이반일리치의죽음.png",
+    "bookImage": "/images/covers/death-of-ivan-ilyich.png",
+    "unlocked": false
+  }
+]
+

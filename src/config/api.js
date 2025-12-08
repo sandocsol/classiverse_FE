@@ -88,6 +88,10 @@ export const API_ENDPOINTS = {
   
   // 스토리 완료 및 친밀도 상승
   STORY_COMPLETE: (storyId, characterId) => `/api/stories/${storyId}/characters/${characterId}/complete`,
+  
+  // 탐색 페이지 관련
+  CATEGORIES_ME: '/api/categories/me',
+  CATEGORY_BOOKS: (categoryId) => `/api/categories/${categoryId}/books`,
 };
 
 /**
