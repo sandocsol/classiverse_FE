@@ -20,7 +20,6 @@ const UserProfileContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* 배경색이 확실히 보이도록 */
   box-sizing: border-box;
 `;
 
@@ -49,7 +48,7 @@ const PageContainer = styled.div`
 const CategoryNavigation = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 90%;
   max-width: 330px;
   margin-left: auto;
@@ -57,17 +56,10 @@ const CategoryNavigation = styled.div`
   padding: 14px 14px 15px 14.5px;
   margin-top: 120px;
   box-sizing: border-box;
-  gap: 65px;
   border-radius: 20px;
   background: #1B1B1B;
 `;
 
-/**
- * 네비게이션 화살표 버튼
- * search-vector.svg 이미지 사용
- * 활성화: #F6D4FF (보라색)
- * 비활성화: 회색 (opacity 또는 filter 사용)
- */
 const NavButton = styled.button`
   background: none;
   border: none;
@@ -77,6 +69,8 @@ const NavButton = styled.button`
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  width: 24px;
+  height: 24px;
   transition: opacity 0.2s ease;
 
   &:disabled {
@@ -92,11 +86,6 @@ const NavButton = styled.button`
   }
 `;
 
-/**
- * 화살표 SVG 컴포넌트
- * 활성화: #F6D4FF (보라색)
- * 비활성화: 회색 (#808080 또는 rgba(255, 255, 255, 0.3))
- */
 const ArrowIconSvg = styled.svg`
   width: 12px;
   height: 12px;
@@ -111,9 +100,6 @@ const ArrowPath = styled.path`
   transition: fill 0.2s ease, stroke 0.2s ease;
 `;
 
-/**
- * 왼쪽 화살표 컨테이너 (좌우 반전)
- */
 const LeftArrowWrapper = styled.div`
   transform: scaleX(-1);
   display: flex;
@@ -121,24 +107,17 @@ const LeftArrowWrapper = styled.div`
   justify-content: center;
 `;
 
-/**
- * 카테고리명 그룹
- * 두 줄 텍스트를 세로로 배치하기 위한 최소한의 wrapper
- */
 const CategoryNameGroup = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  flex-shrink: 1;
+  flex: 1;
   min-width: 0;
+  padding: 0 20px;
 `;
 
-/**
- * 'n번째 성운' 텍스트
- * 상단에 위치하는 보라색 작은 텍스트
- */
 const NebulaOrderText = styled.p`
   margin: 0;
   color: #F6D4FF;
@@ -151,10 +130,6 @@ const NebulaOrderText = styled.p`
   white-space: nowrap;
 `;
 
-/**
- * 카테고리명 텍스트
- * 하단에 위치하는 흰색 큰 텍스트
- */
 const CategoryNameText = styled.p`
   margin: 0;
   color: #FFF;
@@ -167,10 +142,6 @@ const CategoryNameText = styled.p`
   white-space: nowrap;
 `;
 
-/**
- * 콘텐츠 영역
- * 행성 그리드가 들어갈 영역
- */
 const ContentArea = styled.div`
   width: 98%;
   max-width: 360px;
@@ -249,8 +220,6 @@ const EmptyText = styled.p`
   color: rgba(255, 255, 255, 0.5);
   text-align: center;
 `;
-
-// ==================== 메인 컴포넌트 ====================
 
 export default function SearchPage() {
   const navigate = useNavigate();
@@ -350,8 +319,6 @@ export default function SearchPage() {
     window.location.reload();
   };
 
-  // ==================== 렌더링 ====================
-
   // 카테고리 로딩 상태
   if (categoriesLoading) {
     return (
@@ -390,7 +357,7 @@ export default function SearchPage() {
   const canGoPrev = currentCategoryIndex > 0;
   const canGoNext = currentCategoryIndex < categoriesData.length - 1;
 
-  // 'n번째 성운' 텍스트 생성 (1-based index)
+  // 'n번째 성운' 텍스트 생성
   const nebulaOrdinal = `${['첫', '두', '세', '네', '다섯', '여섯', '일곱', '여덟', '아홉', '열'][currentCategoryIndex] || (currentCategoryIndex + 1)}번째 성운`;
 
   // 카테고리 이름에서 'n번째 성운' 부분 제거 (있을 경우)
