@@ -12,6 +12,8 @@ import AppShell from './styles/AppShell.jsx';
 import BookDetailPage from './pages/BookDetailPage.jsx';
 import StoryViewerPage from './pages/StoryViewerPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
+import OnboardingPage from './pages/OnboardingPage.jsx';
+import SearchPage from './pages/SearchPage.jsx';
 
 // 2. 고정할 책의 ID를 상수로 정의합니다. (나중에 바꾸기 쉽도록)
 const DEFAULT_BOOK_ID = 1;
@@ -29,10 +31,22 @@ const router = createBrowserRouter([
         element: <LoginPage />
       },
       
-      // 1. 루트 '/' 경로로 접속하면, 고정된 책 상세 페이지로 바로 리디렉션합니다.
+      // 0-1. 온보딩 페이지
+      {
+        path: '/onboarding',
+        element: <OnboardingPage />
+      },
+      
+      // 0-2. 탐색 페이지
+      {
+        path: '/search',
+        element: <SearchPage />
+      },
+      
+      // 1. 루트 '/' 경로로 접속하면, 로그인 페이지로 바로 리디렉션합니다.
       {
         index: true,
-        element: <Navigate replace to={`/books/${DEFAULT_BOOK_ID}`} />
+        element: <Navigate replace to="/login" />
       },
       
       // 2. '/books' (원래 목록 페이지) 경로로 접속해도, 고정된 책 상세 페이지로 리디렉션합니다.

@@ -1,0 +1,34 @@
+{
+  "userProfileImage": "/images/astronauts/astronaut-orange.png",
+  "categories": [
+    {
+      "categoryId": 1,
+      "categoryName": "첫번째 성운 19세기 영국",
+      "unlocked": true,
+      "unlockedAt": "2025-11-28T01:23:45",
+      "maxClosenessInCategory": 100
+    },
+    {
+      "categoryId": 2,
+      "categoryName": "두번째 성운 19세기 러시아",
+      "unlocked": true,
+      "unlockedAt": "2025-11-28T01:23:45",
+      "maxClosenessInCategory": 75
+    },
+    {
+      "categoryId": 3,
+      "categoryName": "세번째 성운 20세기 프랑스 실존주의",
+      "unlocked": true,
+      "unlockedAt": "2025-11-28T01:23:45",
+      "maxClosenessInCategory": 60
+    },
+    {
+      "categoryId": 4,
+      "categoryName": "네번째 성운 20세기 미국 모더니즘",
+      "unlocked": true,
+      "unlockedAt": "2025-11-28T01:23:45",
+      "maxClosenessInCategory": 45
+    }
+  ]
+}
+

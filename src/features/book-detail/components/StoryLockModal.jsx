@@ -29,6 +29,7 @@ const ModalCard = styled.div`
 const ImageContainer = styled.div`
   position: relative;
   width: 100%;
+  max-width: 200px;
   border-radius: 12px;
   overflow: hidden;
 `;

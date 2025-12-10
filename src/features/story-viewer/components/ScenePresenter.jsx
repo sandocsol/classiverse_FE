@@ -155,7 +155,7 @@ export default function ScenePresenter({
   const contentLines = formatContent(contentData.content);
   
   // API에서 받은 동영상 URL
-  const videoPath = contentData.videoUrl || null;
+  const videoPath = contentData.charVideo || null;
   
   const videoRef = useRef(null);
   const [videoFailed, setVideoFailed] = useState(false);

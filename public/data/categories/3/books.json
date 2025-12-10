@@ -1,0 +1,73 @@
+[
+  {
+    "bookId": 15,
+    "title": "이방인",
+    "author": "알베르 카뮈",
+    "introduction": "부조리 철학을 대표하는 실존주의 소설",
+    "categoryName": "20세기 프랑스 실존주의",
+    "planetImage": "/images/planet-images/이방인.png",
+    "bookImage": "/images/covers/the-stranger.png",
+    "unlocked": true
+  },
+  {
+    "bookId": 16,
+    "title": "페스트",
+    "author": "알베르 카뮈",
+    "introduction": "페스트 전염병을 통해 인간의 존재와 반항을 묘사",
+    "categoryName": "20세기 프랑스 실존주의",
+    "planetImage": "/images/planet-images/페스트.png",
+    "bookImage": "/images/covers/the-plague.png",
+    "unlocked": true
+  },
+  {
+    "bookId": 17,
+    "title": "구토",
+    "author": "장폴 사르트르",
+    "introduction": "존재의 부조리함을 탐구한 실존주의 작품",
+    "categoryName": "20세기 프랑스 실존주의",
+    "planetImage": "/images/planet-images/구토.png",
+    "bookImage": "/images/covers/nausea.png",
+    "unlocked": true
+  },
+  {
+    "bookId": 18,
+    "title": "추락",
+    "author": "알베르 카뮈",
+    "introduction": "인간의 자기 기만과 죄의식을 다룬 작품",
+    "categoryName": "20세기 프랑스 실존주의",
+    "planetImage": "/images/planet-images/추락.png",
+    "bookImage": "/images/covers/the-fall.png",
+    "unlocked": false
+  },
+  {
+    "bookId": 19,
+    "title": "닫힌 방",
+    "author": "장폴 사르트르",
+    "introduction": "지옥은 다른 사람이라는 유명한 명언이 나온 작품",
+    "categoryName": "20세기 프랑스 실존주의",
+    "planetImage": "/images/planet-images/닫힌방.png",
+    "bookImage": "/images/covers/no-exit.png",
+    "unlocked": false
+  },
+  {
+    "bookId": 20,
+    "title": "벽",
+    "author": "장폴 사르트르",
+    "introduction": "죽음 앞에서의 선택과 자유에 대한 단편소설",
+    "categoryName": "20세기 프랑스 실존주의",
+    "planetImage": "/images/planet-images/벽.png",
+    "bookImage": "/images/covers/the-wall.png",
+    "unlocked": false
+  },
+  {
+    "bookId": 21,
+    "title": "인간의 조건",
+    "author": "앙드레 말로",
+    "introduction": "상하이 쿠데타를 배경으로 한 작품",
+    "categoryName": "20세기 프랑스 실존주의",
+    "planetImage": "/images/planet-images/인간의조건.png",
+    "bookImage": "/images/covers/mans-fate.png",
+    "unlocked": false
+  }
+]
+
