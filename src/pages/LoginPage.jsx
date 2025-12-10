@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+// TODO: 카카오 OAuth 연동 시 주석 해제
+// import { apiClient, API_ENDPOINTS } from '../config/api.js';
 
 const PageContainer = styled.div`
   width: 100%;
@@ -130,9 +133,34 @@ const ButtonText = styled.span`
 `;
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  
   const handleKakaoLogin = () => {
-    // TODO: 카카오 로그인 기능 구현
-    console.log('카카오 로그인 클릭');
+    // 임시: 카카오 OAuth 연동 전까지 온보딩 페이지로 바로 이동
+    navigate('/onboarding');
+
+    // TODO: 카카오 OAuth 연동 후 아래 주석 해제하고 위의 임시 코드 제거
+    // const handleKakaoLogin = async () => {
+    //   try {
+    //     // 1. 임시 로그인 API 호출 (dev/login)
+    //     const response = await apiClient.get(API_ENDPOINTS.DEV_LOGIN);
+    //   
+    //   // 2. 응답에서 토큰 꺼내기
+    //   const { accessToken, nickname } = response.data;
+    //   console.log('로그인 성공!', nickname);
+    //   
+    //   // 3. 토큰을 브라우저(로컬 스토리지)에 저장
+    //   // 백엔드 요구사항: localStorage 키는 'accessToken' 사용
+    //   localStorage.setItem('accessToken', accessToken);
+    //   
+    //   // 4. 온보딩 페이지로 이동
+    //   navigate('/onboarding');
+    //   
+    //   } catch (error) {
+    //     console.error('로그인 실패:', error);
+    //     alert('로그인에 실패했습니다. 다시 시도해주세요.');
+    //   }
+    // };
   };
 
   return (
@@ -165,4 +193,3 @@ export default function LoginPage() {
     </PageContainer>
   );
 }
-
