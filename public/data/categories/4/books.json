@@ -1,0 +1,73 @@
+[
+  {
+    "bookId": 22,
+    "title": "위대한 개츠비",
+    "author": "F. 스콧 피츠제럴드",
+    "introduction": "아메리칸 드림의 허상을 그린 작품",
+    "categoryName": "20세기 미국 모더니즘",
+    "planetImage": "/images/planet-images/위대한개츠비.png",
+    "bookImage": "/images/covers/great-gatsby.png",
+    "unlocked": true
+  },
+  {
+    "bookId": 23,
+    "title": "호밀밭의 파수꾼",
+    "author": "J.D. 샐린저",
+    "introduction": "청년의 반항과 고립을 그린 현대 소설",
+    "categoryName": "20세기 미국 모더니즘",
+    "planetImage": "/images/planet-images/호밀밭의파수꾼.png",
+    "bookImage": "/images/covers/catcher-in-the-rye.png",
+    "unlocked": true
+  },
+  {
+    "bookId": 24,
+    "title": "쥐와 인간",
+    "author": "존 스타인벡",
+    "introduction": "대공황 시대 두 친구의 우정과 희망의 이야기",
+    "categoryName": "20세기 미국 모더니즘",
+    "planetImage": "/images/planet-images/쥐와인간.png",
+    "bookImage": "/images/covers/of-mice-and-men.png",
+    "unlocked": true
+  },
+  {
+    "bookId": 25,
+    "title": "노인과 바다",
+    "author": "어니스트 헤밍웨이",
+    "introduction": "한 노인과 거대한 물고기의 투쟁 이야기",
+    "categoryName": "20세기 미국 모더니즘",
+    "planetImage": "/images/planet-images/노인과바다.png",
+    "bookImage": "/images/covers/old-man-and-the-sea.png",
+    "unlocked": false
+  },
+  {
+    "bookId": 26,
+    "title": "분노의 포도",
+    "author": "존 스타인벡",
+    "introduction": "대공황 시대 이주 노동자들의 삶을 그린 작품",
+    "categoryName": "20세기 미국 모더니즘",
+    "planetImage": "/images/planet-images/분노의포도.png",
+    "bookImage": "/images/covers/grapes-of-wrath.png",
+    "unlocked": false
+  },
+  {
+    "bookId": 27,
+    "title": "소리와 분노",
+    "author": "윌리엄 포크너",
+    "introduction": "의식의 흐름 기법을 사용한 실험적 소설",
+    "categoryName": "20세기 미국 모더니즘",
+    "planetImage": "/images/planet-images/소리와분노.png",
+    "bookImage": "/images/covers/sound-and-fury.png",
+    "unlocked": false
+  },
+  {
+    "bookId": 28,
+    "title": "앵무새 죽이기",
+    "author": "하퍼 리",
+    "introduction": "인종 차별과 정의에 대한 이야기",
+    "categoryName": "20세기 미국 모더니즘",
+    "planetImage": "/images/planet-images/앵무새죽이기.png",
+    "bookImage": "/images/covers/to-kill-a-mockingbird.png",
+    "unlocked": false
+  }
+]
+

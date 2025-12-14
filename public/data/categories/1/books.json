@@ -1,0 +1,72 @@
+[
+  {
+    "bookId": 1,
+    "title": "오만과 편견",
+    "author": "제인 오스틴",
+    "introduction": "영국 시골을 배경으로 다섯 딸을 둔 베넷 가문의 결혼 이야기를 다룹니다.",
+    "categoryName": "19세기 영국",
+    "bookImage": "/images/covers/pride-and-prejudice.png",
+    "unlocked": true
+  },
+  {
+    "bookId": 2,
+    "title": "제인 에어",
+    "author": "샬롯 브론테",
+    "introduction": "고아 소녀 제인 에어의 성장과 사랑 이야기",
+    "categoryName": "19세기 영국",
+    "planetImage": "/images/planet-images/제인에어.png",
+    "bookImage": "/images/covers/jane-eyre.png",
+    "unlocked": true
+  },
+  {
+    "bookId": 3,
+    "title": "위대한 유산",
+    "author": "찰스 디킨스",
+    "introduction": "고아 소년 핍의 인생 여정과 사회 계급을 묘사한 작품",
+    "categoryName": "19세기 영국",
+    "planetImage": "/images/planet-images/위대한유산.png",
+    "bookImage": "/images/covers/great-expectations.png",
+    "unlocked": true
+  },
+  {
+    "bookId": 4,
+    "title": "폭풍의 언덕",
+    "author": "에밀리 브론테",
+    "introduction": "열정과 복수가 얽힌 낭만주의 소설의 걸작",
+    "categoryName": "19세기 영국",
+    "planetImage": "/images/planet-images/폭풍의언덕.png",
+    "bookImage": "/images/covers/wuthering-heights.png",
+    "unlocked": false
+  },
+  {
+    "bookId": 5,
+    "title": "테스",
+    "author": "토머스 하디",
+    "introduction": "운명에 시달리는 한 여성의 비극적인 삶",
+    "categoryName": "19세기 영국",
+    "planetImage": "/images/planet-images/테스.png",
+    "bookImage": "/images/covers/tess.png",
+    "unlocked": false
+  },
+  {
+    "bookId": 6,
+    "title": "미들마치",
+    "author": "조지 엘리엇",
+    "introduction": "영국 지방 도시의 다양한 인물들의 삶을 그린 대하소설",
+    "categoryName": "19세기 영국",
+    "planetImage": "/images/planet-images/미들마치.png",
+    "bookImage": "/images/covers/middlemarch.png",
+    "unlocked": false
+  },
+  {
+    "bookId": 7,
+    "title": "셜록 홈즈의 모험",
+    "author": "아서 코넌 도일",
+    "introduction": "명탐정 셜록 홈즈의 추리 이야기",
+    "categoryName": "19세기 영국",
+    "planetImage": "/images/planet-images/셜록홈즈의모험.png",
+    "bookImage": "/images/covers/sherlock-holmes.png",
+    "unlocked": false
+  }
+]
+
