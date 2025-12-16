@@ -65,7 +65,7 @@ apiClient.interceptors.response.use(
 
 export const API_ENDPOINTS = {
   // 인증
-  DEV_LOGIN: '/api/auth/dev/login',
+  AUTH_KAKAO: '/api/auth/kakao/login',
   
   // 책 기본 정보
   BOOK_DETAIL: (bookId) => `/api/books/${bookId}`,

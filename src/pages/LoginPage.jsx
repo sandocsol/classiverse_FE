@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+
 // TODO: 카카오 OAuth 연동 시 주석 해제
 // import { apiClient, API_ENDPOINTS } from '../config/api.js';
 
@@ -133,11 +134,22 @@ const ButtonText = styled.span`
 `;
 
 export default function LoginPage() {
-  const navigate = useNavigate();
+  // eslint-disable-next-line no-unused-vars
+  const navigate = useNavigate(); // TODO: 카카오 OAuth 연동 후 사용 예정
   
   const handleKakaoLogin = () => {
-    // 임시: 카카오 OAuth 연동 전까지 온보딩 페이지로 바로 이동
-    navigate('/onboarding');
+    if (window.Kakao && window.Kakao.isInitialized()) {
+      // 카카오 로그인 redirect URI 설정 (환경 변수 또는 현재 도메인 기반)
+      const redirectUri = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+      
+      window.Kakao.Auth.authorize({
+        redirectUri: redirectUri,
+        // 필요하다면 scope를 추가할 수 있습니다.
+        // scope: 'profile_nickname, account_email', 
+      });
+    } else {
+      console.error('카카오 SDK가 초기화되지 않았습니다.');
+    }
 
     // TODO: 카카오 OAuth 연동 후 아래 주석 해제하고 위의 임시 코드 제거
     // const handleKakaoLogin = async () => {

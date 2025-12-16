@@ -72,6 +72,11 @@ const router = createBrowserRouter([
         path: '/story/:storyId/:characterId',
         element: <StoryViewerPage />
       },
+      // 5. 카카오 리다이렉트 페이지 경로
+      {
+        path: '/auth/kakao/callback',
+        element: <KakaoAuthHandler />
+      },
     ],
   },
 ]);
