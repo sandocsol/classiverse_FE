@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import GlobalStyle from './styles/GlobalStyle';
 import { initGA, sendPageView } from './analytics';
+import { initKakao } from './utils/kakaoInit';
 // import { userApi } from './api/userApi'; // TODO: 실제 사용자 API 연동 시 주석 해제
 
 function App() {
@@ -10,10 +11,21 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
 
-  // ⭐ GA 초기화 + 첫 페이지뷰 전송
+  // ⭐ GA 초기화 + 첫 페이지뷰 전송 + 카카오 SDK 초기화
   useEffect(() => {
     initGA();  // GA4 초기화
     sendPageView(window.location.pathname); // 첫 화면 페이지뷰 측정
+    
+    // 카카오 SDK 초기화 (스크립트 로드 대기)
+    const initKakaoSDK = () => {
+      if (window.Kakao) {
+        initKakao();
+      } else {
+        // 카카오 SDK 스크립트가 아직 로드되지 않은 경우, 약간의 지연 후 재시도
+        setTimeout(initKakaoSDK, 100);
+      }
+    };
+    initKakaoSDK();
   }, []);
 
   // ⭐ React Router 경로 변화 감지 → 페이지뷰 전송
