@@ -29,7 +29,24 @@ export function AuthProvider({ children }) {
     }, [navigate]);
 
     // ----------------------------------------------------
-    // 2. 초기 로드 시 사용자 프로필 조회 (자동 로그인)
+    // 2. 전역 401 에러 감지 (모든 API 호출에서 발생하는 401 처리)
+    // ----------------------------------------------------
+    useEffect(() => {
+        const handleTokenExpired = () => {
+            console.log('전역 401 에러 감지: 자동 로그아웃 처리');
+            performLogout();
+        };
+
+        // api.js 인터셉터에서 발생시키는 이벤트 구독
+        window.addEventListener('auth:token-expired', handleTokenExpired);
+
+        return () => {
+            window.removeEventListener('auth:token-expired', handleTokenExpired);
+        };
+    }, [performLogout]);
+
+    // ----------------------------------------------------
+    // 3. 초기 로드 시 사용자 프로필 조회 (자동 로그인)
     // ----------------------------------------------------
     useEffect(() => {
         let cancelled = false;
@@ -56,8 +73,10 @@ export function AuthProvider({ children }) {
                     const status = err.response?.status;
                     
                     // 401 에러(액세스/리프레시 토큰 만료) 발생 시 강제 로그아웃
+                    // api.js 인터셉터에서 토큰 재발급을 시도했지만 실패한 경우
+                    // (전역 이벤트도 발생하지만, 여기서도 명시적으로 처리)
                     if (status === 401) {
-                        console.log('토큰 만료로 인해 자동 로그아웃 처리');
+                        console.log('초기 로드 시 토큰 만료로 인해 자동 로그아웃 처리');
                         performLogout(); 
                     } else {
                         // 기타 에러 처리
@@ -80,7 +99,7 @@ export function AuthProvider({ children }) {
     }, [performLogout]);
 
     // ----------------------------------------------------
-    // 3. 로그인 (카카오 인증 후 토큰을 받은 상태에서 호출됨)
+    // 4. 로그인 (카카오 인증 후 토큰을 받은 상태에서 호출됨)
     // ----------------------------------------------------
     /**
      * 카카오 인증 후 토큰이 localStorage에 저장된 상태에서 호출되어 
@@ -98,7 +117,12 @@ export function AuthProvider({ children }) {
             return userData;
         } catch (err) {
             setError(err);
-            // 에러가 발생하면 토큰이 유효하지 않은 것이므로 로그아웃 처리
+            // 401 에러(토큰 유효하지 않음) 또는 기타 에러 발생 시 로그아웃 처리
+            // api.js 인터셉터에서 토큰 재발급을 시도했지만 실패한 경우
+            const status = err.response?.status;
+            if (status === 401) {
+                console.log('로그인 시 토큰 만료로 인해 자동 로그아웃 처리');
+            }
             performLogout();
             throw err;
         } finally {
@@ -107,7 +131,7 @@ export function AuthProvider({ children }) {
     }, [performLogout]);
 
     // ----------------------------------------------------
-    // 4. 로그아웃 
+    // 5. 로그아웃 
     // ----------------------------------------------------
     const logout = useCallback(async () => {
         try {
@@ -123,7 +147,7 @@ export function AuthProvider({ children }) {
     }, [performLogout]);
     
     // ----------------------------------------------------
-    // 5. 기타 유틸리티 함수 (reloadUser, updateUser 등)
+    // 6. 기타 유틸리티 함수 (reloadUser, updateUser 등)
     // ----------------------------------------------------
     
     const reloadUser = useCallback(async () => {

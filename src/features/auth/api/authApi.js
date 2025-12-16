@@ -6,14 +6,10 @@ import { apiClient, API_ENDPOINTS } from '../config/api.js';
  * @returns {Promise<object>} 사용자 프로필 정보 (nickname, gender, ageRange 등)
  */
 export const getUserProfile = async () => {
-    try {
-        const response = await apiClient.get(API_ENDPOINTS.PROFILE_ME);
-        return response.data;
-    } catch (error) {
-        // API 인터셉터에서 401 처리가 이루어지지만,
-        // 여기서는 상위 AuthProvider가 에러를 받도록 throw
-        throw error;
-    }
+    // API 인터셉터에서 401 처리가 이루어지지만,
+    // 여기서는 상위 AuthProvider가 에러를 받도록 에러를 그대로 전파
+    const response = await apiClient.get(API_ENDPOINTS.PROFILE_ME);
+    return response.data;
 };
 
 /**

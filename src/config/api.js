@@ -69,7 +69,7 @@ apiClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// 응답 인터셉터: 401 에러 시 401 에러 시 토큰 재발급 및 요청 재시도 로직 처리 후 자동 로그아웃 처리
+// 응답 인터셉터: 401 에러 시 토큰 재발급 및 요청 재시도 로직 처리
 apiClient.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -80,14 +80,25 @@ apiClient.interceptors.response.use(
         return Promise.reject(error);
     }
 
-    // 2. 이미 토큰 재발급 요청 중인 경우, 현재 요청을 큐에 담고 대기
+    // 2. 토큰 재발급을 시도해야 하는지 판단
+    // - 토큰이 없으면 재발급 불가 (로그인하지 않은 상태)
+    // - 리프레시 토큰 엔드포인트 자체는 재발급 시도하지 않음 (무한 루프 방지)
+    const hasToken = localStorage.getItem('accessToken');
+    const isRefreshEndpoint = originalRequest.url?.includes(API_ENDPOINTS.AUTH_REFRESH);
+    
+    if (!hasToken || isRefreshEndpoint) {
+        // 토큰이 없거나 리프레시 엔드포인트인 경우, 재발급 시도하지 않고 에러 반환
+        return Promise.reject(error);
+    }
+
+    // 3. 이미 토큰 재발급 요청 중인 경우, 현재 요청을 큐에 담고 대기
     if (isRefreshing) {
         return new Promise(function(resolve, reject) {
             failedQueue.push({ resolve, reject, request: originalRequest });
         });
     }
     
-    // 3. 토큰 재발급 로직 시작
+    // 4. 토큰 재발급 로직 시작 (토큰이 있는 경우에만)
     isRefreshing = true;
     originalRequest._retry = true; // 재시도 플래그 설정
 
@@ -122,17 +133,22 @@ apiClient.interceptors.response.use(
         return apiClient(originalRequest);
 
     } catch (refreshError) {
-        // 9. 리프레시 토큰 요청마저 실패한 경우 (리프레시 토큰 만료)
+        // 9. 리프레시 토큰 요청마저 실패한 경우
+        // - 리프레시 토큰 만료
+        // - 리프레시 토큰이 없음
+        // - 서버 인증 실패
         processQueue(refreshError);
         
-        // 최종적으로 로그아웃 처리
+        // 토큰 제거 (상태 관리는 AuthProvider에서 처리)
         localStorage.removeItem('accessToken'); 
         
-        // 로그인 페이지로 이동 (이미 로그인 페이지가 아닌 경우에만)
-        if (window.location.pathname !== '/login') {
-            window.location.href = '/login';
-        }
+        // 전역 이벤트 발생: AuthProvider가 이를 감지하여 performLogout() 호출
+        // 이는 "토큰 만료"로 간주하고 로그아웃 처리
+        window.dispatchEvent(new CustomEvent('auth:token-expired', { 
+            detail: { error: refreshError } 
+        }));
         
+        // 에러를 throw하여 상위 컴포넌트에서도 처리 가능하도록 함
         return Promise.reject(refreshError);
 
     } finally {
