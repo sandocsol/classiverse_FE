@@ -66,6 +66,18 @@ apiClient.interceptors.response.use(
 export const API_ENDPOINTS = {
   // 인증
   AUTH_KAKAO: '/api/auth/kakao/login',
+
+  AUTH_REFRESH: '/api/auth/refresh',
+
+  AUTH_LOGOUT: '/api/auth/logout',
+
+  PROFILE_NICKNAME_UPDATE: '/api/profile/nickname',
+
+  PROFILE_NICKNAME_CHECK: '/api/profile/nickname/check',
+
+  PROFILE_ME: '/api/profile/me',
+
+  PROFILE_CHARACTER: '/api/profile/character',
   
   // 책 기본 정보
   BOOK_DETAIL: (bookId) => `/api/books/${bookId}`,
