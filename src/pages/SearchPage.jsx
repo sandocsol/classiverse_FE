@@ -314,6 +314,11 @@ export default function SearchPage() {
     navigate(`/books/${bookId}`);
   };
 
+  // 프로필 아바타 클릭 핸들러
+  const handleProfileClick = () => {
+    navigate('/mypage');
+  };
+
   // 에러 상태에서 재시도
   const handleRetry = () => {
     window.location.reload();
@@ -372,7 +377,7 @@ export default function SearchPage() {
   return (
     <PageContainer>
       {/* 사용자 프로필 아바타 (오른쪽 상단, 상단에서 63px) */}
-      <UserProfileContainer>
+      <UserProfileContainer onClick={handleProfileClick}>
         <UserProfileIcon 
           src={userProfileImage || '/images/astronauts/astronaut-orange.png'} 
           alt="사용자 프로필"

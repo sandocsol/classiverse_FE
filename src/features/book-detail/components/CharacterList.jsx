@@ -15,8 +15,8 @@ const SectionTitle = styled.h2`
 const Scroller = styled.div`
   display: flex;
   gap: 8px;
-  padding-left: 28px;
-  padding-right: 28px;
+  padding-left: 22px;
+  padding-right: 22px;
   overflow-x: auto;
   padding-bottom: 25px;
   -ms-overflow-style: none;
@@ -84,14 +84,14 @@ const SubText = styled.span`
   margin-top: 2px; /* Name과의 간격 2px */
 `;
 
-export default function CharacterList({ characters, onCharacterClick, book }) {
+export default function CharacterList({ characters, onCharacterClick, book, title = '등장인물', hideTitle = false }) {
   const list = characters ?? book?.characters ?? [];
 
   if (!Array.isArray(list) || list.length === 0) return null;
 
   return (
     <Section>
-      <SectionTitle>등장인물</SectionTitle>
+      {!hideTitle && <SectionTitle>{title}</SectionTitle>}
       <Scroller>
         {list.map((c) => {
           // charId를 문자열로 변환하여 사용

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { AuthContext } from '../contexts/AuthContext.js';
+import { AuthContext } from '../AuthContext.js';
 
 /**
  * AuthContext를 사용하는 커스텀 훅
