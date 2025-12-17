@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { apiClient, API_ENDPOINTS } from '../config/api.js'; 
-import { useAuth } from '../hooks/useAuth.js'; // ⚠️ [추가] useAuth 훅 임포트
+import { useAuth } from '../features/auth/hooks/useAuth.js'; // ⚠️ [추가] useAuth 훅 임포트
 
 // 토큰 요청이 진행되는 동안 로딩 상태를 표시할 수 있는 간단한 컴포넌트
 const LoadingPage = () => (

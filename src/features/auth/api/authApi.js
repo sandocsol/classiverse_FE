@@ -1,4 +1,4 @@
-import { apiClient, API_ENDPOINTS } from '../config/api.js';
+import { apiClient, API_ENDPOINTS } from '../../../config/api.js';
 
 /**
  * 사용자 정보 조회 API

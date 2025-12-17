@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom'; // 리다이렉트를 위해 useNavigate 사용
 import { AuthContext } from './AuthContext.js';
-import { getUserProfile, logoutApi } from '../api/authApi.js'; // 새로 만든 API 함수
+import { getUserProfile, logoutApi } from './api/authApi.js'; // 새로 만든 API 함수
 
 /**
  * 인증 상태와 사용자 정보를 제공하는 Provider 컴포넌트

@@ -171,7 +171,7 @@ export const API_ENDPOINTS = {
 
   PROFILE_ME: '/api/profile/me',
 
-  PROFILE_CHARACTER: '/api/profile/character',
+  PROFILE_CHARACTERS: '/api/profile/characters',
   
   // 책 기본 정보
   BOOK_DETAIL: (bookId) => `/api/books/${bookId}`,

@@ -14,6 +14,8 @@ import StoryViewerPage from './pages/StoryViewerPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import OnboardingPage from './pages/OnboardingPage.jsx';
 import SearchPage from './pages/SearchPage.jsx';
+import MyPage from './pages/MyPage.jsx';
+import KakaoAuthHandler from './pages/KakaoAuthHandler.jsx';
 
 // 2. 고정할 책의 ID를 상수로 정의합니다. (나중에 바꾸기 쉽도록)
 const DEFAULT_BOOK_ID = 1;
@@ -41,6 +43,12 @@ const router = createBrowserRouter([
       {
         path: '/search',
         element: <SearchPage />
+      },
+      
+      // 0-3. 마이페이지
+      {
+        path: '/mypage',
+        element: <MyPage />
       },
       
       // 1. 루트 '/' 경로로 접속하면, 로그인 페이지로 바로 리디렉션합니다.
@@ -84,8 +92,6 @@ const router = createBrowserRouter([
 // 5. RouterProvider로 앱 렌더링
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AppShell>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <RouterProvider router={router} />
   </AppShell>
 );

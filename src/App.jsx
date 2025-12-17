@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import GlobalStyle from './styles/GlobalStyle';
 import { initGA, sendPageView } from './analytics';
 import { initKakao } from './utils/kakaoInit';
-// import { userApi } from './api/userApi'; // TODO: 실제 사용자 API 연동 시 주석 해제
+import { AuthProvider } from './features/auth/AuthProvider.jsx';
+import { useAuth } from './features/auth/hooks/useAuth.js';
 
-function App() {
-  // 사용자 정보 상태 관리
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+function AppContent() {
+  const { user, loading: isLoading } = useAuth();
   const location = useLocation();
 
   // ⭐ GA 초기화 + 첫 페이지뷰 전송 + 카카오 SDK 초기화
@@ -33,22 +32,6 @@ function App() {
     sendPageView(location.pathname);
   }, [location.pathname]);
 
-  // 앱 진입 시 사용자 정보 로드
-  useEffect(() => {
-    // TODO: 실제 사용자 정보 API 호출로 교체
-    // const fetchUser = async () => {
-    //   try {
-    //     const userData = await userApi.getCurrentUser();
-    //     setUser(userData);
-    //   } catch (error) {
-    //     console.error('Failed to fetch user:', error);
-    //     // 에러 발생 시에도 로딩은 완료 처리 (비로그인 사용자도 접근 가능하도록)
-    //   } finally {
-    //     setIsLoading(false);
-    //   }
-    // };
-    // fetchUser();
-  }, []);
 
   // 사용자 정보 로딩 중일 때
   if (isLoading) {
@@ -79,6 +62,14 @@ function App() {
         <Outlet context={{ user, isUserLoading: isLoading }} />
       </main>
     </>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 
