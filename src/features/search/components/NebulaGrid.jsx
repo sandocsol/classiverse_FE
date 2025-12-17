@@ -27,6 +27,7 @@ const NebulaItem = styled.button`
   padding: 0;
   cursor: pointer;
   transition: transform 0.2s ease;
+  opacity: ${props => props.$isLocked ? 0.5 : 1};
 
   &:active {
     transform: scale(0.95);
@@ -34,7 +35,6 @@ const NebulaItem = styled.button`
 
   &:disabled {
     cursor: not-allowed;
-    opacity: 0.6;
   }
 `;
 
@@ -53,8 +53,6 @@ const NebulaImage = styled.img`
   height: 100%;
   object-fit: contain;
   object-position: center;
-  filter: ${props => props.isLocked ? 'brightness(0.4)' : 'none'};
-  opacity: ${props => props.isLocked ? 0.6 : 1};
 `;
 
 const LockIcon = styled.div`
@@ -62,8 +60,8 @@ const LockIcon = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 32px;
-  height: 32px;
+  width: 18px;
+  height: 22px;
   display: ${props => props.isLocked ? 'flex' : 'none'};
   align-items: center;
   justify-content: center;
@@ -75,7 +73,6 @@ const LockImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.5));
 `;
 
 const BookInfo = styled.div`
@@ -156,7 +153,8 @@ export default function NebulaGrid({ books, onBookClick, categoryLockStatus = {}
   const handleBookClick = (book) => {
     // 카테고리 또는 책이 잠겨있으면 클릭 불가
     const isCategoryLocked = categoryLockStatus[book.categoryId] === false;
-    const isBookLocked = book.unlocked === false;
+    // bookImages 배열이 비어있으면 잠금 상태
+    const isBookLocked = !book.bookImages || book.bookImages.length === 0;
     if (!isCategoryLocked && !isBookLocked && onBookClick) {
       onBookClick(book.bookId);
     }
@@ -167,9 +165,10 @@ export default function NebulaGrid({ books, onBookClick, categoryLockStatus = {}
       {rows.map((row, rowIndex) => (
         <Row key={rowIndex}>
           {row.map((book) => {
-            // 카테고리 또는 책의 잠금 상태 확인 (API에서 book.unlocked 필드 제공 시 사용)
+            // 카테고리 또는 책의 잠금 상태 확인
             const isCategoryLocked = categoryLockStatus[book.categoryId] === false;
-            const isBookLocked = book.unlocked === false;
+            // bookImages 배열이 비어있으면 잠금 상태
+            const isBookLocked = !book.bookImages || book.bookImages.length === 0;
             const isLocked = isCategoryLocked || isBookLocked;
 
             return (
@@ -177,6 +176,7 @@ export default function NebulaGrid({ books, onBookClick, categoryLockStatus = {}
                 key={book.bookId}
                 onClick={() => handleBookClick(book)}
                 disabled={isLocked}
+                $isLocked={isLocked}
               >
                 <NebulaImageWrapper>
                   <NebulaImage
@@ -190,7 +190,7 @@ export default function NebulaGrid({ books, onBookClick, categoryLockStatus = {}
                   {isLocked && (
                     <LockIcon isLocked={isLocked}>
                       <LockImage
-                        src="/images/story-lock.svg"
+                        src="/lock.svg"
                         alt="잠금"
                       />
                     </LockIcon>
