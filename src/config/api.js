@@ -81,12 +81,14 @@ apiClient.interceptors.response.use(
     }
 
     // 2. 토큰 재발급을 시도해야 하는지 판단
-    // - 토큰이 없으면 재발급 불가 (로그인하지 않은 상태)
+    // - accessToken이 없으면 재발급 불가 (로그인하지 않은 상태)
+    // - refreshToken이 없으면 재발급 불가
     // - 리프레시 토큰 엔드포인트 자체는 재발급 시도하지 않음 (무한 루프 방지)
-    const hasToken = localStorage.getItem('accessToken');
+    const hasAccessToken = localStorage.getItem('accessToken');
+    const hasRefreshToken = localStorage.getItem('refreshToken');
     const isRefreshEndpoint = originalRequest.url?.includes(API_ENDPOINTS.AUTH_REFRESH);
     
-    if (!hasToken || isRefreshEndpoint) {
+    if (!hasAccessToken || !hasRefreshToken || isRefreshEndpoint) {
         // 토큰이 없거나 리프레시 엔드포인트인 경우, 재발급 시도하지 않고 에러 반환
         return Promise.reject(error);
     }
@@ -107,20 +109,27 @@ apiClient.interceptors.response.use(
 
     try {
         // 4. 리프레시 토큰 요청
-        // 리프레시 토큰은 일반적으로 HTTP Only Cookie에 저장되거나
-        // 요청 본문에 명시적으로 포함되어야 합니다.
-        // 여기서는 서버가 쿠키/자동 처리 등을 통해 리프레시 토큰을 식별한다고 가정하고,
-        // 인증 헤더 없이 리프레시 엔드포인트에 요청합니다.
+        // localStorage에서 refreshToken을 가져와서 요청 Body에 포함
+        const storedRefreshToken = localStorage.getItem('refreshToken');
+        
+        // refreshToken이 없으면 재발급 불가
+        if (!storedRefreshToken) {
+            throw new Error('No refresh token available');
+        }
+        
         const refreshResponse = await axios.post(
             getApiUrl(API_ENDPOINTS.AUTH_REFRESH), 
-            {}, 
+            { refreshToken: storedRefreshToken }, // ✅ 백엔드 규격에 맞게 전송
             { baseURL: API_BASE_URL } 
         );
         
-        const newAccessToken = refreshResponse.data.accessToken;
+        const { accessToken: newAccessToken, refreshToken: newRefreshToken } = refreshResponse.data;
 
         // 5. 새 토큰 저장
         localStorage.setItem('accessToken', newAccessToken);
+        if (newRefreshToken) {
+            localStorage.setItem('refreshToken', newRefreshToken); // ✅ 새 refreshToken도 저장
+        }
 
         // 6. apiClient의 기본 헤더를 새 토큰으로 업데이트하여 향후 요청에 사용
         apiClient.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`;
@@ -140,7 +149,8 @@ apiClient.interceptors.response.use(
         processQueue(refreshError);
         
         // 토큰 제거 (상태 관리는 AuthProvider에서 처리)
-        localStorage.removeItem('accessToken'); 
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken'); // ✅ refreshToken도 정리
         
         // 전역 이벤트 발생: AuthProvider가 이를 감지하여 performLogout() 호출
         // 이는 "토큰 만료"로 간주하고 로그아웃 처리
