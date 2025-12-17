@@ -13,8 +13,22 @@ const HeaderSection = styled.section`
 const Meta = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
   min-width: 0;
+`;
+
+const TitleAuthorContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: -26px;
+`;
+
+const TitleRow = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
 `;
 
 const Chip = styled.span`
@@ -27,24 +41,41 @@ const Chip = styled.span`
   border-radius: 30px;
   font-size: 12px;
   font-weight: 500;
+  margin-bottom: 0;
 `;
 
 const Title = styled.h1`
   margin: 0;
-  color: #ffffff;
-  word-break: keep-all;
-  font-size: 22px;    /* Dev 모드: 22 / 28 Bold */
-  line-height: 28px;
+  color: #fff;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 40px;
+  font-style: normal;
   font-weight: 700;
+  line-height: 28px; /* 70% */
+  word-break: keep-all;
 `;
 
 const Author = styled.p`
   margin: 0;
+  color: #fff;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   font-size: 14px;
-  line-height: 22px;
-  color: rgba(255,255,255,0.3);
-  text-decoration: underline;
+  font-style: normal;
+  font-weight: 400;
+  opacity: 0.4;
+  line-height: normal;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: auto;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
   text-underline-position: from-font;
+`;
+
+const SynopsisTitle = styled.h2`
+  margin: 25px 0 12px 0;
+  font-size: 18px;
+  color: #ffffff;
 `;
 
 const Description = styled.p`
@@ -55,6 +86,7 @@ const Description = styled.p`
   color: #ffffff;
   white-space: pre-line;
   opacity: 1;
+  margin-top: 0;
 `;
 
 export default function BookInfoHeader({ book }) {
@@ -66,15 +98,21 @@ export default function BookInfoHeader({ book }) {
     <div>
       <HeaderSection>
         <Meta>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            <Title>{title}</Title>
-            <Chip>{categoryName || '서사'}</Chip>
-          </div>
-          <Author>{author}</Author>
+          <TitleAuthorContainer>
+            <TitleRow>
+              <Title>{title}</Title>
+              {categoryName && <Chip>{categoryName}</Chip>}
+            </TitleRow>
+            <Author>{author}</Author>
+          </TitleAuthorContainer>
         </Meta>
       </HeaderSection>
-      {introduction ? <Description>{introduction}</Description> : null}
+      {introduction ? (
+        <>
+          <SynopsisTitle>줄거리</SynopsisTitle>
+          <Description>{introduction}</Description>
+        </>
+      ) : null}
     </div>
   );
 }
-
