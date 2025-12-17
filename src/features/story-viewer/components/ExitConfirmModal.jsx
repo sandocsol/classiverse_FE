@@ -13,17 +13,17 @@ const Overlay = styled.div`
 
 const ModalCard = styled.div`
   position: relative;
-  background: #212121;
-  border-radius: 20px;
-  width: 282px;
-  height: 152px;
-  padding: 41px 86px;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  width: 330px;
+  min-height: 152px;
+  padding: 41px 24px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 0;
+  border-radius: 20px;
+  background: #212121;
+  box-sizing: border-box;
   color: #ffffff;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
 `;
@@ -45,36 +45,42 @@ const CloseButton = styled.button`
   line-height: 1;
 `;
 
-const TextContent = styled.div`
+const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0;
-  text-align: center;
+  gap: 6px;
+  margin-bottom: 20px;
 `;
 
 const Subtitle = styled.p`
   margin: 0;
   font-family: 'Pretendard Variable', sans-serif;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  color: #F6D4FF;
+  text-align: center;
+  white-space: nowrap;
 `;
 
 const Question = styled.p`
   margin: 0;
   font-family: 'Pretendard Variable', sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   gap: 10px;
-  margin-top: 10px;
+  width: 100%;
 `;
 
-const ActionButton = styled.button`
+const BaseButton = styled.button`
+  flex: 1;
+  height: 42px;
   padding: 8px 16px;
   border: none;
   border-radius: 8px;
@@ -83,6 +89,7 @@ const ActionButton = styled.button`
   font-weight: 500;
   cursor: pointer;
   transition: opacity 0.2s;
+  white-space: nowrap;
 
   &:hover {
     opacity: 0.8;
@@ -93,12 +100,12 @@ const ActionButton = styled.button`
   }
 `;
 
-const EndButton = styled(ActionButton)`
+const EndButton = styled(BaseButton)`
   background: #2a2a2a;
   color: #ffffff;
 `;
 
-const StayButton = styled(ActionButton)`
+const StayButton = styled(BaseButton)`
   background: #F6D4FF;
   color: #212121;
 `;
@@ -115,13 +122,11 @@ export default function ExitConfirmModal({ onClose }) {
   };
 
   const handleEnd = () => {
-    // 모달만 닫기
-    if (onClose) onClose();
+    navigate('/books/1');
   };
 
   const handleStay = () => {
-    // BookDetailPage로 이동
-    navigate('/books/1');
+    if (onClose) onClose();
   };
 
   return (
@@ -130,10 +135,10 @@ export default function ExitConfirmModal({ onClose }) {
         <CloseButton type="button" aria-label="닫기" onClick={onClose}>
           ×
         </CloseButton>
-        <TextContent>
+        <TextContainer>
           <Subtitle>홈으로 돌아가기</Subtitle>
-          <Question>대화를 끝내시겠습니까?</Question>
-        </TextContent>
+          <Question>탐험을 종료하시겠습니까?</Question>
+        </TextContainer>
         <ButtonContainer>
           <EndButton onClick={handleEnd}>끝낼래요</EndButton>
           <StayButton onClick={handleStay}>더 있을래요</StayButton>
