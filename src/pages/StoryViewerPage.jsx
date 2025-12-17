@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import useStoryContent from '../features/story-viewer/hooks/useStoryContent.js';
 import useViewpoints from '../features/story-selector/hooks/useViewpoints.js';
 import ScenePresenter from '../features/story-viewer/components/ScenePresenter.jsx';
 import StoryEndScreen from '../features/story-viewer/components/StoryEndScreen.jsx';
+import ExitConfirmModal from '../features/story-viewer/components/ExitConfirmModal.jsx';
 
 const PageContainer = styled.div`
   width: 100%;
@@ -39,9 +40,30 @@ const ErrorText = styled.p`
   text-align: center;
 `;
 
+const ExitButton = styled.button`
+  position: absolute;
+  top: 44px;
+  left: 25px;
+  display: inline-flex;
+  padding: 5px;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 100;
+`;
+
+const ExitIcon = styled.img`
+  width: 18.2px;
+  height: 18.2px;
+  display: block;
+`;
+
 export default function StoryViewerPage() {
   const { storyId, characterId, contentId } = useParams();
   const navigate = useNavigate();
+  const [showExitModal, setShowExitModal] = useState(false);
   
   // 모든 hooks는 early return 전에 호출되어야 합니다
   const { data: contentData, loading, error } = useStoryContent(storyId, characterId, contentId);
@@ -118,6 +140,9 @@ export default function StoryViewerPage() {
 
   return (
     <PageContainer>
+      <ExitButton onClick={() => setShowExitModal(true)} aria-label="나가기">
+        <ExitIcon src="/images/storyviewer/exit.png" alt="나가기" />
+      </ExitButton>
       <ScenePresenter
         storyTitle={contentData.storyTitle}
         characterName={contentData.characterName}
@@ -125,6 +150,9 @@ export default function StoryViewerPage() {
         contentData={contentData}
         onChoiceSelect={handleChoiceSelect}
       />
+      {showExitModal && (
+        <ExitConfirmModal onClose={() => setShowExitModal(false)} />
+      )}
     </PageContainer>
   );
 }
