@@ -25,8 +25,8 @@ const ModalCard = styled.div`
 
 const Label = styled.label`
   display: block;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 700;
   color: #ffffff;
   margin-bottom: 12px;
 `;
@@ -37,7 +37,7 @@ const Input = styled.input`
   background: #2a2a2a;
   border: none;
   border-radius: 8px;
-  color: #ffffff;
+  color: #F6D4FF;
   font-size: 14px;
   box-sizing: border-box;
   margin-bottom: 8px;

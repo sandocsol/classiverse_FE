@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../features/auth/hooks/useAuth.js';
 import { getUserProfile } from '../features/auth/api/authApi.js';
@@ -12,8 +13,40 @@ const PageContainer = styled.div`
   width: 100%;
   min-height: 100vh;
   background: #070707;
-  padding-top: 68px;
+  padding-top: 90px;
   box-sizing: border-box;
+  position: relative;
+`;
+
+const BackButton = styled.button`
+  position: absolute;
+  left: 26px;
+  top: 50px;
+  width: 9px;
+  height: 12px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 `;
 
 const ProfileSection = styled.section`
@@ -36,7 +69,7 @@ const AvatarCircle = styled.div`
   height: 171px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 11px auto 20px;
+  margin: 0 auto 20px;
   border: 1px solid #000000;
 `;
 
@@ -84,7 +117,7 @@ const Nickname = styled.span`
 
 const EditButton = styled.button`
   position: absolute;
-  left: calc(50% + 20px);
+  left: ${props => props.$leftOffset ? `calc(50% + ${props.$leftOffset}px)` : 'calc(50% + 8px)'};
   transform: translateX(0);
   background: none;
   border: none;
@@ -96,6 +129,7 @@ const EditButton = styled.button`
   width: 13px;
   height: 13px;
   color: #424242;
+  flex-shrink: 0;
 
   svg {
     width: 100%;
@@ -153,11 +187,14 @@ const ErrorText = styled.p`
 const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true';
 
 export default function MyPage() {
+  const navigate = useNavigate();
   const { user, reloadUser } = useAuth();
   const [profile, setProfile] = useState(null);
   const [loadingProfile, setLoadingProfile] = useState(true);
   const [showEditModal, setShowEditModal] = useState(false);
   const { data: characters, loading: loadingCharacters, error: charactersError } = useProfileCharacters();
+  const nicknameRef = useRef(null);
+  const [editButtonOffset, setEditButtonOffset] = useState(8);
 
   // 프로필 정보 로드
   useEffect(() => {
@@ -210,6 +247,15 @@ export default function MyPage() {
     };
   }, [user]);
 
+  // 닉네임 너비 측정하여 EditButton 위치 조정
+  useEffect(() => {
+    if (nicknameRef.current && profile?.nickname) {
+      const nicknameWidth = nicknameRef.current.offsetWidth;
+      const gap = 8;
+      setEditButtonOffset(nicknameWidth / 2 + gap);
+    }
+  }, [profile?.nickname]);
+
   const handleEditClick = () => {
     setShowEditModal(true);
   };
@@ -238,6 +284,10 @@ export default function MyPage() {
     console.log('Character clicked:', characterId);
   };
 
+  const handleBackClick = () => {
+    navigate('/search');
+  };
+
   if (loadingProfile) {
     return (
       <PageContainer>
@@ -256,6 +306,9 @@ export default function MyPage() {
 
   return (
     <PageContainer>
+      <BackButton onClick={handleBackClick} aria-label="뒤로가기">
+        <img src="/images/icons/back-btn.svg" alt="뒤로가기" />
+      </BackButton>
       <ProfileSection>
         <SectionTitle>내 프로필</SectionTitle>
         <AvatarCircle>
@@ -265,8 +318,8 @@ export default function MyPage() {
           />
         </AvatarCircle>
         <NicknameRow>
-          <Nickname>{profile.nickname || '닉네임 없음'}</Nickname>
-          <EditButton onClick={handleEditClick} aria-label="닉네임 수정">
+          <Nickname ref={nicknameRef}>{profile.nickname || '닉네임 없음'}</Nickname>
+          <EditButton $leftOffset={editButtonOffset} onClick={handleEditClick} aria-label="닉네임 수정">
             <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd" d="M11.8854 0.617369C11.4899 0.222068 10.9537 0 10.3946 0C9.83545 0 9.29921 0.222068 8.90379 0.617369L8.40687 1.115L11.8861 4.59419L12.3823 4.09726C12.5781 3.90145 12.7335 3.66899 12.8395 3.41314C12.9454 3.15729 13 2.88306 13 2.60613C13 2.32919 12.9454 2.05497 12.8395 1.79912C12.7335 1.54327 12.5781 1.3108 12.3823 1.115L11.8854 0.617369ZM10.8915 5.58804L7.41231 2.10885L1.02326 8.49861C0.883444 8.63845 0.785777 8.81478 0.741408 9.00748L0.018158 12.1388C-0.00879056 12.255 -0.00569943 12.3762 0.0271401 12.4909C0.0599797 12.6056 0.121486 12.7101 0.205865 12.7945C0.290243 12.8789 0.394715 12.9404 0.509436 12.9732C0.624158 13.0061 0.745351 13.0091 0.861598 12.9822L3.99357 12.2596C4.18602 12.2152 4.3621 12.1175 4.50174 11.9778L10.8915 5.58804Z" />
             </svg>
