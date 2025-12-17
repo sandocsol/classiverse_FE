@@ -136,10 +136,14 @@ export default function NicknameEditModal({ currentNickname, onClose, onUpdate }
         params: { nickname: value }
       });
       
-      const available = response.data?.available ?? false;
-      setIsValid(available);
-      setStatusMessage(available ? '사용가능한 이름입니다.' : '이미 사용 중인 이름입니다.');
+      // API 응답: true = 중복됨 (사용 불가), false = 중복 아님 (사용 가능)
+      // axios는 응답 데이터를 response.data에 저장하므로, boolean 응답의 경우 response.data가 직접 boolean 값
+      const isDuplicate = response.data === true;
+      const isAvailable = !isDuplicate;
+      setIsValid(isAvailable);
+      setStatusMessage(isAvailable ? '사용가능한 이름입니다.' : '이미 사용 중인 이름입니다.');
     } catch (err) {
+      console.error('닉네임 중복 확인 실패:', err);
       setIsValid(false);
       setStatusMessage('닉네임 확인 중 오류가 발생했습니다.');
     } finally {
@@ -191,6 +195,7 @@ export default function NicknameEditModal({ currentNickname, onClose, onUpdate }
       }
       onClose();
     } catch (err) {
+      console.error('닉네임 업데이트 실패:', err);
       setStatusMessage('닉네임 업데이트 중 오류가 발생했습니다.');
     } finally {
       setIsUpdating(false);

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useAuth } from '../features/auth/hooks/useAuth.js';
 
 const PageContainer = styled.div`
   width: 100%;
@@ -243,14 +244,25 @@ const ConfirmButton = styled.button`
 
 export default function OnboardingPage() {
   const navigate = useNavigate();
+  const { updateUser, loading } = useAuth();
   const [name, setName] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
 
-  const handleConfirm = () => {
-    if (name.trim()) {
-      // TODO: 이름 저장 로직 추가 (API 호출)
-      console.log('이름:', name);
+  const handleConfirm = async () => {
+    if (!name.trim() || isSaving) return;
+
+    try {
+      setIsSaving(true);
+      // 닉네임 저장 API 호출
+      await updateUser(name.trim());
       // 탐색 페이지로 이동
       navigate('/search');
+    } catch (error) {
+      console.error('닉네임 저장 실패:', error);
+      // 에러 처리 (필요시 사용자에게 알림 표시)
+      alert('닉네임 저장에 실패했습니다. 다시 시도해주세요.');
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -313,9 +325,9 @@ export default function OnboardingPage() {
       <ButtonContainer>
         <ConfirmButton 
           onClick={handleConfirm}
-          disabled={!name.trim()}
+          disabled={!name.trim() || isSaving || loading}
         >
-          확인
+          {isSaving ? '저장 중...' : '확인'}
         </ConfirmButton>
       </ButtonContainer>
     </PageContainer>
