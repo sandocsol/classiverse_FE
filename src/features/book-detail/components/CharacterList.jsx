@@ -106,7 +106,14 @@ export default function CharacterList({ characters, onCharacterClick, book, titl
                 // GA 이벤트 추적
                 trackCharacterCardClick(characterId);
                 // 기존 클릭 핸들러 실행
-                onCharacterClick?.(characterId);
+                // bookId가 있으면 { bookId, characterId } 객체 전달, 없으면 characterId만 전달 (기존 호환성)
+                if (onCharacterClick) {
+                  if (c.bookId) {
+                    onCharacterClick({ bookId: c.bookId, characterId });
+                  } else {
+                    onCharacterClick(characterId);
+                  }
+                }
               }}
               data-character-id={characterId}
             >

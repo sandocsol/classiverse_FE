@@ -246,7 +246,14 @@ export default function BookDetailPage() {
           }}
         />
         <FullBleed>
-          <CharacterList book={bookData} onCharacterClick={setCharacterId} />
+          <CharacterList 
+            book={bookData} 
+            onCharacterClick={(arg) => {
+              // CharacterList에서 객체로 전달될 수도 있고, characterId만 전달될 수도 있음
+              const characterId = typeof arg === 'object' ? arg.characterId : arg;
+              setCharacterId(characterId);
+            }} 
+          />
         </FullBleed>
       </Content>
 

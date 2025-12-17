@@ -5,6 +5,7 @@ import { useAuth } from '../features/auth/hooks/useAuth.js';
 import { getUserProfile } from '../features/auth/api/authApi.js';
 import useProfileCharacters from '../features/profile/hooks/useProfileCharacters.js';
 import CharacterList from '../features/book-detail/components/CharacterList.jsx';
+import CharacterModal from '../features/character/components/CharacterModal.jsx';
 import NicknameEditModal from '../features/profile/components/NicknameEditModal.jsx';
 
 const PageContainer = styled.div`
@@ -195,6 +196,7 @@ export default function MyPage() {
   const { data: characters, loading: loadingCharacters, error: charactersError } = useProfileCharacters();
   const nicknameRef = useRef(null);
   const [editButtonOffset, setEditButtonOffset] = useState(8);
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
 
   // 프로필 정보 로드
   useEffect(() => {
@@ -278,10 +280,19 @@ export default function MyPage() {
     }
   };
 
-  const handleCharacterClick = (characterId) => {
-    // CharacterList에서 캐릭터 클릭 시 처리
-    // 필요시 캐릭터 상세 페이지로 이동하거나 모달 표시
-    console.log('Character clicked:', characterId);
+  const handleCharacterClick = (arg) => {
+    // CharacterList에서 객체로 전달될 수도 있고, characterId만 전달될 수도 있음
+    if (typeof arg === 'object' && arg.bookId && arg.characterId) {
+      // bookId와 characterId가 모두 있는 경우
+      setSelectedCharacter({ bookId: arg.bookId, characterId: arg.characterId });
+    } else {
+      // 기존 호환성을 위해 characterId만 전달된 경우
+      // characters 배열에서 해당 characterId를 가진 캐릭터 찾기
+      const character = characters?.find(c => String(c.charId) === String(arg));
+      if (character && character.bookId) {
+        setSelectedCharacter({ bookId: character.bookId, characterId: String(arg) });
+      }
+    }
   };
 
   const handleBackClick = () => {
@@ -350,6 +361,14 @@ export default function MyPage() {
           currentNickname={profile.nickname}
           onClose={() => setShowEditModal(false)}
           onUpdate={handleNicknameUpdate}
+        />
+      )}
+
+      {selectedCharacter && (
+        <CharacterModal
+          bookId={selectedCharacter.bookId}
+          characterId={selectedCharacter.characterId}
+          onClose={() => setSelectedCharacter(null)}
         />
       )}
     </PageContainer>
