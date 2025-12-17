@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { apiClient, API_ENDPOINTS } from '../config/api.js'; 
-import { useAuth } from '../features/auth/hooks/useAuth.js'; // ⚠️ [추가] useAuth 훅 임포트
+import { useAuth } from '../features/auth/hooks/useAuth.js';
 
 // 토큰 요청이 진행되는 동안 로딩 상태를 표시할 수 있는 간단한 컴포넌트
 const LoadingPage = () => (
@@ -21,16 +21,25 @@ const LoadingPage = () => (
 export default function KakaoAuthHandler() {
     const location = useLocation();
     const navigate = useNavigate();
-    // ⚠️ [수정] useAuth 훅에서 login 함수를 가져옵니다.
     const { login } = useAuth(); 
+    
+    // ✅ [추가] 중복 호출 방지용 ref (카카오 인가 코드는 1회용!)
+    const isRequestSent = useRef(false);
 
     useEffect(() => {
+        // ✅ 이미 요청을 보냈으면 아무것도 하지 않음 (중복 호출 방지)
+        if (isRequestSent.current) {
+            return;
+        }
+
         const searchParams = new URLSearchParams(location.search);
         const code = searchParams.get('code');
         const error = searchParams.get('error');
 
         // 인가 코드가 있을 때만 백엔드에 토큰 교환 요청
         if (code) {
+            isRequestSent.current = true; // ✅ 요청 시작 플래그 설정
+            
             const requestServiceToken = async () => {
                 try {
                     // 1. 백엔드 API 호출: 인가 코드(code)를 백엔드에 전달
@@ -38,44 +47,78 @@ export default function KakaoAuthHandler() {
                         authorizationCode: code 
                     }); 
                     
-                    // 2. 응답에서 토큰 꺼내기
-                    const { accessToken } = response.data;
+                    // 2. 응답에서 토큰 꺼내기 (accessToken + refreshToken 둘 다!)
+                    const { accessToken, refreshToken } = response.data;
                     console.log('로그인 성공! 토큰 저장');
                     
                     // 3. 토큰을 브라우저(로컬 스토리지)에 저장
                     localStorage.setItem('accessToken', accessToken);
+                    localStorage.setItem('refreshToken', refreshToken); // ✅ refreshToken도 저장!
                     
-                    // ⚠️ [수정] 4. 전역 상태의 login 함수를 호출하여 사용자 프로필을 로드합니다.
-                    // 이 함수 내부에서 /api/profile/me 호출 및 AuthContext 상태 업데이트가 일어납니다.
+                    // 4. 전역 상태의 login 함수를 호출하여 사용자 프로필을 로드
                     await login(); 
                     
                     // 5. 온보딩 페이지로 이동
                     navigate('/onboarding');
                     
-                } catch (error) {
-                    console.error('로그인 처리 실패:', error);
-                    alert('로그인에 실패했습니다. 다시 시도해주세요.');
+                } catch (err) {
+                    // ✅ 상세한 에러 정보 로깅 (백엔드 디버깅용)
+                    console.error('=== 로그인 처리 실패 ===');
                     
-                    // 실패 시, localStorage에 남아있을 수 있는 토큰을 정리하고 로그인 페이지로 보냅니다.
-                    // AuthProvider의 login 함수가 실패하면 이미 performLogout을 호출할 수 있지만, 
-                    // 안전을 위해 여기서도 토큰을 지우는 로직을 추가할 수 있습니다.
-                    localStorage.removeItem('accessToken'); 
+                    if (err.response) {
+                        // 백엔드에서 응답이 온 경우 (500, 400 등)
+                        console.error('🔴 HTTP 상태 코드:', err.response.status);
+                        console.error('🔴 에러 응답 데이터 (전체):', JSON.stringify(err.response.data, null, 2));
+                        console.error('🔴 에러 응답 데이터 (원본):', err.response.data);
+                        
+                        // 백엔드가 보낸 에러 메시지 추출 시도
+                        const backendError = err.response.data;
+                        if (backendError) {
+                            console.error('🔴 백엔드 에러 메시지:', backendError.message || backendError.error || backendError);
+                            if (backendError.timestamp) {
+                                console.error('🔴 에러 발생 시간:', backendError.timestamp);
+                            }
+                            if (backendError.path) {
+                                console.error('🔴 에러 발생 경로:', backendError.path);
+                            }
+                        }
+                        console.error('🔴 에러 응답 헤더:', err.response.headers);
+                    } else if (err.request) {
+                        // 요청은 보냈지만 응답을 받지 못한 경우 (네트워크 에러 등)
+                        console.error('🔴 요청은 전송됨, 응답 없음:', err.request);
+                        console.error('🔴 네트워크 에러일 가능성이 높습니다.');
+                    } else {
+                        // 요청 설정 중 에러
+                        console.error('🔴 요청 설정 에러:', err.message);
+                    }
+                    
+                    console.error('📤 요청 URL:', API_ENDPOINTS.AUTH_KAKAO);
+                    console.error('📤 요청 데이터:', { authorizationCode: code });
+                    console.error('========================');
+                    
+                    // 사용자에게는 간단한 메시지만 표시
+                    const errorMessage = err.response?.data?.message || 
+                                        err.response?.data?.error ||
+                                        err.message || 
+                                        '로그인에 실패했습니다. 다시 시도해주세요.';
+                    alert(`로그인 실패: ${errorMessage}`);
+                    
+                    localStorage.removeItem('accessToken');
+                    localStorage.removeItem('refreshToken');
                     navigate('/'); 
                 }
             };
             
             requestServiceToken();
         } else if (error) {
-            // ... (기존 에러 처리 로직 유지)
             console.error('카카오 로그인 에러:', error);
             alert('로그인에 실패했습니다. 다시 시도해주세요.');
             navigate('/'); 
         } else {
-            // ... (기존 잘못된 접근 로직 유지)
             console.warn('잘못된 접근입니다.');
             navigate('/');
         }
-    }, [location.search, navigate, login]); // ⚠️ [수정] login을 의존성 배열에 추가
+    }, [location.search, navigate, login]);
 
 
     return <LoadingPage />;
