@@ -22,8 +22,8 @@ const BackButton = styled.button`
   position: absolute;
   left: 26px;
   top: 50px;
-  width: 9px;
-  height: 12px;
+  width: 12px;
+  height: 16px;
   background: none;
   border: none;
   padding: 0;
