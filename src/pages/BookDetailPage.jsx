@@ -70,13 +70,9 @@ const BookImageCarousel = styled.div`
   margin: 0 auto;
   overflow: hidden;
 
-  /* 🔥 하단 radius 제거 — 계단/박스 착시의 주범 */
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 
-  /* ❗ 배경색 절대 주지 마세요 (투명 필수) */
-
-  /* 👇 피그마식 “자연스러운 어둠 연결” */
   &::after {
     content: '';
     position: absolute;
@@ -108,7 +104,6 @@ const CarouselImage = styled.img`
   transition: opacity 0.5s ease-in-out;
   pointer-events: none;
 
-  /* 🎯 이미지 자체를 아래에서 자연스럽게 사라지게 */
   mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 1) 0%,
@@ -214,7 +209,7 @@ export default function BookDetailPage() {
   }
 
   const handleBackClick = () => {
-    navigate(-1);
+    navigate('/search');
   };
 
   return (
@@ -246,7 +241,14 @@ export default function BookDetailPage() {
           }}
         />
         <FullBleed>
-          <CharacterList book={bookData} onCharacterClick={setCharacterId} />
+          <CharacterList 
+            book={bookData} 
+            onCharacterClick={(arg) => {
+              // CharacterList에서 객체로 전달될 수도 있고, characterId만 전달될 수도 있음
+              const characterId = typeof arg === 'object' ? arg.characterId : arg;
+              setCharacterId(characterId);
+            }} 
+          />
         </FullBleed>
       </Content>
 
