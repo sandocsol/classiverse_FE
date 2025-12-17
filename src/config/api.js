@@ -159,7 +159,7 @@ apiClient.interceptors.response.use(
 
 export const API_ENDPOINTS = {
   // 인증
-  AUTH_KAKAO: '/api/auth/kakao/login',
+  AUTH_KAKAO: '/api/auth/kakao/callback',
 
   AUTH_REFRESH: '/api/auth/refresh',
 
