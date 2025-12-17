@@ -29,34 +29,28 @@ export const apiClient = axios.create({
   },
 });
 
-// --- 토큰 재발급 로직을 위한 전역 상태 ---
-let isRefreshing = false;
-let failedQueue = [];
+// ------------------------------------------------------------------
+// Interceptors 설정 (토큰 자동 주입 & 자동 갱신)
+// ------------------------------------------------------------------
 
-/**
- * 큐에 쌓인 요청들을 처리 (새 토큰으로 재시도 또는 에러 반환)
- */
-const processQueue = (error) => {
-    failedQueue.forEach(prom => {
-        if (error) {
-            prom.reject(error);
-        } else {
-            // 새 토큰으로 헤더 업데이트 후 원래 요청 재시도
-            prom.resolve(apiClient(prom.request)); 
-        }
-    });
-
-    failedQueue = [];
-};
-
-// 요청 인터셉터: 모든 요청에 토큰 자동 추가
+// 1. 요청 인터셉터: AccessToken 헤더 주입
 apiClient.interceptors.request.use(
   (config) => {
-    // 1. localStorage에서 토큰 확인 (로그인 후 저장된 토큰)
-    // 백엔드 요구사항: localStorage 키는 'accessToken' 사용
+    const url = config.url || "";
+
+    // ✅ 로그인/재발급/로그아웃 요청에는 Authorization을 붙이지 않음
+    // (찌꺼기 토큰 때문에 로그인 요청이 막히는 문제 방지)
+    if (
+      url.includes("/api/auth/kakao/callback") ||
+      url.includes("/api/auth/refresh") ||
+      url.includes("/api/auth/logout")
+    ) {
+      return config;
+    }
+
     let token = localStorage.getItem('accessToken');
     
-    // 2. localStorage에 토큰이 없고, 개발용 토큰이 환경 변수에 설정되어 있으면 사용
+    // 개발용 토큰 예외 처리
     if (!token && import.meta.env.VITE_DEV_AUTH_TOKEN) {
       token = import.meta.env.VITE_DEV_AUTH_TOKEN;
     }
@@ -69,102 +63,66 @@ apiClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// 응답 인터셉터: 401 에러 시 토큰 재발급 및 요청 재시도 로직 처리
+
+// 2. 응답 인터셉터: 401 발생 시 토큰 갱신 시도
 apiClient.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
 
-    // 1. 에러가 401이 아니거나, 이미 재시도 처리된 요청인 경우
+    // 401이 아니거나, 이미 재시도한 요청이면 에러 반환
     if (error.response?.status !== 401 || originalRequest._retry) {
-        return Promise.reject(error);
+      return Promise.reject(error);
     }
 
-    // 2. 토큰 재발급을 시도해야 하는지 판단
-    // - accessToken이 없으면 재발급 불가 (로그인하지 않은 상태)
-    // - refreshToken이 없으면 재발급 불가
-    // - 리프레시 토큰 엔드포인트 자체는 재발급 시도하지 않음 (무한 루프 방지)
-    const hasAccessToken = localStorage.getItem('accessToken');
-    const hasRefreshToken = localStorage.getItem('refreshToken');
-    const isRefreshEndpoint = originalRequest.url?.includes(API_ENDPOINTS.AUTH_REFRESH);
-    
-    if (!hasAccessToken || !hasRefreshToken || isRefreshEndpoint) {
-        // 토큰이 없거나 리프레시 엔드포인트인 경우, 재발급 시도하지 않고 에러 반환
-        return Promise.reject(error);
+    const refreshToken = localStorage.getItem('refreshToken');
+    // 리프레시 토큰이 없으면 갱신 불가 -> 로그인 페이지로 가야 함
+    if (!refreshToken) {
+      return Promise.reject(error);
     }
 
-    // 3. 이미 토큰 재발급 요청 중인 경우, 현재 요청을 큐에 담고 대기
-    if (isRefreshing) {
-        return new Promise(function(resolve, reject) {
-            failedQueue.push({ resolve, reject, request: originalRequest });
-        });
-    }
-    
-    // 4. 토큰 재발급 로직 시작 (토큰이 있는 경우에만)
-    isRefreshing = true;
-    originalRequest._retry = true; // 재시도 플래그 설정
-
-    // 401 에러가 발생했으니, 만료된 액세스 토큰 제거
-    localStorage.removeItem('accessToken');
+    // 무한 루프 방지용 플래그
+    originalRequest._retry = true;
 
     try {
-        // 4. 리프레시 토큰 요청
-        // localStorage에서 refreshToken을 가져와서 요청 Body에 포함
-        const storedRefreshToken = localStorage.getItem('refreshToken');
-        
-        // refreshToken이 없으면 재발급 불가
-        if (!storedRefreshToken) {
-            throw new Error('No refresh token available');
+      // ✅ [핵심] 백엔드 계약 준수: Body에 { refreshToken: "..." } 담아서 요청
+      // 순환 참조 방지를 위해 API_BASE_URL + 문자열 경로 직접 사용
+      const refreshResponse = await axios.post(
+        `${API_BASE_URL}/api/auth/refresh`,
+        { refreshToken: refreshToken },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          }
         }
-        
-        const refreshResponse = await axios.post(
-            getApiUrl(API_ENDPOINTS.AUTH_REFRESH), 
-            { refreshToken: storedRefreshToken }, // ✅ 백엔드 규격에 맞게 전송
-            { baseURL: API_BASE_URL } 
-        );
-        
-        const { accessToken: newAccessToken, refreshToken: newRefreshToken } = refreshResponse.data;
+      );
 
-        // 5. 새 토큰 저장
-        localStorage.setItem('accessToken', newAccessToken);
-        if (newRefreshToken) {
-            localStorage.setItem('refreshToken', newRefreshToken); // ✅ 새 refreshToken도 저장
-        }
+      const { accessToken: newAccessToken, refreshToken: newRefreshToken } = refreshResponse.data;
 
-        // 6. apiClient의 기본 헤더를 새 토큰으로 업데이트하여 향후 요청에 사용
-        apiClient.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`;
+      // 새 토큰 저장
+      localStorage.setItem('accessToken', newAccessToken);
+      if (newRefreshToken) {
+        localStorage.setItem('refreshToken', newRefreshToken);
+      }
 
-        // 7. 큐에 있던 모든 요청 재시도
-        processQueue(null);
-        
-        // 8. 현재 실패했던 원본 요청도 새 토큰으로 헤더를 업데이트하여 재시도
-        originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
-        return apiClient(originalRequest);
+      // 실패했던 원본 요청의 헤더를 새 토큰으로 교체 후 재요청
+      originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+      
+      // axios(originalRequest) 대신 apiClient(originalRequest) 사용
+      return apiClient(originalRequest);
 
     } catch (refreshError) {
-        // 9. 리프레시 토큰 요청마저 실패한 경우
-        // - 리프레시 토큰 만료
-        // - 리프레시 토큰이 없음
-        // - 서버 인증 실패
-        processQueue(refreshError);
-        
-        // 토큰 제거 (상태 관리는 AuthProvider에서 처리)
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken'); // ✅ refreshToken도 정리
-        
-        // 전역 이벤트 발생: AuthProvider가 이를 감지하여 performLogout() 호출
-        // 이는 "토큰 만료"로 간주하고 로그아웃 처리
-        window.dispatchEvent(new CustomEvent('auth:token-expired', { 
-            detail: { error: refreshError } 
-        }));
-        
-        // 에러를 throw하여 상위 컴포넌트에서도 처리 가능하도록 함
-        return Promise.reject(refreshError);
-
-    } finally {
-        isRefreshing = false;
+      // 갱신 실패 시 로그아웃 처리
+      console.error("토큰 갱신 실패:", refreshError);
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      
+      // 필요하다면 이벤트 발생으로 로그인 페이지 이동 트리거
+      window.dispatchEvent(new CustomEvent('auth:token-expired'));
+      
+      return Promise.reject(refreshError);
     }
-}
+  }
 );
 
 export const API_ENDPOINTS = {
