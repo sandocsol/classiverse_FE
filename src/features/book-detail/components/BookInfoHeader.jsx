@@ -24,6 +24,13 @@ const TitleAuthorContainer = styled.div`
   margin-top: -26px;
 `;
 
+const TitleRow = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+`;
+
 const Chip = styled.span`
   display: inline-flex;
   align-items: center;
@@ -34,6 +41,7 @@ const Chip = styled.span`
   border-radius: 30px;
   font-size: 12px;
   font-weight: 500;
+  margin-bottom: 0;
 `;
 
 const Title = styled.h1`
@@ -64,6 +72,12 @@ const Author = styled.p`
   text-underline-position: from-font;
 `;
 
+const SynopsisTitle = styled.h2`
+  margin: 25px 0 12px 0;
+  font-size: 18px;
+  color: #ffffff;
+`;
+
 const Description = styled.p`
   margin: 0;
   padding: 0;
@@ -72,6 +86,7 @@ const Description = styled.p`
   color: #ffffff;
   white-space: pre-line;
   opacity: 1;
+  margin-top: 0;
 `;
 
 export default function BookInfoHeader({ book }) {
@@ -84,16 +99,20 @@ export default function BookInfoHeader({ book }) {
       <HeaderSection>
         <Meta>
           <TitleAuthorContainer>
-            <Title>{title}</Title>
+            <TitleRow>
+              <Title>{title}</Title>
+              {categoryName && <Chip>{categoryName}</Chip>}
+            </TitleRow>
             <Author>{author}</Author>
           </TitleAuthorContainer>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            <Chip>{categoryName || '서사'}</Chip>
-          </div>
         </Meta>
       </HeaderSection>
-      {introduction ? <Description>{introduction}</Description> : null}
+      {introduction ? (
+        <>
+          <SynopsisTitle>줄거리</SynopsisTitle>
+          <Description>{introduction}</Description>
+        </>
+      ) : null}
     </div>
   );
 }
-
