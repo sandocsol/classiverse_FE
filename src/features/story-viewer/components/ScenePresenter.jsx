@@ -62,6 +62,7 @@ const SceneTitle = styled.p`
   font-size: 20px;
   line-height: 24px;
   color: #ffffff;
+  white-space: pre-line;
 `;
 
 const Dialogue = styled.div`
