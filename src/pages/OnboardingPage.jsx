@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../features/auth/hooks/useAuth.js';
@@ -242,11 +242,33 @@ const ConfirmButton = styled.button`
   }
 `;
 
+/**
+ * 기본 닉네임 패턴인지 확인 (예: "클래시버스 유저_12345")
+ * @param {string} nickname - 확인할 닉네임
+ * @returns {boolean} 기본 닉네임 패턴이면 true
+ */
+const isDefaultNickname = (nickname) => {
+  if (!nickname) return false;
+  // "클래시버스 유저_"로 시작하는 패턴인지 확인
+  const defaultPattern = /^클라시버스 유저_/;
+  return defaultPattern.test(nickname.trim());
+};
+
 export default function OnboardingPage() {
   const navigate = useNavigate();
-  const { updateUser, loading } = useAuth();
+  const { user, updateUser, loading } = useAuth();
   const [name, setName] = useState('');
   const [isSaving, setIsSaving] = useState(false);
+
+  // 이미 로그인한 사용자이고, 기본 닉네임이 아닌 실제 닉네임이 있으면 온보딩 페이지 건너뛰기
+  useEffect(() => {
+    if (!loading && user && user.nickname && user.nickname.trim() !== '') {
+      // 기본 닉네임 패턴이 아닌 경우에만 온보딩 건너뛰기
+      if (!isDefaultNickname(user.nickname)) {
+        navigate('/search', { replace: true });
+      }
+    }
+  }, [user, loading, navigate]);
 
   const handleConfirm = async () => {
     if (!name.trim() || isSaving) return;
