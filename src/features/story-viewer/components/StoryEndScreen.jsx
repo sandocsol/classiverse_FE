@@ -223,7 +223,7 @@ export default function StoryEndScreen({ storyId, characterId, initialCloseness 
   const storyTitle = completeData?.storyTitle ?? '';
   const characterName = completeData?.characterName ?? '';
   const clearMessage = storyTitle ? `'${storyTitle}' 클리어` : '';
-  const relationshipUpdate = characterName ? `${characterName}와의 관계가 한 단계 깊어졌어요` : '';
+  const relationshipUpdate = characterName ? `${characterName}와의 관계가\n한 단계 더 깊어졌어요!` : '';
   const finalText = completeData?.finalText ?? '';
   const messageLines = finalText ? finalText.split('\n') : [];
   const currentCloseness = completeData?.currentCloseness ?? initialCloseness ?? 0;
