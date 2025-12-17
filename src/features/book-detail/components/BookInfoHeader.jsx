@@ -22,6 +22,7 @@ const TitleAuthorContainer = styled.div`
   flex-direction: column;
   gap: 14px;
   margin-top: -26px;
+  position: relative;
 `;
 
 const TitleRow = styled.div`
@@ -29,6 +30,13 @@ const TitleRow = styled.div`
   align-items: flex-end;
   gap: 8px;
   flex-wrap: wrap;
+`;
+
+const ChipContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
+  margin-top: -18px;
+  margin-left: 5px;
 `;
 
 const Chip = styled.span`
@@ -41,7 +49,7 @@ const Chip = styled.span`
   border-radius: 30px;
   font-size: 12px;
   font-weight: 500;
-  margin-bottom: 0;
+  transform: translateY(4px);
 `;
 
 const Title = styled.h1`
@@ -98,13 +106,19 @@ export default function BookInfoHeader({ book }) {
     <div>
       <HeaderSection>
         <Meta>
-          <TitleAuthorContainer>
-            <TitleRow>
-              <Title>{title}</Title>
-              {categoryName && <Chip>{categoryName}</Chip>}
-            </TitleRow>
-            <Author>{author}</Author>
-          </TitleAuthorContainer>
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+            <TitleAuthorContainer>
+              <TitleRow>
+                <Title>{title}</Title>
+              </TitleRow>
+              <Author>{author}</Author>
+            </TitleAuthorContainer>
+            {categoryName && (
+              <ChipContainer>
+                <Chip>{categoryName}</Chip>
+              </ChipContainer>
+            )}
+          </div>
         </Meta>
       </HeaderSection>
       {introduction ? (

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import BookInfoHeader from '../features/book-detail/components/BookInfoHeader.jsx';
@@ -16,6 +16,51 @@ const PageContainer = styled.div`
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
+`;
+
+const BackButton = styled.button`
+  position: absolute;
+  left: calc(26px - (75px - 12px) / 2);
+  top: calc(50px - (71px - 16px) / 2);
+  width: 75px;
+  height: 71px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: opacity 0.2s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.00) 100%);
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+
+  img {
+    width: 12px;
+    height: 16px;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+  }
 `;
 
 const BookImageCarousel = styled.div`
@@ -101,6 +146,7 @@ const FullBleed = styled.div`
 
 export default function BookDetailPage() {
   const { bookId } = useParams();
+  const navigate = useNavigate();
   const { data: bookData, loading, error } = useBookDetail(bookId);
 
   const [characterId, setCharacterId] = useState(null);
@@ -167,8 +213,15 @@ export default function BookDetailPage() {
     );
   }
 
+  const handleBackClick = () => {
+    navigate(-1);
+  };
+
   return (
     <PageContainer>
+      <BackButton onClick={handleBackClick} aria-label="뒤로가기">
+        <img src="/images/icons/back-btn.svg" alt="뒤로가기" />
+      </BackButton>
       {bookImages.length > 0 && (
         <BookImageCarousel>
           {bookImages.map((imageUrl, index) => (
