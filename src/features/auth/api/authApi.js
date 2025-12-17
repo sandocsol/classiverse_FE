@@ -28,3 +28,16 @@ export const logoutApi = async () => {
         return { success: true };
     }
 };
+
+/**
+ * 닉네임 수정 API
+ * API 명세: PUT /api/profile/nickname
+ * @param {string} nickname - 새로운 닉네임
+ * @returns {Promise<object>} 업데이트된 사용자 프로필 정보
+ */
+export const updateNickname = async (nickname) => {
+    const response = await apiClient.put(API_ENDPOINTS.PROFILE_NICKNAME_UPDATE, {
+        nickname: nickname
+    });
+    return response.data;
+};

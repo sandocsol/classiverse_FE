@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom'; // 리다이렉트를 위해 useNavigate 사용
 import { AuthContext } from './AuthContext.js';
-import { getUserProfile, logoutApi } from './api/authApi.js'; // 새로 만든 API 함수
+import { getUserProfile, logoutApi, updateNickname } from './api/authApi.js'; // 새로 만든 API 함수
 
 /**
  * 인증 상태와 사용자 정보를 제공하는 Provider 컴포넌트
@@ -164,7 +164,36 @@ export function AuthProvider({ children }) {
         }
     }, []);
     
-    // ... (updateUser 등 기타 필요한 함수는 이전 프로젝트 코드 참고하여 추가)
+    /**
+     * 사용자 닉네임 업데이트
+     * @param {string} nickname - 새로운 닉네임
+     * @returns {Promise<object>} 업데이트된 사용자 정보
+     */
+    const updateUser = useCallback(async (nickname) => {
+        try {
+            setLoading(true);
+            setError(null);
+            
+            // 닉네임 수정 API 호출
+            await updateNickname(nickname);
+            
+            // 사용자 정보 재로드하여 최신 정보 반영
+            const updatedUserData = await getUserProfile();
+            setUser(updatedUserData);
+            
+            return updatedUserData;
+        } catch (err) {
+            setError(err);
+            const status = err.response?.status;
+            if (status === 401) {
+                console.log('닉네임 수정 시 토큰 만료로 인해 자동 로그아웃 처리');
+                performLogout();
+            }
+            throw err;
+        } finally {
+            setLoading(false);
+        }
+    }, [performLogout]);
 
     // Context에 제공할 값
     const value = useMemo(
@@ -175,9 +204,10 @@ export function AuthProvider({ children }) {
             login,
             logout,
             reloadUser,
+            updateUser,
             isAuthenticated: !!user, // 로그인 여부 플래그
         }),
-        [user, loading, error, login, logout, reloadUser]
+        [user, loading, error, login, logout, reloadUser, updateUser]
     );
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

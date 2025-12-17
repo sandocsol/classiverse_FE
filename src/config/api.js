@@ -99,11 +99,9 @@ apiClient.interceptors.response.use(
 
       const { accessToken: newAccessToken, refreshToken: newRefreshToken } = refreshResponse.data;
 
-      // 새 토큰 저장
+      // 새 토큰 저장 (액세스 토큰과 리프레시 토큰 모두 반드시 저장)
       localStorage.setItem('accessToken', newAccessToken);
-      if (newRefreshToken) {
-        localStorage.setItem('refreshToken', newRefreshToken);
-      }
+      localStorage.setItem('refreshToken', newRefreshToken);
 
       // 실패했던 원본 요청의 헤더를 새 토큰으로 교체 후 재요청
       originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;

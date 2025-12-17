@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useAuth } from '../features/auth/hooks/useAuth.js';
 
 const PageContainer = styled.div`
   width: 100%;
@@ -241,16 +242,49 @@ const ConfirmButton = styled.button`
   }
 `;
 
+/**
+ * 기본 닉네임 패턴인지 확인 (예: "클래시버스 유저_12345")
+ * @param {string} nickname - 확인할 닉네임
+ * @returns {boolean} 기본 닉네임 패턴이면 true
+ */
+const isDefaultNickname = (nickname) => {
+  if (!nickname) return false;
+  // "클래시버스 유저_"로 시작하는 패턴인지 확인
+  const defaultPattern = /^클라시버스 유저_/;
+  return defaultPattern.test(nickname.trim());
+};
+
 export default function OnboardingPage() {
   const navigate = useNavigate();
+  const { user, updateUser, loading } = useAuth();
   const [name, setName] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
 
-  const handleConfirm = () => {
-    if (name.trim()) {
-      // TODO: 이름 저장 로직 추가 (API 호출)
-      console.log('이름:', name);
+  // 이미 로그인한 사용자이고, 기본 닉네임이 아닌 실제 닉네임이 있으면 온보딩 페이지 건너뛰기
+  useEffect(() => {
+    if (!loading && user && user.nickname && user.nickname.trim() !== '') {
+      // 기본 닉네임 패턴이 아닌 경우에만 온보딩 건너뛰기
+      if (!isDefaultNickname(user.nickname)) {
+        navigate('/search', { replace: true });
+      }
+    }
+  }, [user, loading, navigate]);
+
+  const handleConfirm = async () => {
+    if (!name.trim() || isSaving) return;
+
+    try {
+      setIsSaving(true);
+      // 닉네임 저장 API 호출
+      await updateUser(name.trim());
       // 탐색 페이지로 이동
       navigate('/search');
+    } catch (error) {
+      console.error('닉네임 저장 실패:', error);
+      // 에러 처리 (필요시 사용자에게 알림 표시)
+      alert('닉네임 저장에 실패했습니다. 다시 시도해주세요.');
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -313,9 +347,9 @@ export default function OnboardingPage() {
       <ButtonContainer>
         <ConfirmButton 
           onClick={handleConfirm}
-          disabled={!name.trim()}
+          disabled={!name.trim() || isSaving || loading}
         >
-          확인
+          {isSaving ? '저장 중...' : '확인'}
         </ConfirmButton>
       </ButtonContainer>
     </PageContainer>
