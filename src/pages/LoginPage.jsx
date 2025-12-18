@@ -16,7 +16,7 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 0 28px 40px;
+  padding: 0;
   box-sizing: border-box;
 `;
 
@@ -61,7 +61,6 @@ const RocketVideo = styled.video`
 const PlanetContainer = styled.div`
   position: relative;
   width: 100%;
-  max-width: 400px;
   height: 200px;
   display: flex;
   align-items: center;
@@ -73,8 +72,8 @@ const PlanetContainer = styled.div`
 const Planet = styled.img`
   position: absolute;
   bottom: -60px;
-  width: 360px;
-  height: 360px;
+  width: 100%;
+  height: auto;
   object-fit: contain;
 `;
 
