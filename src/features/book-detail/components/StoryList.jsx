@@ -109,17 +109,17 @@ export default function StoryList({ stories, onStoryClick, book, activeStoryId, 
       }
     });
 
-    // 다음 스토리 인덱스 결정
-    let targetIndex = lastReadIndex + 1;
-    
-    // 다음 스토리가 없거나 잠겨있으면 마지막으로 읽은 스토리에 표시
-    if (targetIndex >= list.length || (list[targetIndex] && list[targetIndex].isLocked)) {
-      targetIndex = Math.max(0, lastReadIndex);
-    }
-
     // 스토리를 하나도 안 읽은 경우 첫 번째 스토리에 표시
     if (lastReadIndex === -1) {
-      targetIndex = 0;
+      return 0;
+    }
+
+    // 다음 스토리 인덱스 결정
+    const targetIndex = lastReadIndex + 1;
+    
+    // 다음 스토리가 없거나 잠겨있으면 하이라이팅하지 않음 (null 반환)
+    if (targetIndex >= list.length || (list[targetIndex] && list[targetIndex].isLocked)) {
+      return null;
     }
 
     return targetIndex;
@@ -127,6 +127,12 @@ export default function StoryList({ stories, onStoryClick, book, activeStoryId, 
 
   // RailHighlight 위치 계산
   useEffect(() => {
+    if (nextStoryIndex === null) {
+      // 하이라이팅할 스토리가 없으면 위치를 화면 밖으로 설정
+      setHighlightTop(-100);
+      return;
+    }
+
     const itemElement = itemRefs.current[`story-${nextStoryIndex}`];
     if (itemElement) {
       const listElement = itemElement.parentElement;
@@ -177,13 +183,15 @@ export default function StoryList({ stories, onStoryClick, book, activeStoryId, 
       <SectionTitle>5가지 이야기</SectionTitle>
       <List>
         <Rail />
-        <RailHighlight 
-          style={{ top: `${highlightTop}px` }}
-        />
+        {nextStoryIndex !== null && (
+          <RailHighlight 
+            style={{ top: `${highlightTop}px` }}
+          />
+        )}
         {list.map((story, index) => {
           const isActive = activeStoryId && activeStoryId === story.storyId;
           const isLocked = story.isLocked === true;
-          const isNextStory = index === nextStoryIndex;
+          const isNextStory = nextStoryIndex !== null && index === nextStoryIndex;
           const isStory4Or5 = story.storyId === 'story-4' || story.storyId === 'story-5';
           // 잠긴 스토리는 모두 LockedItem 사용 (색깔 전과 동일하게 유지)
           const ItemComponent = isLocked ? LockedItem : Item;

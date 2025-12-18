@@ -70,9 +70,6 @@ const BookImageCarousel = styled.div`
   margin: 0 auto;
   overflow: hidden;
 
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-
   &::after {
     content: '';
     position: absolute;
